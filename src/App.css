@@ -1,0 +1,159 @@
+/* --- ESTA ES LA CORRECCIÓN --- */
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * Dejamos que el <body> use los colores por defecto
+ * del navegador (respetando tu modo oscuro)
+ */
+body {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  font-family: Arial, sans-serif;
+}
+
+/*
+ * Contenedor principal
+ */
+.card {
+  max-width: 600px;
+  width: 90%;
+  padding: 24px;
+}
+
+.card h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+/* --- Contenedor para los controles de búsqueda --- */
+.search-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+/* --- Estilo para el dropdown --- */
+.search-select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  grid-column: 1 / -1;
+}
+
+/*
+ * Input de búsqueda
+ */
+.search-input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: none;
+  grid-column: 1 / -1;
+}
+
+/*
+ * Botón de búsqueda
+ */
+.search-button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #6c9c40; /* Verde Chess.com */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  grid-column: 1 / -1;
+}
+
+.search-button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/*
+ * Contenedor de resultados
+ */
+.results-container {
+  margin-top: 24px;
+  padding-top: 24px;
+}
+
+/*
+ * Mensaje de error
+ */
+.error-message {
+  color: #ff5555; 
+  text-align: center;
+  font-weight: bold;
+}
+
+/*
+ * Estilos comunes para los resultados
+ */
+.player-header, .club-header, .puzzle-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-row {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+.profile-link {
+  color: #6c9c40;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 16px;
+  display: inline-block;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+/*
+ * Estilo para la imagen del puzzle
+ */
+.puzzle-image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+/* --- NUEVO: Estilos para la imagen de ajedrez por defecto --- */
+.default-image-container {
+  text-align: center; /* Para centrar la imagen */
+}
+
+.default-chess-image {
+  max-width: 100%; /* Para que no se desborde */
+  height: auto;
+  border-radius: 4px; /* Un poco de borde redondeado */
+  opacity: 0.8; /* Un poco transparente para no distraer */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* neuvooooooo */
+
+
+
