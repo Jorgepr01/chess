@@ -1,28 +1,18 @@
 import json
-import os # Para verificar si el archivo existe
-import uvicorn
-from fastapi import FastAPI,Body
+import os
+from fastapi import FastAPI,Body,HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import requests
-from fastapi import FastAPI, HTTPException
-import requests
-
-
-
 debug=True
-
 app = FastAPI()
-
-
 origins = [
-    "http://localhost:5173",    # Tu React local
-    "http://127.0.0.1:5173",    # Alternativa de local
-    "*"                         # (Opcional) Usa "*" para permitir a CUALQUIERA conectarse (útil para desarrollo)
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "*"
 ]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,      # Qué dominios pueden entrar
+    allow_origins=["*"],      # Qué dominios pueden entrar
     allow_credentials=True,
     allow_methods=["*"],        # Permitir todos los métodos (GET, POST, etc.)
     allow_headers=["*"],        # Permitir todos los headers
@@ -33,15 +23,11 @@ app.add_middleware(
 def home():
     return {"Hello": "World"}
 
-# @app.get("/chess", tags=["consultas"])
-# def showJugadores():
-#     return jugadores
 
 
-
-
+##informacion del perfil
 @app.get("/chessyo/{user}", tags=["consultas"])
-def yo(user):
+def user(user):
     nombre_archivo = f"{user}_profile.json"
     if os.path.exists(nombre_archivo):
         print("archivo existe")
@@ -49,7 +35,7 @@ def yo(user):
             data = json.load(f) # Convertimos el archivo de texto a Diccionario Python
             return data
     
-    
+    ##si no esta en cache
     headers = {'User-Agent': 'JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)'}
     url = f'https://api.chess.com/pub/player/{user}'
     response = requests.get(url, headers=headers)
@@ -64,17 +50,17 @@ def yo(user):
         print(response.text)
 
 
-
+#inforcion de estadisticas basicas
 @app.get("/chessstats/{user}", tags=["consultas"])
-def yo(user):
+def stats(user):
     nombre_archivo = f"{user}_stats.json"
     if os.path.exists(nombre_archivo):
         print("archivo existe")
         with open(nombre_archivo, 'r', encoding='utf-8') as f:
-            data = json.load(f) # Convertimos el archivo de texto a Diccionario Python
+            data = json.load(f)
             return data
         
-
+    #si no esta en cache
     headers = {'User-Agent': 'JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)'}
     url = f'https://api.chess.com/pub/player/{user}/stats'
     response = requests.get(url, headers=headers)
@@ -94,9 +80,9 @@ def yo(user):
 
 
 
-
+#informacion de las partidas jugadas
 @app.get("/chessarchives/{user}", tags=["consultas"])
-def yo(user):
+def archives(user):
     nombre_archivo = f"{user}_archives.json"
     if os.path.exists(nombre_archivo):
         print("archivo existe")
@@ -122,7 +108,7 @@ def yo(user):
 
 
 @app.get("/chessgames{user}/{year}/{month}", tags=["consultas"])
-def yo(user,year,month):
+def games(user,year,month):
     nombre_archivo = f"{user}_{year}_{month}_games.json"
     if os.path.exists(nombre_archivo):
         print("archivo existe")
