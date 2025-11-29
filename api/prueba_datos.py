@@ -17,94 +17,108 @@ with open(nombre_games_11, 'r', encoding='utf-8') as f:
 
 user="jorgepr1"
 
-def data_first_level(games,user="jorgepr1"):
-    rhythm={}
+#Nuevo elemento
+def get_new_stats_template():
+    """Retorna un diccionario limpio con los valores por defecto."""
+    return {
+        "cantidad_games": 0,
+        "elo_max": 0,
+        "elo_min": 10000, # Tu valor inicial personalizado
+        "w_with": 0,
+        "w_black": 0,
+        "reson_loss": {}, 
+        "reson_win": {}, 
+        "racha": 0,
+        "racha_cache": 0,
+        "nemesis": {}, 
+        "pet": {},
+        "aperturas": {} 
+    }
+
+#limpiar la data
+def data_first_level(games, user="jorgepr1"):
+    rhythm = {}
+    user = user.lower()
+
     for game in games:
-        type_r=game.get("time_class", "")
+        type_r = game.get("time_class", "")
+        
+        # 1. Inicializar estructura (agregamos "aperturas")
         if type_r not in rhythm:
-            rhythm[type_r] = {
-                "cantidad_games":0,#siempre-
-                "elo_max":0,#gane-
-                "elo_min":0,#perdi-
-                "w_with":0,#gane-
-                "w_black":0,#gane
-                "reson_loss":{},#perdi
-                "reson_win":{},#gane-
-                "racha":0,#gane-
-                "racha_cache":0,#cache de racha
-                "nemesis":{},#perdi
-                "pet":{},#gane-
-            }
-        white_=game.get("white", {})
-        black_=game.get("black", {})
-        rhythm[type_r]["cantidad_games"]+=1
-        if white_["username"]==user:
-            if white_["result"]=="win":
-                rhythm[type_r]["w_with"]+=1
+            rhythm[type_r] = get_new_stats_template()
+        
+        eco_url = game.get("eco", "")
+        if eco_url:
+            raw_name = eco_url.split("/")[-1] 
+            opening_name = raw_name.replace("-", " ")
+            
+            # Opcional: Si quieres nombres más cortos, puedes cortar antes del primer punto
+            # Ej: "Pirc Defense Maroczy..." -> "Pirc Defense Maroczy Defense"
+            opening_name = opening_name.split(".")[0] 
 
-                if white_["rating"]>rhythm[type_r]["elo_max"]:
-                    rhythm[type_r]["elo_max"]=white_["rating"]
-                ##Agregar reson of win 
-                if black_["result"] not in rhythm[type_r]["reson_win"]:
-                    rhythm[type_r]["reson_win"][black_["result"]]=0
-                rhythm[type_r]["reson_win"][black_["result"]]+=1
-                ##add pet
-                if black_["username"] not in rhythm[type_r]["pet"]:
-                    rhythm[type_r]["pet"][black_["username"]]=0
-                rhythm[type_r]["pet"][black_["username"]]+=1
-                
-                #racha
-                rhythm[type_r]["racha_cache"]+=1
-                if rhythm[type_r]["racha_cache"]>rhythm[type_r]["racha"]:
-                    rhythm[type_r]["racha"]=rhythm[type_r]["racha_cache"]
-                
+            if opening_name not in rhythm[type_r]["aperturas"]:
+                rhythm[type_r]["aperturas"][opening_name] = 0
+            rhythm[type_r]["aperturas"][opening_name] += 1
+
+        white_ = game.get("white", {})
+        black_ = game.get("black", {})
+        rhythm[type_r]["cantidad_games"] += 1
+        
+        if white_["username"].lower() == user:
+            # Eres Blancas
+            user_rating = white_["rating"]
+            opponent_name = black_["username"]
+            result = white_["result"]
+            opponent_result = black_["result"]
+
+            if user_rating > rhythm[type_r]["elo_max"]: rhythm[type_r]["elo_max"] = user_rating
+            if user_rating < rhythm[type_r]["elo_min"]: rhythm[type_r]["elo_min"] = user_rating
+
+            if result == "win":
+                rhythm[type_r]["w_with"] += 1
+                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
+                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
+                rhythm[type_r]["pet"][opponent_name] += 1
+                rhythm[type_r]["racha_cache"] += 1
+                if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
             else:
-                if black_["rating"]<rhythm[type_r]["elo_min"]:
-                    rhythm[type_r]["elo_min"]=black_["rating"]
-                #reson of loss
-                if white_["result"] not in rhythm[type_r]["reson_loss"]:
-                    rhythm[type_r]["reson_loss"][white_["result"]]=0
-                rhythm[type_r]["reson_loss"][white_["result"]]+=1
-                ##Nemesis
-                if white_["username"] not in rhythm[type_r]["nemesis"]:
-                    rhythm[type_r]["nemesis"][white_["username"]]=0
-                rhythm[type_r]["nemesis"][white_["username"]]+=1
-
-                rhythm[type_r]["racha_cache"]=0
+                if result in ["checkmated", "timeout", "resigned", "abandoned"]:
+                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
+                    rhythm[type_r]["reson_loss"][result] += 1
+                    if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
+                    rhythm[type_r]["nemesis"][opponent_name] += 1
+                    rhythm[type_r]["racha_cache"] = 0
+                elif result in ["stalemate", "repetition", "insufficient", "agreed"]:
+                     rhythm[type_r]["racha_cache"] = 0
 
         else:
-            if black_["result"]=="win":
-                rhythm[type_r]["w_black"]+=1
+            # Eres Negras
+            user_rating = black_["rating"]
+            opponent_name = white_["username"]
+            result = black_["result"]
+            opponent_result = white_["result"]
 
-                if black_["rating"]>rhythm[type_r]["elo_max"]:
-                    rhythm[type_r]["elo_max"]=black_["rating"]
-                ##Agregar reson of win 
-                if white_["result"] not in rhythm[type_r]["reson_win"]:
-                    rhythm[type_r]["reson_win"][white_["result"]]=0
-                rhythm[type_r]["reson_win"][white_["result"]]+=1
-                ##add pet
-                if white_["username"] not in rhythm[type_r]["pet"]:
-                    rhythm[type_r]["pet"][white_["username"]]=0
-                rhythm[type_r]["pet"][white_["username"]]+=1
-                
-                #racha
-                rhythm[type_r]["racha_cache"]+=1
-                if rhythm[type_r]["racha_cache"]>rhythm[type_r]["racha"]:
-                    rhythm[type_r]["racha"]=rhythm[type_r]["racha_cache"]
-                
+            if user_rating > rhythm[type_r]["elo_max"]: rhythm[type_r]["elo_max"] = user_rating
+            if user_rating < rhythm[type_r]["elo_min"]: rhythm[type_r]["elo_min"] = user_rating
+
+            if result == "win":
+                rhythm[type_r]["w_black"] += 1
+                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
+                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
+                rhythm[type_r]["pet"][opponent_name] += 1
+                rhythm[type_r]["racha_cache"] += 1
+                if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
             else:
-                if black_["rating"]<rhythm[type_r]["elo_min"]:
-                    rhythm[type_r]["elo_min"]=black_["rating"]
-                #reson of loss
-                if black_["result"] not in rhythm[type_r]["reson_loss"]:
-                    rhythm[type_r]["reson_loss"][black_["result"]]=0
-                rhythm[type_r]["reson_loss"][black_["result"]]+=1
-                ##Nemesis
-                if black_["username"] not in rhythm[type_r]["nemesis"]:
-                    rhythm[type_r]["nemesis"][black_["username"]]=0
-                rhythm[type_r]["nemesis"][black_["username"]]+=1
-
-                rhythm[type_r]["racha_cache"]=0
+                if result in ["checkmated", "timeout", "resigned", "abandoned"]:
+                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
+                    rhythm[type_r]["reson_loss"][result] += 1
+                    if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
+                    rhythm[type_r]["nemesis"][opponent_name] += 1
+                    rhythm[type_r]["racha_cache"] = 0
+                elif result in ["stalemate", "repetition", "insufficient", "agreed"]:
+                     rhythm[type_r]["racha_cache"] = 0
     return rhythm
 
 print(data_first_level(data_mes_11))
