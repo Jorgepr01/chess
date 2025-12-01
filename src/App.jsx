@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BodyRigth from './components/BodyR';
 import StatsDashboard from './components/StatsDashboard';
+import StatsDashboardEasy from './components/StatsDashboardEasy';
 import { MOCK_DATA } from './components/mockData';
 import api from "./api.js";
 
@@ -11,11 +12,11 @@ const ChessDashboard = () => {
   const [topPlayer, setTopPlayer] = useState(null);
   const [selectedGameMode, setSelectedGameMode] = useState('bullet');
   // const [searchTerm, setSearchTerm] = useState('');
-  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [selectedPlayer, setSelectedPlayer] = useState([null,false]);
   const [favorites, setFavorites] = useState([]);
 
   const handleAnalyze = (player) => {
-    setSelectedPlayer(player);
+    setSelectedPlayer([player,false]);
   };
 
   const fetchTopPlayers = async () => {
@@ -82,10 +83,18 @@ const ChessDashboard = () => {
       </div>
       {/* parte derecha stats */}
       <main className="flex-1 bg-gray-50 flex flex-col h-full">
-        <StatsDashboard 
+        {selectedPlayer[1] ?         
+        
+        <StatsDashboardEasy 
           player={selectedPlayer} 
           playerData={selectedPlayer?.stats ? { stats: selectedPlayer.stats } : MOCK_DATA.currentUser}
         />
+      :
+        <StatsDashboard 
+            player={selectedPlayer} 
+            playerData={selectedPlayer?.stats ? { stats: selectedPlayer.stats } : MOCK_DATA.currentUser}
+          />
+      }
       </main>
     </div>
   )

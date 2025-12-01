@@ -5,6 +5,7 @@ nombre_profil = "jorgepr1_profile.json"
 nombre_stats = "jorgepr1_archives.json"
 nombre_archives = "jorgepr1_stats.json"
 nombre_games_11 = "jorgepr1_2025_11_games.json"
+nombre_top="top.json"
 #avrir y guardar archivos
 #with open(nombre_profil, 'r', encoding='utf-8') as f:
 #    data_perfil = json.load(f)
@@ -15,9 +16,12 @@ nombre_games_11 = "jorgepr1_2025_11_games.json"
 with open(nombre_games_11, 'r', encoding='utf-8') as f:
     data_mes_11 = json.load(f)["games"]
 
+with open(nombre_top, 'r', encoding='utf-8') as f:
+    data_top = json.load(f)
+
 user="jorgepr1"
 
-#Nuevo elemento
+
 def get_new_stats_template():
     """Retorna un diccionario limpio con los valores por defecto."""
     return {
