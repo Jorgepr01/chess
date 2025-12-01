@@ -1,0 +1,59 @@
+import { Heart, Gem } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+
+const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
+    const isFav = isFavorited && isFavorited(player)
+    console.log(player)
+    console.log(isFav)
+
+    return (
+        <Card className="hover:bg-slate-50 transition-colors cursor-pointer py-4 mt-3">
+            <CardContent className="flex items-center justify-between p-4">
+
+                {/* IZQUIERDA: Nombre del jugador */}
+                <div>
+                    <p className="font-semibold text-gray-800">{player.name}</p>
+                    <p className="text-xs text-gray-500">Rating: {player.rating}</p>
+                </div>
+
+                {/* DERECHA: Botones de acción */}
+                <div className="flex gap-2">
+
+                    {/* Botón Corazón (Favorito) */}
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className={`rounded-full ${
+                            isFav
+                                ? 'text-red-500 bg-red-50'
+                                : 'text-gray-400 hover:text-red-500 hover:bg-red-50'
+                        }`}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onFavorite && onFavorite(player);
+                        }}
+                    >
+                        <Heart className={`h-5 w-5 ${isFav ? 'fill-current' : ''}`} />
+                    </Button>
+
+                    {/* Botón Diamante/Análisis */}
+                    <Button
+                        size="icon"
+                        className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onAnalyze && onAnalyze(player);
+                        }}
+                    >
+                        <Gem className="h-4 w-4" />
+                    </Button>
+
+                </div>
+
+            </CardContent>
+        </Card>
+    )
+}
+
+export default PlayerCard
