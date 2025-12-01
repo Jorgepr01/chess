@@ -14,7 +14,6 @@ const PerfilJugador = () => {
     return guardados ? JSON.parse(guardados) : [];
   });
 
-  // EFECTO: Guardar en localStorage cada vez que cambian los favoritos
   useEffect(() => {
     localStorage.setItem('chessFavoritos', JSON.stringify(favoritos));
   }, [favoritos]);

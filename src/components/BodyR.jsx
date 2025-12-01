@@ -7,7 +7,6 @@ import TabTop from './tabs/tabTop'
 import TabAmigo from './tabs/tabAmigos'
 import TabFavorito from './tabs/tabFavoritos'
 
-// NOTA: Puse las llaves { } aquí abajo
 const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameMode, setSelectedGameMode, handleFavorite, isFavorited, favorites}) => {
   console.log(topPlayers)
   const tabs = [

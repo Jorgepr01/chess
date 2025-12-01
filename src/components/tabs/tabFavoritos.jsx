@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react'
 import PlayerCard from './../PlayerCard'
-
-
 const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)

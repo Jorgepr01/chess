@@ -8,19 +8,13 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
     console.log(isFav)
 
     return (
-        <Card className="hover:bg-slate-50 transition-colors cursor-pointer py-4 mt-3">
+        <Card className="hover:bg-slate-50 transition-colors cursor-pointer py-0 mt-3">
             <CardContent className="flex items-center justify-between p-4">
-
-                {/* IZQUIERDA: Nombre del jugador */}
                 <div>
-                    <p className="font-semibold text-gray-800">{player.name}</p>
-                    <p className="text-xs text-gray-500">Rating: {player.rating}</p>
+                    <p className="font-semibold text-gray-800">{player.username}</p>
+                    <p className="text-xs text-gray-500">Rating: {player.score}</p>
                 </div>
-
-                {/* DERECHA: Botones de acción */}
                 <div className="flex gap-2">
-
-                    {/* Botón Corazón (Favorito) */}
                     <Button
                         variant="ghost"
                         size="icon"
@@ -38,9 +32,7 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
                     </Button>
 
                     {/* Botón Diamante/Análisis */}
-                    <Button
-                        size="icon"
-                        className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                    <Button size="icon" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
                         onClick={(e) => {
                             e.stopPropagation();
                             onAnalyze && onAnalyze(player);

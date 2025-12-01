@@ -1,29 +1,24 @@
-import { Crown, ScrollText, Sparkles } from 'lucide-react'; // Necesitarás instalar lucide-react
-// import {Button} from '@/components/ui/button'
+import { Crown, ScrollText, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button'
 
 const TabYo = ({Datosuser,handleAnalyze}) => {
     return(
-<main className="flex flex-col justify-center h-screen flex items-center max-w-xl mx-auto px-6 py-12">
-        {/* Encabezado con efecto de subrayado creativo */}
+        <main className="flex flex-col justify-center h-screen flex items-center max-w-xl mx-auto px-6 py-12">
         <div className="relative mb-12 mr-auto">
             <Sparkles className="absolute -top-8 -left-8 text-yellow-500 w-12 h-12 rotate-12" />
             <h1 className="text-7xl font-black text-gray-900 tracking-tight">
                 Hola, <br />
                 <span className="relative inline-block mt-2">
                     <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700">
-                        {Datosuser.name}!
+                        {Datosuser.username}!
                     </span>
-                    {/* Subrayado estilo marcador */}
                     <span className="absolute bottom-2 left-0 w-full h-6 bg-cyan-200 -rotate-2 -z-0 opacity-80 rounded-sm"></span>
                 </span>
             </h1>
         </div>
 
-        {/* Cuerpo del texto con mejor legibilidad y tarjetas sutiles */}
         <div className="space-y-8">
             
-            {/* Párrafo 1: El Elogio */}
             <div className="flex gap-4 items-start p-4 bg-gray-50 rounded-xl border-l-4 border-black shadow-sm">
                 <Crown className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
                 <p className="text-xl text-gray-700 font-medium leading-relaxed">
@@ -32,7 +27,6 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
                 </p>
             </div>
           
-            {/* Párrafo 2: La Instrucción */}
             <div className="flex gap-4 items-start">
                 <ScrollText className="w-8 h-8 text-gray-400 flex-shrink-0 mt-1" />
                 <p className="text-lg text-gray-600 leading-relaxed">
@@ -43,7 +37,6 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
             </div>
         </div>
         
-        {/* Flecha o indicador visual (opcional) */}
         <Button className='my-4' onClick={() => handleAnalyze(Datosuser)}>Ver mi resumen</Button>
 
 

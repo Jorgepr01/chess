@@ -51,37 +51,12 @@
             "draw_count": 1
         },
         {
-            "player_id": 20597950,
-            "@id": "https://api.chess.com/pub/player/tigrangharamian",
-            "url": "https://www.chess.com/member/tigrangharamian",
-            "username": "tigrangharamian",
-            "score": 2903,
-            "rank": 3,
-            "country": "https://api.chess.com/pub/country/FR",
-            "title": "GM",
-            "name": "Tigran Gharamian",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/20597950.693261ec.200x200o.c3fc29ce3b09.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 62,
-            "loss_count": 0,
-            "draw_count": 4
-        },
-        {
             "player_id": 57549096,
             "@id": "https://api.chess.com/pub/player/seanwinshand",
             "url": "https://www.chess.com/member/SeanWinshand",
             "username": "SeanWinshand",
             "score": 2884,
-            "rank": 4,
+            "rank": 3,
             "country": "https://api.chess.com/pub/country/ID",
             "title": "GM",
             "name": "Sean Winshand",
@@ -96,9 +71,9 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 593,
+            "win_count": 597,
             "loss_count": 114,
-            "draw_count": 543
+            "draw_count": 544
         },
         {
             "player_id": 15448422,
@@ -106,7 +81,7 @@
             "url": "https://www.chess.com/member/Hikaru",
             "username": "Hikaru",
             "score": 2839,
-            "rank": 5,
+            "rank": 4,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Hikaru Nakamura",
@@ -131,7 +106,7 @@
             "url": "https://www.chess.com/member/GigaQuparadze",
             "username": "GigaQuparadze",
             "score": 2798,
-            "rank": 6,
+            "rank": 5,
             "country": "https://api.chess.com/pub/country/GE",
             "title": "GM",
             "name": "Giga Quparadze",
@@ -156,7 +131,7 @@
             "url": "https://www.chess.com/member/Evandro_Barbosa",
             "username": "Evandro_Barbosa",
             "score": 2785,
-            "rank": 7,
+            "rank": 6,
             "country": "https://api.chess.com/pub/country/BR",
             "title": "GM",
             "name": "Evandro Amorim Barbosa",
@@ -181,7 +156,7 @@
             "url": "https://www.chess.com/member/LOVEVAE",
             "username": "LOVEVAE",
             "score": 2757,
-            "rank": 8,
+            "rank": 7,
             "country": "https://api.chess.com/pub/country/CN",
             "title": "GM",
             "name": "Wei Yi",
@@ -206,7 +181,7 @@
             "url": "https://www.chess.com/member/lethalspider7",
             "username": "lethalspider7",
             "score": 2753,
-            "rank": 9,
+            "rank": 8,
             "country": "https://api.chess.com/pub/country/NO",
             "status": "basic",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
@@ -229,13 +204,13 @@
             "url": "https://www.chess.com/member/Yachen_03",
             "username": "Yachen_03",
             "score": 2752,
-            "rank": 10,
+            "rank": 9,
             "country": "https://api.chess.com/pub/country/IM",
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/51248978.f652705a.200x200o.5e907b97d9e5.jpg",
             "trend_score": {
-                "direction": 1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 0,
@@ -252,7 +227,7 @@
             "url": "https://www.chess.com/member/Chasing_Checkmate",
             "username": "Chasing_Checkmate",
             "score": 2748,
-            "rank": 11,
+            "rank": 10,
             "country": "https://api.chess.com/pub/country/US",
             "title": "FM",
             "name": "Corey Acor",
@@ -277,7 +252,7 @@
             "url": "https://www.chess.com/member/LPSupi",
             "username": "LPSupi",
             "score": 2745,
-            "rank": 12,
+            "rank": 11,
             "country": "https://api.chess.com/pub/country/BR",
             "title": "GM",
             "name": "Luis Paulo Supi",
@@ -302,7 +277,7 @@
             "url": "https://www.chess.com/member/DenLaz",
             "username": "DenLaz",
             "score": 2733,
-            "rank": 13,
+            "rank": 12,
             "country": "https://api.chess.com/pub/country/BY",
             "title": "GM",
             "name": "Denis Lazavik",
@@ -327,7 +302,7 @@
             "url": "https://www.chess.com/member/g3god",
             "username": "g3god",
             "score": 2720,
-            "rank": 14,
+            "rank": 13,
             "country": "https://api.chess.com/pub/country/IN",
             "title": "GM",
             "name": "Sasikiran Krishnan",
@@ -347,37 +322,12 @@
             "draw_count": 35
         },
         {
-            "player_id": 51123018,
-            "@id": "https://api.chess.com/pub/player/swiss_fighter",
-            "url": "https://www.chess.com/member/Swiss_Fighter",
-            "username": "Swiss_Fighter",
-            "score": 2708,
-            "rank": 15,
-            "country": "https://api.chess.com/pub/country/CH",
-            "title": "IM",
-            "name": "Gabriel Gähwiler",
-            "status": "premium",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
-            "trend_score": {
-                "direction": 1,
-                "delta": 6
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 957,
-            "loss_count": 156,
-            "draw_count": 78
-        },
-        {
             "player_id": 4381685,
             "@id": "https://api.chess.com/pub/player/knvb",
             "url": "https://www.chess.com/member/KNVB",
             "username": "KNVB",
             "score": 2700,
-            "rank": 16,
+            "rank": 14,
             "country": "https://api.chess.com/pub/country/CA",
             "title": "GM",
             "name": "Aman Hambleton",
@@ -388,8 +338,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 396,
@@ -402,7 +352,7 @@
             "url": "https://www.chess.com/member/Jospem",
             "username": "Jospem",
             "score": 2697,
-            "rank": 17,
+            "rank": 15,
             "country": "https://api.chess.com/pub/country/MX",
             "title": "GM",
             "name": "Jose Martinez",
@@ -413,8 +363,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 602,
@@ -427,7 +377,7 @@
             "url": "https://www.chess.com/member/Kacparov",
             "username": "Kacparov",
             "score": 2697,
-            "rank": 18,
+            "rank": 16,
             "country": "https://api.chess.com/pub/country/PL",
             "title": "IM",
             "name": "Kacper Drozdowski",
@@ -438,8 +388,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 1337,
@@ -447,37 +397,12 @@
             "draw_count": 152
         },
         {
-            "player_id": 65338422,
-            "@id": "https://api.chess.com/pub/player/dual_flurry",
-            "url": "https://www.chess.com/member/dual_flurry",
-            "username": "dual_flurry",
-            "score": 2696,
-            "rank": 19,
-            "country": "https://api.chess.com/pub/country/PH",
-            "title": "IM",
-            "name": "Jerad Docena",
-            "status": "premium",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 337,
-            "loss_count": 76,
-            "draw_count": 41
-        },
-        {
             "player_id": 30494226,
             "@id": "https://api.chess.com/pub/player/amintabatabaei",
             "url": "https://www.chess.com/member/amintabatabaei",
             "username": "amintabatabaei",
             "score": 2695,
-            "rank": 20,
+            "rank": 17,
             "country": "https://api.chess.com/pub/country/IR",
             "title": "GM",
             "name": "Amin Tabatabaei",
@@ -488,8 +413,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 191,
@@ -497,12 +422,37 @@
             "draw_count": 133
         },
         {
+            "player_id": 51123018,
+            "@id": "https://api.chess.com/pub/player/swiss_fighter",
+            "url": "https://www.chess.com/member/Swiss_Fighter",
+            "username": "Swiss_Fighter",
+            "score": 2690,
+            "rank": 18,
+            "country": "https://api.chess.com/pub/country/CH",
+            "title": "IM",
+            "name": "Gabriel Gähwiler",
+            "status": "premium",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "trend_score": {
+                "direction": -1,
+                "delta": 11
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 969,
+            "loss_count": 160,
+            "draw_count": 78
+        },
+        {
             "player_id": 157440329,
             "@id": "https://api.chess.com/pub/player/aoitsukibluemoon",
             "url": "https://www.chess.com/member/Aoitsukibluemoon",
             "username": "Aoitsukibluemoon",
             "score": 2690,
-            "rank": 21,
+            "rank": 19,
             "country": "https://api.chess.com/pub/country/JP",
             "title": "GM",
             "name": "Wang Hao",
@@ -517,9 +467,34 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 220,
+            "win_count": 221,
             "loss_count": 6,
             "draw_count": 7
+        },
+        {
+            "player_id": 65338422,
+            "@id": "https://api.chess.com/pub/player/dual_flurry",
+            "url": "https://www.chess.com/member/dual_flurry",
+            "username": "dual_flurry",
+            "score": 2683,
+            "rank": 20,
+            "country": "https://api.chess.com/pub/country/PH",
+            "title": "IM",
+            "name": "Jerad Docena",
+            "status": "premium",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 338,
+            "loss_count": 77,
+            "draw_count": 42
         },
         {
             "player_id": 3958391,
@@ -527,7 +502,7 @@
             "url": "https://www.chess.com/member/GMBenjaminBok",
             "username": "GMBenjaminBok",
             "score": 2683,
-            "rank": 22,
+            "rank": 21,
             "country": "https://api.chess.com/pub/country/NL",
             "title": "GM",
             "name": "Benjamin Bok",
@@ -552,7 +527,7 @@
             "url": "https://www.chess.com/member/deechess123",
             "username": "deechess123",
             "score": 2682,
-            "rank": 23,
+            "rank": 22,
             "country": "https://api.chess.com/pub/country/IN",
             "status": "basic",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
@@ -575,13 +550,13 @@
             "url": "https://www.chess.com/member/Liindseeyy",
             "username": "Liindseeyy",
             "score": 2682,
-            "rank": 24,
+            "rank": 23,
             "country": "https://api.chess.com/pub/country/FR",
             "status": "basic",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/406113149.fca562ce.200x200o.17fcf12c3063.png",
             "trend_score": {
-                "direction": 1,
-                "delta": 2
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 0,
@@ -591,6 +566,31 @@
             "win_count": 328,
             "loss_count": 76,
             "draw_count": 45
+        },
+        {
+            "player_id": 152868735,
+            "@id": "https://api.chess.com/pub/player/wqws",
+            "url": "https://www.chess.com/member/wqws",
+            "username": "wqws",
+            "score": 2682,
+            "rank": 24,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "FM",
+            "name": "Kaivalya Sandip Nagare",
+            "status": "premium",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 672,
+            "loss_count": 207,
+            "draw_count": 109
         },
         {
             "player_id": 26352834,
@@ -618,17 +618,17 @@
             "draw_count": 33
         },
         {
-            "player_id": 28234198,
-            "@id": "https://api.chess.com/pub/player/sargsyan_shant",
-            "url": "https://www.chess.com/member/Sargsyan_Shant",
-            "username": "Sargsyan_Shant",
-            "score": 2677,
+            "player_id": 26735280,
+            "@id": "https://api.chess.com/pub/player/astralpulse",
+            "url": "https://www.chess.com/member/astralpulse",
+            "username": "astralpulse",
+            "score": 2666,
             "rank": 26,
-            "country": "https://api.chess.com/pub/country/AM",
+            "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
-            "name": "Shant Sargsyan",
+            "name": "Alex Goldin",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28234198.2be8ab34.200x200o.3b8860366115.jpg",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -638,9 +638,9 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 53,
-            "loss_count": 32,
-            "draw_count": 50
+            "win_count": 102,
+            "loss_count": 49,
+            "draw_count": 56
         },
         {
             "player_id": 108520120,
@@ -668,29 +668,54 @@
             "draw_count": 65
         },
         {
-            "player_id": 26735280,
-            "@id": "https://api.chess.com/pub/player/astralpulse",
-            "url": "https://www.chess.com/member/astralpulse",
-            "username": "astralpulse",
-            "score": 2658,
+            "player_id": 49308476,
+            "@id": "https://api.chess.com/pub/player/szparu",
+            "url": "https://www.chess.com/member/Szparu",
+            "username": "Szparu",
+            "score": 2661,
             "rank": 28,
-            "country": "https://api.chess.com/pub/country/US",
+            "country": "https://api.chess.com/pub/country/PL",
             "title": "GM",
-            "name": "Alex Goldin",
+            "name": "Miłosz Szpar",
             "status": "premium",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/49308476.f296b7aa.200x200o.5f2c2dc46ff8.png",
+            "trend_score": {
+                "direction": 1,
+                "delta": 8
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 449,
+            "loss_count": 165,
+            "draw_count": 77
+        },
+        {
+            "player_id": 75631914,
+            "@id": "https://api.chess.com/pub/player/sahibsinghknight",
+            "url": "https://www.chess.com/member/SahibSinghKnight",
+            "username": "SahibSinghKnight",
+            "score": 2657,
+            "rank": 29,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "IM",
+            "name": "Sahib Singh",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/75631914.86abd2d6.200x200o.bb1d3fdf5ae3.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 100,
-            "loss_count": 49,
-            "draw_count": 56
+            "win_count": 301,
+            "loss_count": 99,
+            "draw_count": 45
         },
         {
             "player_id": 55969800,
@@ -698,7 +723,7 @@
             "url": "https://www.chess.com/member/Chessmatenokk17",
             "username": "Chessmatenokk17",
             "score": 2657,
-            "rank": 29,
+            "rank": 30,
             "country": "https://api.chess.com/pub/country/RU",
             "title": "FM",
             "name": "Sergey And. Korshunov",
@@ -709,8 +734,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 202,
@@ -723,7 +748,7 @@
             "url": "https://www.chess.com/member/Durarbayli",
             "username": "Durarbayli",
             "score": 2655,
-            "rank": 30,
+            "rank": 31,
             "country": "https://api.chess.com/pub/country/AZ",
             "title": "GM",
             "name": "Vasif Durarbayli",
@@ -734,37 +759,12 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 159,
             "loss_count": 99,
-            "draw_count": 77
-        },
-        {
-            "player_id": 49308476,
-            "@id": "https://api.chess.com/pub/player/szparu",
-            "url": "https://www.chess.com/member/Szparu",
-            "username": "Szparu",
-            "score": 2653,
-            "rank": 31,
-            "country": "https://api.chess.com/pub/country/PL",
-            "title": "GM",
-            "name": "Miłosz Szpar",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/49308476.f296b7aa.200x200o.5f2c2dc46ff8.png",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 447,
-            "loss_count": 165,
             "draw_count": 77
         },
         {
@@ -818,12 +818,37 @@
             "draw_count": 185
         },
         {
+            "player_id": 1355607,
+            "@id": "https://api.chess.com/pub/player/gmkrikor",
+            "url": "https://www.chess.com/member/GMKrikor",
+            "username": "GMKrikor",
+            "score": 2651,
+            "rank": 34,
+            "country": "https://api.chess.com/pub/country/BR",
+            "title": "GM",
+            "name": "Krikor Sevag Mekhitarian",
+            "status": "staff",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/1355607.267b4f2b.200x200o.4cb2d1952100.jpeg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 6
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 494,
+            "loss_count": 163,
+            "draw_count": 86
+        },
+        {
             "player_id": 58985560,
             "@id": "https://api.chess.com/pub/player/hamelekh",
             "url": "https://www.chess.com/member/hamelekh",
             "username": "hamelekh",
             "score": 2648,
-            "rank": 34,
+            "rank": 35,
             "country": "https://api.chess.com/pub/country/IL",
             "title": "IM",
             "name": "eyal deutsch",
@@ -834,11 +859,11 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 329,
+            "win_count": 330,
             "loss_count": 134,
             "draw_count": 98
         },
@@ -848,7 +873,7 @@
             "url": "https://www.chess.com/member/BLITZMASTER",
             "username": "BLITZMASTER",
             "score": 2648,
-            "rank": 35,
+            "rank": 36,
             "country": "https://api.chess.com/pub/country/US",
             "title": "FM",
             "name": "Robby Adamson",
@@ -859,8 +884,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 102,
@@ -873,7 +898,7 @@
             "url": "https://www.chess.com/member/penguingm1",
             "username": "penguingm1",
             "score": 2645,
-            "rank": 36,
+            "rank": 37,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Andrew Tang",
@@ -884,8 +909,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 740,
@@ -898,7 +923,7 @@
             "url": "https://www.chess.com/member/Sanyi9",
             "username": "Sanyi9",
             "score": 2645,
-            "rank": 37,
+            "rank": 38,
             "country": "https://api.chess.com/pub/country/HU",
             "name": "Sanyi",
             "status": "premium",
@@ -908,8 +933,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 221,
@@ -917,62 +942,12 @@
             "draw_count": 48
         },
         {
-            "player_id": 1355607,
-            "@id": "https://api.chess.com/pub/player/gmkrikor",
-            "url": "https://www.chess.com/member/GMKrikor",
-            "username": "GMKrikor",
-            "score": 2645,
-            "rank": 38,
-            "country": "https://api.chess.com/pub/country/BR",
-            "title": "GM",
-            "name": "Krikor Sevag Mekhitarian",
-            "status": "staff",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/1355607.267b4f2b.200x200o.4cb2d1952100.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 493,
-            "loss_count": 163,
-            "draw_count": 86
-        },
-        {
-            "player_id": 75631914,
-            "@id": "https://api.chess.com/pub/player/sahibsinghknight",
-            "url": "https://www.chess.com/member/SahibSinghKnight",
-            "username": "SahibSinghKnight",
-            "score": 2644,
-            "rank": 39,
-            "country": "https://api.chess.com/pub/country/IN",
-            "title": "IM",
-            "name": "Sahib Singh",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/75631914.86abd2d6.200x200o.bb1d3fdf5ae3.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 296,
-            "loss_count": 99,
-            "draw_count": 45
-        },
-        {
             "player_id": 55339328,
             "@id": "https://api.chess.com/pub/player/mmgchess",
             "url": "https://www.chess.com/member/mmgchess",
             "username": "mmgchess",
             "score": 2644,
-            "rank": 40,
+            "rank": 39,
             "country": "https://api.chess.com/pub/country/US",
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/55339328.255868e0.200x200o.3ba6c2e0c92b.jpg",
@@ -995,7 +970,7 @@
             "url": "https://www.chess.com/member/grandmastergauri",
             "username": "grandmastergauri",
             "score": 2640,
-            "rank": 41,
+            "rank": 40,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Gauri Shankar",
@@ -1020,7 +995,7 @@
             "url": "https://www.chess.com/member/LiamPutnam2008",
             "username": "LiamPutnam2008",
             "score": 2639,
-            "rank": 42,
+            "rank": 41,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Liam Putnam",
@@ -1045,7 +1020,7 @@
             "url": "https://www.chess.com/member/elefante33",
             "username": "elefante33",
             "score": 2639,
-            "rank": 43,
+            "rank": 42,
             "country": "https://api.chess.com/pub/country/BR",
             "title": "GM",
             "name": "Felipe El Debs",
@@ -1070,7 +1045,7 @@
             "url": "https://www.chess.com/member/Ol3ks2",
             "username": "Ol3ks2",
             "score": 2638,
-            "rank": 44,
+            "rank": 43,
             "country": "https://api.chess.com/pub/country/UA",
             "title": "IM",
             "name": "Oleksii Molchanov",
@@ -1095,7 +1070,7 @@
             "url": "https://www.chess.com/member/SergeiRK",
             "username": "SergeiRK",
             "score": 2637,
-            "rank": 45,
+            "rank": 44,
             "country": "https://api.chess.com/pub/country/RU",
             "status": "basic",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
@@ -1118,7 +1093,7 @@
             "url": "https://www.chess.com/member/F3Kpf2",
             "username": "F3Kpf2",
             "score": 2637,
-            "rank": 46,
+            "rank": 45,
             "country": "https://api.chess.com/pub/country/UZ",
             "name": "Abdulaziz Kurbanov",
             "status": "premium",
@@ -1142,7 +1117,7 @@
             "url": "https://www.chess.com/member/Karacsonyi_Gellert",
             "username": "Karacsonyi_Gellert",
             "score": 2637,
-            "rank": 47,
+            "rank": 46,
             "country": "https://api.chess.com/pub/country/HU",
             "title": "IM",
             "name": "Gellert Karacsonyi",
@@ -1167,7 +1142,7 @@
             "url": "https://www.chess.com/member/MightyGMpretender",
             "username": "MightyGMpretender",
             "score": 2636,
-            "rank": 48,
+            "rank": 47,
             "country": "https://api.chess.com/pub/country/PL",
             "title": "NM",
             "name": "Antoni Kozak",
@@ -1192,7 +1167,7 @@
             "url": "https://www.chess.com/member/djamir",
             "username": "djamir",
             "score": 2635,
-            "rank": 49,
+            "rank": 48,
             "country": "https://api.chess.com/pub/country/IR",
             "title": "FM",
             "name": "Amir Hossein Jamshidi",
@@ -1217,7 +1192,7 @@
             "url": "https://www.chess.com/member/69360420obama",
             "username": "69360420obama",
             "score": 2634,
-            "rank": 50,
+            "rank": 49,
             "country": "https://api.chess.com/pub/country/SG",
             "status": "basic",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
@@ -1233,6 +1208,30 @@
             "win_count": 721,
             "loss_count": 406,
             "draw_count": 121
+        },
+        {
+            "player_id": 5141887,
+            "@id": "https://api.chess.com/pub/player/skiwalker",
+            "url": "https://www.chess.com/member/SKiWaLkeR",
+            "username": "SKiWaLkeR",
+            "score": 2634,
+            "rank": 50,
+            "country": "https://api.chess.com/pub/country/PH",
+            "name": "Tristan Jared Cervero",
+            "status": "basic",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/5141887.a47a6f92.200x200o.4861e6da97a5.png",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 156,
+            "loss_count": 87,
+            "draw_count": 36
         }
     ],
     "blitz": [
@@ -1241,7 +1240,7 @@
             "@id": "https://api.chess.com/pub/player/hikaru",
             "url": "https://www.chess.com/member/Hikaru",
             "username": "Hikaru",
-            "score": 3380,
+            "score": 3400,
             "rank": 1,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
@@ -1249,24 +1248,24 @@
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/15448422.88c010c1.200x200o.3c5619f5441e.png",
             "trend_score": {
-                "direction": -1,
-                "delta": 22
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 0,
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 34508,
-            "loss_count": 5360,
-            "draw_count": 4185
+            "win_count": 34579,
+            "loss_count": 5367,
+            "draw_count": 4192
         },
         {
             "player_id": 3889224,
             "@id": "https://api.chess.com/pub/player/magnuscarlsen",
             "url": "https://www.chess.com/member/MagnusCarlsen",
             "username": "MagnusCarlsen",
-            "score": 3316,
+            "score": 3345,
             "rank": 2,
             "country": "https://api.chess.com/pub/country/NO",
             "title": "GM",
@@ -1274,30 +1273,30 @@
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/3889224.121e2094.200x200o.361c2f8a59c2.jpg",
             "trend_score": {
-                "direction": 1,
-                "delta": 15
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 0,
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 4360,
-            "loss_count": 959,
-            "draw_count": 730
+            "win_count": 4402,
+            "loss_count": 966,
+            "draw_count": 734
         },
         {
-            "player_id": 7195919,
-            "@id": "https://api.chess.com/pub/player/nihalsarin",
-            "url": "https://www.chess.com/member/nihalsarin",
-            "username": "nihalsarin",
-            "score": 3283,
+            "player_id": 34145346,
+            "@id": "https://api.chess.com/pub/player/denlaz",
+            "url": "https://www.chess.com/member/DenLaz",
+            "username": "DenLaz",
+            "score": 3287,
             "rank": 3,
-            "country": "https://api.chess.com/pub/country/IN",
+            "country": "https://api.chess.com/pub/country/BY",
             "title": "GM",
-            "name": "Nihal Sarin",
+            "name": "Denis Lazavik",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/7195919.159050ca.200x200o.883e75faf64e.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/34145346.088fe903.200x200o.497edc350e6a.webp",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -1307,17 +1306,42 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 16623,
-            "loss_count": 8845,
-            "draw_count": 3009
+            "win_count": 2923,
+            "loss_count": 1150,
+            "draw_count": 771
+        },
+        {
+            "player_id": 17306408,
+            "@id": "https://api.chess.com/pub/player/lyonbeast",
+            "url": "https://www.chess.com/member/LyonBeast",
+            "username": "LyonBeast",
+            "score": 3267,
+            "rank": 4,
+            "country": "https://api.chess.com/pub/country/FR",
+            "title": "GM",
+            "name": "Maxime Vachier-Lagrave",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/17306408.203effc9.200x200o.34baf459f6b7.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 2176,
+            "loss_count": 767,
+            "draw_count": 520
         },
         {
             "player_id": 30366824,
             "@id": "https://api.chess.com/pub/player/gmwso",
             "url": "https://www.chess.com/member/GMWSO",
             "username": "GMWSO",
-            "score": 3273,
-            "rank": 4,
+            "score": 3249,
+            "rank": 5,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Wesley So",
@@ -1332,59 +1356,34 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 2331,
-            "loss_count": 993,
-            "draw_count": 737
+            "win_count": 2339,
+            "loss_count": 1001,
+            "draw_count": 739
         },
         {
-            "player_id": 34145346,
-            "@id": "https://api.chess.com/pub/player/denlaz",
-            "url": "https://www.chess.com/member/DenLaz",
-            "username": "DenLaz",
-            "score": 3266,
-            "rank": 5,
-            "country": "https://api.chess.com/pub/country/BY",
-            "title": "GM",
-            "name": "Denis Lazavik",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/34145346.088fe903.200x200o.497edc350e6a.webp",
-            "trend_score": {
-                "direction": 1,
-                "delta": 12
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 2914,
-            "loss_count": 1149,
-            "draw_count": 769
-        },
-        {
-            "player_id": 17306408,
-            "@id": "https://api.chess.com/pub/player/lyonbeast",
-            "url": "https://www.chess.com/member/LyonBeast",
-            "username": "LyonBeast",
-            "score": 3244,
+            "player_id": 7195919,
+            "@id": "https://api.chess.com/pub/player/nihalsarin",
+            "url": "https://www.chess.com/member/nihalsarin",
+            "username": "nihalsarin",
+            "score": 3243,
             "rank": 6,
-            "country": "https://api.chess.com/pub/country/FR",
+            "country": "https://api.chess.com/pub/country/IN",
             "title": "GM",
-            "name": "Maxime Vachier-Lagrave",
+            "name": "Nihal Sarin",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/17306408.203effc9.200x200o.34baf459f6b7.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/7195919.159050ca.200x200o.883e75faf64e.jpg",
             "trend_score": {
-                "direction": -1,
-                "delta": 27
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 2169,
-            "loss_count": 765,
-            "draw_count": 519
+            "win_count": 16641,
+            "loss_count": 8861,
+            "draw_count": 3015
         },
         {
             "player_id": 42022994,
@@ -1403,8 +1402,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
             "win_count": 8204,
@@ -1412,29 +1411,29 @@
             "draw_count": 1830
         },
         {
-            "player_id": 16938404,
-            "@id": "https://api.chess.com/pub/player/wonderfultime",
-            "url": "https://www.chess.com/member/wonderfultime",
-            "username": "wonderfultime",
-            "score": 3236,
+            "player_id": 207852275,
+            "@id": "https://api.chess.com/pub/player/philippians46",
+            "url": "https://www.chess.com/member/Philippians46",
+            "username": "Philippians46",
+            "score": 3235,
             "rank": 8,
-            "country": "https://api.chess.com/pub/country/VN",
+            "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
-            "name": "Tuan Minh Le",
+            "name": "Andy Woodward",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/16938404.edc37b62.200x200o.404676e7dc47.webp",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/207852275.b5fd5b9c.200x200o.2658380fdb00.png",
             "trend_score": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 1,
                 "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 15604,
-            "loss_count": 6961,
-            "draw_count": 2468
+            "win_count": 1441,
+            "loss_count": 854,
+            "draw_count": 260
         },
         {
             "player_id": 28692936,
@@ -1454,7 +1453,7 @@
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 2
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 1387,
@@ -1462,37 +1461,12 @@
             "draw_count": 251
         },
         {
-            "player_id": 50386860,
-            "@id": "https://api.chess.com/pub/player/gurelediz",
-            "url": "https://www.chess.com/member/gurelediz",
-            "username": "gurelediz",
-            "score": 3230,
-            "rank": 10,
-            "country": "https://api.chess.com/pub/country/TR",
-            "title": "GM",
-            "name": "Ediz Gürel",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/50386860.8f4bcdc7.200x200o.52a55edd9e84.jpg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 10
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 3
-            },
-            "flair_code": "nothing",
-            "win_count": 2833,
-            "loss_count": 2233,
-            "draw_count": 555
-        },
-        {
             "player_id": 35895346,
             "@id": "https://api.chess.com/pub/player/mykola-bortnyk",
             "url": "https://www.chess.com/member/Mykola-Bortnyk",
             "username": "Mykola-Bortnyk",
             "score": 3226,
-            "rank": 11,
+            "rank": 10,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Mykola Bortnyk",
@@ -1504,12 +1478,37 @@
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 1
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 8071,
             "loss_count": 6524,
             "draw_count": 1896
+        },
+        {
+            "player_id": 16938404,
+            "@id": "https://api.chess.com/pub/player/wonderfultime",
+            "url": "https://www.chess.com/member/wonderfultime",
+            "username": "wonderfultime",
+            "score": 3224,
+            "rank": 11,
+            "country": "https://api.chess.com/pub/country/VN",
+            "title": "GM",
+            "name": "Tuan Minh Le",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/16938404.edc37b62.200x200o.404676e7dc47.webp",
+            "trend_score": {
+                "direction": -1,
+                "delta": 12
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 15604,
+            "loss_count": 6962,
+            "draw_count": 2468
         },
         {
             "player_id": 52129472,
@@ -1532,34 +1531,9 @@
                 "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 3665,
+            "win_count": 3666,
             "loss_count": 1725,
             "draw_count": 627
-        },
-        {
-            "player_id": 14498226,
-            "@id": "https://api.chess.com/pub/player/fairchess_on_youtube",
-            "url": "https://www.chess.com/member/FairChess_on_YouTube",
-            "username": "FairChess_on_YouTube",
-            "score": 3222,
-            "rank": 13,
-            "country": "https://api.chess.com/pub/country/GE",
-            "title": "GM",
-            "name": "Dmitry Andreikin",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/14498226.8202a36e.200x200o.1fe2de7e5eaa.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 5135,
-            "loss_count": 1706,
-            "draw_count": 1318
         },
         {
             "player_id": 88920388,
@@ -1567,15 +1541,15 @@
             "url": "https://www.chess.com/member/HansOnTwitch",
             "username": "HansOnTwitch",
             "score": 3219,
-            "rank": 14,
+            "rank": 13,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Hans Niemann",
             "status": "premium",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
             "trend_score": {
-                "direction": 1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 1,
@@ -1587,37 +1561,12 @@
             "draw_count": 608
         },
         {
-            "player_id": 207852275,
-            "@id": "https://api.chess.com/pub/player/philippians46",
-            "url": "https://www.chess.com/member/Philippians46",
-            "username": "Philippians46",
-            "score": 3216,
-            "rank": 15,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Andy Woodward",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/207852275.b5fd5b9c.200x200o.2658380fdb00.png",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 1437,
-            "loss_count": 853,
-            "draw_count": 259
-        },
-        {
             "player_id": 17860442,
             "@id": "https://api.chess.com/pub/player/mishanick",
             "url": "https://www.chess.com/member/mishanick",
             "username": "mishanick",
-            "score": 3204,
-            "rank": 16,
+            "score": 3217,
+            "rank": 14,
             "country": "https://api.chess.com/pub/country/RS",
             "title": "GM",
             "name": "Aleksei Sarana",
@@ -1625,16 +1574,141 @@
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/17860442.d25fa08e.200x200o.81d6cc6b6581.png",
             "trend_score": {
                 "direction": 1,
-                "delta": 21
+                "delta": 17
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 11
+                "delta": 6
             },
             "flair_code": "nothing",
-            "win_count": 15050,
-            "loss_count": 8036,
-            "draw_count": 2589
+            "win_count": 15086,
+            "loss_count": 8051,
+            "draw_count": 2592
+        },
+        {
+            "player_id": 14498226,
+            "@id": "https://api.chess.com/pub/player/fairchess_on_youtube",
+            "url": "https://www.chess.com/member/FairChess_on_YouTube",
+            "username": "FairChess_on_YouTube",
+            "score": 3217,
+            "rank": 15,
+            "country": "https://api.chess.com/pub/country/GE",
+            "title": "GM",
+            "name": "Dmitry Andreikin",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/14498226.8202a36e.200x200o.1fe2de7e5eaa.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 5137,
+            "loss_count": 1708,
+            "draw_count": 1320
+        },
+        {
+            "player_id": 32230490,
+            "@id": "https://api.chess.com/pub/player/parhamov",
+            "url": "https://www.chess.com/member/Parhamov",
+            "username": "Parhamov",
+            "score": 3212,
+            "rank": 16,
+            "country": "https://api.chess.com/pub/country/IR",
+            "title": "GM",
+            "name": "Parham Maghsoodloo",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/32230490.26c10df6.200x200o.7bb7031c30e8.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 4870,
+            "loss_count": 3574,
+            "draw_count": 1011
+        },
+        {
+            "player_id": 20718020,
+            "@id": "https://api.chess.com/pub/player/ghandeevam2003",
+            "url": "https://www.chess.com/member/GHANDEEVAM2003",
+            "username": "GHANDEEVAM2003",
+            "score": 3212,
+            "rank": 17,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "GM",
+            "name": "Arjun Erigaisi",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/20718020.b93b0dad.200x200o.ce63c2b5ea24.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 4932,
+            "loss_count": 3033,
+            "draw_count": 1059
+        },
+        {
+            "player_id": 429108043,
+            "@id": "https://api.chess.com/pub/player/sina-movahed",
+            "url": "https://www.chess.com/member/Sina-Movahed",
+            "username": "Sina-Movahed",
+            "score": 3209,
+            "rank": 18,
+            "country": "https://api.chess.com/pub/country/IR",
+            "title": "GM",
+            "name": "Sina Movahed",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/429108043.5d448809.200x200o.329b40742875.jpg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 15
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 2191,
+            "loss_count": 1249,
+            "draw_count": 280
+        },
+        {
+            "player_id": 93593240,
+            "@id": "https://api.chess.com/pub/player/vi_pranav",
+            "url": "https://www.chess.com/member/vi_pranav",
+            "username": "vi_pranav",
+            "score": 3202,
+            "rank": 19,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "GM",
+            "name": "Pranav V",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/93593240.10fc5f09.200x200o.d1f519160672.jpg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 68
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 29
+            },
+            "flair_code": "nothing",
+            "win_count": 5603,
+            "loss_count": 3440,
+            "draw_count": 767
         },
         {
             "player_id": 73320100,
@@ -1642,7 +1716,7 @@
             "url": "https://www.chess.com/member/0gZPanda",
             "username": "0gZPanda",
             "score": 3201,
-            "rank": 17,
+            "rank": 20,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Anthony He",
@@ -1653,8 +1727,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
-                "delta": 1
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 2933,
@@ -1667,7 +1741,7 @@
             "url": "https://www.chess.com/member/RaunakSadhwani2005",
             "username": "RaunakSadhwani2005",
             "score": 3201,
-            "rank": 18,
+            "rank": 21,
             "country": "https://api.chess.com/pub/country/IN",
             "title": "GM",
             "name": "Raunak Sadhwani",
@@ -1678,8 +1752,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
-                "delta": 1
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 1923,
@@ -1687,129 +1761,29 @@
             "draw_count": 533
         },
         {
-            "player_id": 20718020,
-            "@id": "https://api.chess.com/pub/player/ghandeevam2003",
-            "url": "https://www.chess.com/member/GHANDEEVAM2003",
-            "username": "GHANDEEVAM2003",
+            "player_id": 10174260,
+            "@id": "https://api.chess.com/pub/player/duhless",
+            "url": "https://www.chess.com/member/Duhless",
+            "username": "Duhless",
             "score": 3199,
-            "rank": 19,
-            "country": "https://api.chess.com/pub/country/IN",
-            "title": "GM",
-            "name": "Arjun Erigaisi",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/20718020.b93b0dad.200x200o.ce63c2b5ea24.jpeg",
-            "trend_score": {
-                "direction": 1,
-                "delta": 8
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 5
-            },
-            "flair_code": "nothing",
-            "win_count": 4922,
-            "loss_count": 3031,
-            "draw_count": 1059
-        },
-        {
-            "player_id": 18202610,
-            "@id": "https://api.chess.com/pub/player/tradjabov",
-            "url": "https://www.chess.com/member/TRadjabov",
-            "username": "TRadjabov",
-            "score": 3196,
-            "rank": 20,
-            "country": "https://api.chess.com/pub/country/AZ",
-            "title": "GM",
-            "name": "Teimour Radjabov",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/18202610.a304129e.200x200o.e17da8feadcc.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 756,
-            "loss_count": 230,
-            "draw_count": 120
-        },
-        {
-            "player_id": 93593240,
-            "@id": "https://api.chess.com/pub/player/vi_pranav",
-            "url": "https://www.chess.com/member/vi_pranav",
-            "username": "vi_pranav",
-            "score": 3195,
-            "rank": 21,
-            "country": "https://api.chess.com/pub/country/IN",
-            "title": "GM",
-            "name": "Pranav V",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/93593240.10fc5f09.200x200o.d1f519160672.jpg",
-            "trend_score": {
-                "direction": 1,
-                "delta": 17
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 9
-            },
-            "flair_code": "nothing",
-            "win_count": 5562,
-            "loss_count": 3420,
-            "draw_count": 764
-        },
-        {
-            "player_id": 32230490,
-            "@id": "https://api.chess.com/pub/player/parhamov",
-            "url": "https://www.chess.com/member/Parhamov",
-            "username": "Parhamov",
-            "score": 3191,
             "rank": 22,
-            "country": "https://api.chess.com/pub/country/IR",
+            "country": "https://api.chess.com/pub/country/RU",
             "title": "GM",
-            "name": "Parham Maghsoodloo",
+            "name": "Daniil Dubov",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/32230490.26c10df6.200x200o.7bb7031c30e8.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/10174260.4865a6da.200x200o.6932fffcda21.png",
             "trend_score": {
                 "direction": -1,
-                "delta": 41
+                "delta": 30
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 12
+                "delta": 11
             },
             "flair_code": "nothing",
-            "win_count": 4854,
-            "loss_count": 3562,
-            "draw_count": 1004
-        },
-        {
-            "player_id": 27168196,
-            "@id": "https://api.chess.com/pub/player/salem-ar",
-            "url": "https://www.chess.com/member/Salem-AR",
-            "username": "Salem-AR",
-            "score": 3191,
-            "rank": 23,
-            "country": "https://api.chess.com/pub/country/AE",
-            "title": "GM",
-            "name": "Salem AR Saleh",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/27168196.a7e8c448.200x200o.5971d272bf8c.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 5918,
-            "loss_count": 4557,
-            "draw_count": 1120
+            "win_count": 7481,
+            "loss_count": 3532,
+            "draw_count": 1655
         },
         {
             "player_id": 330779979,
@@ -1817,7 +1791,7 @@
             "url": "https://www.chess.com/member/Javokhir_Sindarov05",
             "username": "Javokhir_Sindarov05",
             "score": 3190,
-            "rank": 24,
+            "rank": 23,
             "country": "https://api.chess.com/pub/country/UZ",
             "title": "GM",
             "name": "Javokhir Sindarov",
@@ -1828,7 +1802,7 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
+                "direction": -1,
                 "delta": 1
             },
             "flair_code": "nothing",
@@ -1842,19 +1816,19 @@
             "url": "https://www.chess.com/member/Grischuk",
             "username": "Grischuk",
             "score": 3190,
-            "rank": 25,
+            "rank": 24,
             "country": "https://api.chess.com/pub/country/RU",
             "title": "GM",
             "name": "Alexander Grischuk",
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/26897358.10f64fa8.200x200o.634d3db4ddc2.jpeg",
             "trend_score": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 2
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 1665,
@@ -1862,37 +1836,12 @@
             "draw_count": 632
         },
         {
-            "player_id": 47485766,
-            "@id": "https://api.chess.com/pub/player/polish_fighter3000",
-            "url": "https://www.chess.com/member/Polish_fighter3000",
-            "username": "Polish_fighter3000",
-            "score": 3185,
-            "rank": 26,
-            "country": "https://api.chess.com/pub/country/PL",
-            "title": "GM",
-            "name": "Jan-Krzysztof Duda",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/47485766.de241c41.200x200o.7b706ebf58e7.jpeg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 26
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 9
-            },
-            "flair_code": "nothing",
-            "win_count": 3283,
-            "loss_count": 1422,
-            "draw_count": 596
-        },
-        {
             "player_id": 492781159,
             "@id": "https://api.chess.com/pub/player/f1_and_chess",
             "url": "https://www.chess.com/member/F1_and_Chess",
             "username": "F1_and_Chess",
             "score": 3184,
-            "rank": 27,
+            "rank": 25,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "David Kaufman",
@@ -1903,13 +1852,63 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
             "win_count": 221,
             "loss_count": 150,
             "draw_count": 54
+        },
+        {
+            "player_id": 33903360,
+            "@id": "https://api.chess.com/pub/player/sibelephant",
+            "url": "https://www.chess.com/member/Sibelephant",
+            "username": "Sibelephant",
+            "score": 3183,
+            "rank": 26,
+            "country": "https://api.chess.com/pub/country/RU",
+            "title": "GM",
+            "name": "Vladislav Artemiev",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/33903360.eba9f5a2.200x200o.578bfd0b2e17.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 849,
+            "loss_count": 228,
+            "draw_count": 250
+        },
+        {
+            "player_id": 50386860,
+            "@id": "https://api.chess.com/pub/player/gurelediz",
+            "url": "https://www.chess.com/member/gurelediz",
+            "username": "gurelediz",
+            "score": 3182,
+            "rank": 27,
+            "country": "https://api.chess.com/pub/country/TR",
+            "title": "GM",
+            "name": "Ediz Gürel",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/50386860.8f4bcdc7.200x200o.52a55edd9e84.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 2868,
+            "loss_count": 2269,
+            "draw_count": 562
         },
         {
             "player_id": 49788594,
@@ -1937,37 +1936,12 @@
             "draw_count": 182
         },
         {
-            "player_id": 11177810,
-            "@id": "https://api.chess.com/pub/player/fabianocaruana",
-            "url": "https://www.chess.com/member/FabianoCaruana",
-            "username": "FabianoCaruana",
-            "score": 3178,
-            "rank": 29,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Fabiano Caruana",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/11177810.9dfc8d31.200x200o.9a9eccebc07c.png",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 2
-            },
-            "flair_code": "nothing",
-            "win_count": 2778,
-            "loss_count": 798,
-            "draw_count": 490
-        },
-        {
             "player_id": 12709942,
             "@id": "https://api.chess.com/pub/player/chesswarrior7197",
             "url": "https://www.chess.com/member/ChessWarrior7197",
             "username": "ChessWarrior7197",
             "score": 3173,
-            "rank": 30,
+            "rank": 29,
             "country": "https://api.chess.com/pub/country/UZ",
             "title": "GM",
             "name": "Nodirbek Abdusattorov",
@@ -1978,8 +1952,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
-                "delta": 2
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
             "win_count": 2152,
@@ -1992,7 +1966,7 @@
             "url": "https://www.chess.com/member/LiamPutnam2008",
             "username": "LiamPutnam2008",
             "score": 3170,
-            "rank": 31,
+            "rank": 30,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Liam Putnam",
@@ -2004,7 +1978,7 @@
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 2
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 4505,
@@ -2012,112 +1986,12 @@
             "draw_count": 849
         },
         {
-            "player_id": 26303484,
-            "@id": "https://api.chess.com/pub/player/bigfish1995",
-            "url": "https://www.chess.com/member/Bigfish1995",
-            "username": "Bigfish1995",
-            "score": 3166,
-            "rank": 32,
-            "country": "https://api.chess.com/pub/country/SI",
-            "title": "GM",
-            "name": "Vladimir Fedoseev",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/26303484.dc192fa5.200x200o.d771643b19ed.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 3
-            },
-            "flair_code": "nothing",
-            "win_count": 7102,
-            "loss_count": 4831,
-            "draw_count": 1516
-        },
-        {
-            "player_id": 429108043,
-            "@id": "https://api.chess.com/pub/player/sina-movahed",
-            "url": "https://www.chess.com/member/Sina-Movahed",
-            "username": "Sina-Movahed",
-            "score": 3164,
-            "rank": 33,
-            "country": "https://api.chess.com/pub/country/IR",
-            "title": "GM",
-            "name": "Sina Movahed",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/429108043.5d448809.200x200o.329b40742875.jpg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 34
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 13
-            },
-            "flair_code": "nothing",
-            "win_count": 2155,
-            "loss_count": 1231,
-            "draw_count": 270
-        },
-        {
-            "player_id": 108520120,
-            "@id": "https://api.chess.com/pub/player/nikotheodorou",
-            "url": "https://www.chess.com/member/NikoTheodorou",
-            "username": "NikoTheodorou",
-            "score": 3164,
-            "rank": 34,
-            "country": "https://api.chess.com/pub/country/GR",
-            "title": "GM",
-            "name": "Nikolas Theodorou",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/108520120.b86cc966.200x200o.d85a0c84f2ae.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 2
-            },
-            "flair_code": "nothing",
-            "win_count": 4087,
-            "loss_count": 3281,
-            "draw_count": 1249
-        },
-        {
-            "player_id": 8829034,
-            "@id": "https://api.chess.com/pub/player/konavets",
-            "url": "https://www.chess.com/member/Konavets",
-            "username": "Konavets",
-            "score": 3161,
-            "rank": 35,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Sam Sevian",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/8829034.6d90a567.200x200o.60d12a06fdce.jpeg",
-            "trend_score": {
-                "direction": 1,
-                "delta": 6
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 5
-            },
-            "flair_code": "nothing",
-            "win_count": 4789,
-            "loss_count": 2304,
-            "draw_count": 884
-        },
-        {
             "player_id": 28435172,
             "@id": "https://api.chess.com/pub/player/michaelroiz",
             "url": "https://www.chess.com/member/MichaelRoiz",
             "username": "MichaelRoiz",
-            "score": 3161,
-            "rank": 36,
+            "score": 3167,
+            "rank": 31,
             "country": "https://api.chess.com/pub/country/IL",
             "title": "GM",
             "name": "Michael Roiz",
@@ -2129,225 +2003,125 @@
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 2
+                "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 10309,
+            "win_count": 10311,
             "loss_count": 5055,
             "draw_count": 3257
         },
         {
-            "player_id": 28417564,
-            "@id": "https://api.chess.com/pub/player/lachesisq",
-            "url": "https://www.chess.com/member/lachesisQ",
-            "username": "lachesisQ",
-            "score": 3157,
-            "rank": 37,
-            "country": "https://api.chess.com/pub/country/RU",
+            "player_id": 21232844,
+            "@id": "https://api.chess.com/pub/player/msb2",
+            "url": "https://www.chess.com/member/Msb2",
+            "username": "Msb2",
+            "score": 3167,
+            "rank": 32,
+            "country": "https://api.chess.com/pub/country/DE",
             "title": "GM",
-            "name": "Ian Nepomniachtchi",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28417564.288cde61.200x200o.d3c0bb1c1afd.jpg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 5
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 4487,
-            "loss_count": 2225,
-            "draw_count": 1056
-        },
-        {
-            "player_id": 11474230,
-            "@id": "https://api.chess.com/pub/player/jefferyx",
-            "url": "https://www.chess.com/member/jefferyx",
-            "username": "jefferyx",
-            "score": 3153,
-            "rank": 38,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Jeffery Xiong",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/11474230.1802ddb7.200x200o.60d5d5608100.jpeg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 6
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 3358,
-            "loss_count": 957,
-            "draw_count": 733
-        },
-        {
-            "player_id": 10174260,
-            "@id": "https://api.chess.com/pub/player/duhless",
-            "url": "https://www.chess.com/member/Duhless",
-            "username": "Duhless",
-            "score": 3150,
-            "rank": 39,
-            "country": "https://api.chess.com/pub/country/RU",
-            "title": "GM",
-            "name": "Daniil Dubov",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/10174260.4865a6da.200x200o.6932fffcda21.png",
-            "trend_score": {
-                "direction": 1,
-                "delta": 44
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 30
-            },
-            "flair_code": "nothing",
-            "win_count": 7414,
-            "loss_count": 3518,
-            "draw_count": 1642
-        },
-        {
-            "player_id": 21261922,
-            "@id": "https://api.chess.com/pub/player/miterryble",
-            "url": "https://www.chess.com/member/MITerryble",
-            "username": "MITerryble",
-            "score": 3149,
-            "rank": 40,
-            "country": "https://api.chess.com/pub/country/PE",
-            "title": "IM",
-            "name": "Renato Terry",
+            "name": "Matthias Bluebaum",
             "status": "premium",
             "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
             "trend_score": {
-                "direction": -1,
-                "delta": 20
+                "direction": 1,
+                "delta": 13
             },
             "trend_rank": {
-                "direction": -1,
+                "direction": 1,
                 "delta": 6
             },
             "flair_code": "nothing",
-            "win_count": 13567,
-            "loss_count": 3114,
-            "draw_count": 2339
+            "win_count": 10298,
+            "loss_count": 4841,
+            "draw_count": 1923
         },
         {
-            "player_id": 33903360,
-            "@id": "https://api.chess.com/pub/player/sibelephant",
-            "url": "https://www.chess.com/member/Sibelephant",
-            "username": "Sibelephant",
-            "score": 3148,
-            "rank": 41,
-            "country": "https://api.chess.com/pub/country/RU",
+            "player_id": 26303484,
+            "@id": "https://api.chess.com/pub/player/bigfish1995",
+            "url": "https://www.chess.com/member/Bigfish1995",
+            "username": "Bigfish1995",
+            "score": 3166,
+            "rank": 33,
+            "country": "https://api.chess.com/pub/country/SI",
             "title": "GM",
-            "name": "Vladislav Artemiev",
+            "name": "Vladimir Fedoseev",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/33903360.eba9f5a2.200x200o.578bfd0b2e17.jpeg",
-            "trend_score": {
-                "direction": 1,
-                "delta": 37
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 24
-            },
-            "flair_code": "nothing",
-            "win_count": 838,
-            "loss_count": 226,
-            "draw_count": 247
-        },
-        {
-            "player_id": 69192934,
-            "@id": "https://api.chess.com/pub/player/dropstonedp",
-            "url": "https://www.chess.com/member/dropstoneDP",
-            "username": "dropstoneDP",
-            "score": 3147,
-            "rank": 42,
-            "country": "https://api.chess.com/pub/country/RU",
-            "title": "GM",
-            "name": "David Paravyan",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/69192934.19df0418.200x200o.5839b2717eb5.jpeg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/26303484.dc192fa5.200x200o.d771643b19ed.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 9448,
-            "loss_count": 5172,
-            "draw_count": 3499
+            "win_count": 7102,
+            "loss_count": 4831,
+            "draw_count": 1516
         },
         {
-            "player_id": 137706882,
-            "@id": "https://api.chess.com/pub/player/baku_boulevard",
-            "url": "https://www.chess.com/member/Baku_Boulevard",
-            "username": "Baku_Boulevard",
-            "score": 3146,
-            "rank": 43,
-            "country": "https://api.chess.com/pub/country/UA",
+            "player_id": 38711494,
+            "@id": "https://api.chess.com/pub/player/frederiksvane",
+            "url": "https://www.chess.com/member/frederiksvane",
+            "username": "frederiksvane",
+            "score": 3165,
+            "rank": 34,
+            "country": "https://api.chess.com/pub/country/DE",
             "title": "GM",
-            "name": "Rauf Mamedov",
+            "name": "Frederik Svane",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/137706882.0ca988e2.200x200o.e0649ae91b4c.jpeg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/38711494.0fd33505.200x200o.dcc5853b4313.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 1
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 1136,
-            "loss_count": 590,
-            "draw_count": 311
+            "win_count": 6896,
+            "loss_count": 3767,
+            "draw_count": 1341
         },
         {
-            "player_id": 28168290,
-            "@id": "https://api.chess.com/pub/player/oleksandr_bortnyk",
-            "url": "https://www.chess.com/member/Oleksandr_Bortnyk",
-            "username": "Oleksandr_Bortnyk",
-            "score": 3138,
-            "rank": 44,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Oleksandr Bortnyk",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28168290.451f25f9.200x200o.8f240686cf4e.jpg",
-            "trend_score": {
-                "direction": -1,
-                "delta": 44
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 15
-            },
-            "flair_code": "nothing",
-            "win_count": 11140,
-            "loss_count": 3211,
-            "draw_count": 1595
-        },
-        {
-            "player_id": 63541650,
-            "@id": "https://api.chess.com/pub/player/chesslover0108",
-            "url": "https://www.chess.com/member/ChessLover0108",
-            "username": "ChessLover0108",
-            "score": 3137,
-            "rank": 45,
+            "player_id": 18202610,
+            "@id": "https://api.chess.com/pub/player/tradjabov",
+            "url": "https://www.chess.com/member/TRadjabov",
+            "username": "TRadjabov",
+            "score": 3164,
+            "rank": 35,
             "country": "https://api.chess.com/pub/country/AZ",
             "title": "GM",
-            "name": "Mahammad Muradli",
+            "name": "Teimour Radjabov",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/63541650.89a498c1.200x200o.d3849ba0727a.jpeg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/18202610.a304129e.200x200o.e17da8feadcc.jpeg",
+            "trend_score": {
+                "direction": -1,
+                "delta": 8
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 5
+            },
+            "flair_code": "nothing",
+            "win_count": 798,
+            "loss_count": 246,
+            "draw_count": 129
+        },
+        {
+            "player_id": 108520120,
+            "@id": "https://api.chess.com/pub/player/nikotheodorou",
+            "url": "https://www.chess.com/member/NikoTheodorou",
+            "username": "NikoTheodorou",
+            "score": 3164,
+            "rank": 36,
+            "country": "https://api.chess.com/pub/country/GR",
+            "title": "GM",
+            "name": "Nikolas Theodorou",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/108520120.b86cc966.200x200o.d85a0c84f2ae.jpg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -2357,17 +2131,17 @@
                 "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 2459,
-            "loss_count": 1474,
-            "draw_count": 313
+            "win_count": 4087,
+            "loss_count": 3281,
+            "draw_count": 1249
         },
         {
             "player_id": 22252178,
             "@id": "https://api.chess.com/pub/player/anishgiri",
             "url": "https://www.chess.com/member/AnishGiri",
             "username": "AnishGiri",
-            "score": 3137,
-            "rank": 46,
+            "score": 3161,
+            "rank": 37,
             "country": "https://api.chess.com/pub/country/NL",
             "title": "GM",
             "name": "Anish Giri",
@@ -2382,109 +2156,334 @@
                 "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 511,
-            "loss_count": 200,
-            "draw_count": 179
+            "win_count": 522,
+            "loss_count": 204,
+            "draw_count": 180
         },
         {
-            "player_id": 26867272,
-            "@id": "https://api.chess.com/pub/player/jospem",
-            "url": "https://www.chess.com/member/Jospem",
-            "username": "Jospem",
-            "score": 3132,
+            "player_id": 11177810,
+            "@id": "https://api.chess.com/pub/player/fabianocaruana",
+            "url": "https://www.chess.com/member/FabianoCaruana",
+            "username": "FabianoCaruana",
+            "score": 3161,
+            "rank": 38,
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "GM",
+            "name": "Fabiano Caruana",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/11177810.9dfc8d31.200x200o.9a9eccebc07c.png",
+            "trend_score": {
+                "direction": 1,
+                "delta": 13
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 2797,
+            "loss_count": 805,
+            "draw_count": 491
+        },
+        {
+            "player_id": 30887540,
+            "@id": "https://api.chess.com/pub/player/bogdandeac",
+            "url": "https://www.chess.com/member/BogdanDeac",
+            "username": "BogdanDeac",
+            "score": 3156,
+            "rank": 39,
+            "country": "https://api.chess.com/pub/country/RO",
+            "title": "GM",
+            "name": "Bogdan Daniel Deac",
+            "status": "premium",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "trend_score": {
+                "direction": 1,
+                "delta": 82
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 57
+            },
+            "flair_code": "nothing",
+            "win_count": 8171,
+            "loss_count": 4526,
+            "draw_count": 2400
+        },
+        {
+            "player_id": 8829034,
+            "@id": "https://api.chess.com/pub/player/konavets",
+            "url": "https://www.chess.com/member/Konavets",
+            "username": "Konavets",
+            "score": 3155,
+            "rank": 40,
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "GM",
+            "name": "Sam Sevian",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/8829034.6d90a567.200x200o.60d12a06fdce.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 4801,
+            "loss_count": 2309,
+            "draw_count": 884
+        },
+        {
+            "player_id": 47485766,
+            "@id": "https://api.chess.com/pub/player/polish_fighter3000",
+            "url": "https://www.chess.com/member/Polish_fighter3000",
+            "username": "Polish_fighter3000",
+            "score": 3155,
+            "rank": 41,
+            "country": "https://api.chess.com/pub/country/PL",
+            "title": "GM",
+            "name": "Jan-Krzysztof Duda",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/47485766.de241c41.200x200o.7b706ebf58e7.jpeg",
+            "trend_score": {
+                "direction": -1,
+                "delta": 30
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 17
+            },
+            "flair_code": "nothing",
+            "win_count": 3289,
+            "loss_count": 1427,
+            "draw_count": 596
+        },
+        {
+            "player_id": 137706882,
+            "@id": "https://api.chess.com/pub/player/baku_boulevard",
+            "url": "https://www.chess.com/member/Baku_Boulevard",
+            "username": "Baku_Boulevard",
+            "score": 3154,
+            "rank": 42,
+            "country": "https://api.chess.com/pub/country/UA",
+            "title": "GM",
+            "name": "Rauf Mamedov",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/137706882.0ca988e2.200x200o.e0649ae91b4c.jpeg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 14
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 1150,
+            "loss_count": 594,
+            "draw_count": 313
+        },
+        {
+            "player_id": 11474230,
+            "@id": "https://api.chess.com/pub/player/jefferyx",
+            "url": "https://www.chess.com/member/jefferyx",
+            "username": "jefferyx",
+            "score": 3153,
+            "rank": 43,
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "GM",
+            "name": "Jeffery Xiong",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/11474230.1802ddb7.200x200o.60d5d5608100.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 3358,
+            "loss_count": 957,
+            "draw_count": 733
+        },
+        {
+            "player_id": 27168196,
+            "@id": "https://api.chess.com/pub/player/salem-ar",
+            "url": "https://www.chess.com/member/Salem-AR",
+            "username": "Salem-AR",
+            "score": 3152,
+            "rank": 44,
+            "country": "https://api.chess.com/pub/country/AE",
+            "title": "GM",
+            "name": "Salem AR Saleh",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/27168196.a7e8c448.200x200o.5971d272bf8c.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 5920,
+            "loss_count": 4568,
+            "draw_count": 1121
+        },
+        {
+            "player_id": 28417564,
+            "@id": "https://api.chess.com/pub/player/lachesisq",
+            "url": "https://www.chess.com/member/lachesisQ",
+            "username": "lachesisQ",
+            "score": 3151,
+            "rank": 45,
+            "country": "https://api.chess.com/pub/country/RU",
+            "title": "GM",
+            "name": "Ian Nepomniachtchi",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28417564.288cde61.200x200o.d3c0bb1c1afd.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 4490,
+            "loss_count": 2227,
+            "draw_count": 1056
+        },
+        {
+            "player_id": 69192934,
+            "@id": "https://api.chess.com/pub/player/dropstonedp",
+            "url": "https://www.chess.com/member/dropstoneDP",
+            "username": "dropstoneDP",
+            "score": 3147,
+            "rank": 46,
+            "country": "https://api.chess.com/pub/country/RU",
+            "title": "GM",
+            "name": "David Paravyan",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/69192934.19df0418.200x200o.5839b2717eb5.jpeg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 3
+            },
+            "flair_code": "nothing",
+            "win_count": 9448,
+            "loss_count": 5172,
+            "draw_count": 3499
+        },
+        {
+            "player_id": 64925746,
+            "@id": "https://api.chess.com/pub/player/rud_makarian",
+            "url": "https://www.chess.com/member/Rud_Makarian",
+            "username": "Rud_Makarian",
+            "score": 3143,
             "rank": 47,
-            "country": "https://api.chess.com/pub/country/MX",
-            "title": "GM",
-            "name": "Jose Martinez",
+            "country": "https://api.chess.com/pub/country/RU",
+            "title": "IM",
+            "name": "Rudik Makarian",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/26867272.ae9f1c80.200x200o.8b42d2759267.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/64925746.687b0c9f.200x200o.14deca7f7dc1.jpg",
             "trend_score": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 23
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 1
+                "direction": 1,
+                "delta": 15
             },
             "flair_code": "nothing",
-            "win_count": 21020,
-            "loss_count": 7931,
-            "draw_count": 3529
+            "win_count": 14228,
+            "loss_count": 10010,
+            "draw_count": 3704
         },
         {
-            "player_id": 15668874,
-            "@id": "https://api.chess.com/pub/player/fireheart92",
-            "url": "https://www.chess.com/member/fireheart92",
-            "username": "fireheart92",
-            "score": 3132,
+            "player_id": 43194690,
+            "@id": "https://api.chess.com/pub/player/vincentkeymer",
+            "url": "https://www.chess.com/member/VincentKeymer",
+            "username": "VincentKeymer",
+            "score": 3143,
             "rank": 48,
-            "country": "https://api.chess.com/pub/country/IN",
+            "country": "https://api.chess.com/pub/country/DE",
             "title": "GM",
-            "name": "Adhiban Baskaran",
+            "name": "Vincent Keymer",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/15668874.bc5e15ab.200x200o.f23515424048.jpeg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/43194690.01e2e420.200x200o.5b2983036718.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 1
+                "delta": 4
             },
             "flair_code": "nothing",
-            "win_count": 968,
-            "loss_count": 863,
-            "draw_count": 291
+            "win_count": 3935,
+            "loss_count": 3114,
+            "draw_count": 1062
         },
         {
-            "player_id": 5094518,
-            "@id": "https://api.chess.com/pub/player/joppie2",
-            "url": "https://www.chess.com/member/joppie2",
-            "username": "joppie2",
-            "score": 3131,
+            "player_id": 63541650,
+            "@id": "https://api.chess.com/pub/player/chesslover0108",
+            "url": "https://www.chess.com/member/ChessLover0108",
+            "username": "ChessLover0108",
+            "score": 3137,
             "rank": 49,
-            "country": "https://api.chess.com/pub/country/NL",
+            "country": "https://api.chess.com/pub/country/AZ",
             "title": "GM",
-            "name": "Jorden Van Foreest",
+            "name": "Mahammad Muradli",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/5094518.0c33d60a.200x200o.4c3ca924f2cd.png",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/63541650.89a498c1.200x200o.d3849ba0727a.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 1
+                "delta": 3
             },
             "flair_code": "nothing",
-            "win_count": 6584,
-            "loss_count": 5051,
-            "draw_count": 1248
+            "win_count": 2463,
+            "loss_count": 1476,
+            "draw_count": 313
         },
         {
-            "player_id": 81535436,
-            "@id": "https://api.chess.com/pub/player/tptagain",
-            "url": "https://www.chess.com/member/tptagain",
-            "username": "tptagain",
-            "score": 3130,
+            "player_id": 28168290,
+            "@id": "https://api.chess.com/pub/player/oleksandr_bortnyk",
+            "url": "https://www.chess.com/member/Oleksandr_Bortnyk",
+            "username": "Oleksandr_Bortnyk",
+            "score": 3135,
             "rank": 50,
-            "country": "https://api.chess.com/pub/country/ES",
+            "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
-            "name": "David Anton Guijarro",
+            "name": "Oleksandr Bortnyk",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/81535436.3987e279.200x200o.2f4f48245e6f.png",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28168290.451f25f9.200x200o.8f240686cf4e.jpg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 1
+                "delta": 3
             },
             "flair_code": "nothing",
-            "win_count": 5436,
-            "loss_count": 2698,
-            "draw_count": 1051
+            "win_count": 11141,
+            "loss_count": 3212,
+            "draw_count": 1595
         }
     ],
     "bala": [
@@ -2512,12 +2511,37 @@
             "draw_count": 26
         },
         {
+            "player_id": 207852275,
+            "@id": "https://api.chess.com/pub/player/philippians46",
+            "url": "https://www.chess.com/member/Philippians46",
+            "username": "Philippians46",
+            "score": 3335,
+            "rank": 2,
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "GM",
+            "name": "Andy Woodward",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/207852275.b5fd5b9c.200x200o.2658380fdb00.png",
+            "trend_score": {
+                "direction": -1,
+                "delta": 18
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 13747,
+            "loss_count": 5601,
+            "draw_count": 955
+        },
+        {
             "player_id": 341886071,
             "@id": "https://api.chess.com/pub/player/worriedegg",
             "url": "https://www.chess.com/member/WorriedEgg",
             "username": "WorriedEgg",
             "score": 3313,
-            "rank": 2,
+            "rank": 3,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Aaron Jacobson",
@@ -2542,7 +2566,7 @@
             "url": "https://www.chess.com/member/Firouzja2003",
             "username": "Firouzja2003",
             "score": 3309,
-            "rank": 3,
+            "rank": 4,
             "country": "https://api.chess.com/pub/country/FR",
             "title": "GM",
             "name": "Alireza Firouzja",
@@ -2562,17 +2586,17 @@
             "draw_count": 1428
         },
         {
-            "player_id": 207852275,
-            "@id": "https://api.chess.com/pub/player/philippians46",
-            "url": "https://www.chess.com/member/Philippians46",
-            "username": "Philippians46",
-            "score": 3301,
-            "rank": 4,
-            "country": "https://api.chess.com/pub/country/US",
+            "player_id": 50386860,
+            "@id": "https://api.chess.com/pub/player/gurelediz",
+            "url": "https://www.chess.com/member/gurelediz",
+            "username": "gurelediz",
+            "score": 3294,
+            "rank": 5,
+            "country": "https://api.chess.com/pub/country/TR",
             "title": "GM",
-            "name": "Andy Woodward",
+            "name": "Ediz Gürel",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/207852275.b5fd5b9c.200x200o.2658380fdb00.png",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/50386860.8f4bcdc7.200x200o.52a55edd9e84.jpg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -2582,9 +2606,9 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 13596,
-            "loss_count": 5564,
-            "draw_count": 951
+            "win_count": 4471,
+            "loss_count": 1968,
+            "draw_count": 431
         },
         {
             "player_id": 66246790,
@@ -2592,7 +2616,7 @@
             "url": "https://www.chess.com/member/LiamPutnam2008",
             "username": "LiamPutnam2008",
             "score": 3282,
-            "rank": 5,
+            "rank": 6,
             "country": "https://api.chess.com/pub/country/US",
             "title": "IM",
             "name": "Liam Putnam",
@@ -2612,42 +2636,17 @@
             "draw_count": 980
         },
         {
-            "player_id": 50386860,
-            "@id": "https://api.chess.com/pub/player/gurelediz",
-            "url": "https://www.chess.com/member/gurelediz",
-            "username": "gurelediz",
-            "score": 3271,
-            "rank": 6,
-            "country": "https://api.chess.com/pub/country/TR",
-            "title": "GM",
-            "name": "Ediz Gürel",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/50386860.8f4bcdc7.200x200o.52a55edd9e84.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 4412,
-            "loss_count": 1944,
-            "draw_count": 424
-        },
-        {
-            "player_id": 7195919,
-            "@id": "https://api.chess.com/pub/player/nihalsarin",
-            "url": "https://www.chess.com/member/nihalsarin",
-            "username": "nihalsarin",
-            "score": 3267,
+            "player_id": 15448422,
+            "@id": "https://api.chess.com/pub/player/hikaru",
+            "url": "https://www.chess.com/member/Hikaru",
+            "username": "Hikaru",
+            "score": 3260,
             "rank": 7,
-            "country": "https://api.chess.com/pub/country/IN",
+            "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
-            "name": "Nihal Sarin",
+            "name": "Hikaru Nakamura",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/7195919.159050ca.200x200o.883e75faf64e.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/15448422.88c010c1.200x200o.3c5619f5441e.png",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -2657,9 +2656,9 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 15689,
-            "loss_count": 7792,
-            "draw_count": 1957
+            "win_count": 15918,
+            "loss_count": 2228,
+            "draw_count": 1030
         },
         {
             "player_id": 34493616,
@@ -2682,7 +2681,7 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 15283,
+            "win_count": 15284,
             "loss_count": 13504,
             "draw_count": 2167
         },
@@ -2710,62 +2709,12 @@
             "draw_count": 194
         },
         {
-            "player_id": 15448422,
-            "@id": "https://api.chess.com/pub/player/hikaru",
-            "url": "https://www.chess.com/member/Hikaru",
-            "username": "Hikaru",
-            "score": 3232,
-            "rank": 10,
-            "country": "https://api.chess.com/pub/country/US",
-            "title": "GM",
-            "name": "Hikaru Nakamura",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/15448422.88c010c1.200x200o.3c5619f5441e.png",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 15869,
-            "loss_count": 2213,
-            "draw_count": 1023
-        },
-        {
-            "player_id": 48765560,
-            "@id": "https://api.chess.com/pub/player/kingofthenil",
-            "url": "https://www.chess.com/member/kingofthenil",
-            "username": "kingofthenil",
-            "score": 3231,
-            "rank": 11,
-            "country": "https://api.chess.com/pub/country/FR",
-            "title": "GM",
-            "name": "Mahel Boyer",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/48765560.784ccb35.200x200o.5584f4c24c74.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 5430,
-            "loss_count": 4693,
-            "draw_count": 547
-        },
-        {
             "player_id": 8344034,
             "@id": "https://api.chess.com/pub/player/penguingm1",
             "url": "https://www.chess.com/member/penguingm1",
             "username": "penguingm1",
             "score": 3223,
-            "rank": 12,
+            "rank": 10,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Andrew Tang",
@@ -2785,12 +2734,37 @@
             "draw_count": 1671
         },
         {
+            "player_id": 7195919,
+            "@id": "https://api.chess.com/pub/player/nihalsarin",
+            "url": "https://www.chess.com/member/nihalsarin",
+            "username": "nihalsarin",
+            "score": 3218,
+            "rank": 11,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "GM",
+            "name": "Nihal Sarin",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/7195919.159050ca.200x200o.883e75faf64e.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 15749,
+            "loss_count": 7822,
+            "draw_count": 1966
+        },
+        {
             "player_id": 34145346,
             "@id": "https://api.chess.com/pub/player/denlaz",
             "url": "https://www.chess.com/member/DenLaz",
             "username": "DenLaz",
             "score": 3218,
-            "rank": 13,
+            "rank": 12,
             "country": "https://api.chess.com/pub/country/BY",
             "title": "GM",
             "name": "Denis Lazavik",
@@ -2810,12 +2784,62 @@
             "draw_count": 179
         },
         {
+            "player_id": 28168290,
+            "@id": "https://api.chess.com/pub/player/oleksandr_bortnyk",
+            "url": "https://www.chess.com/member/Oleksandr_Bortnyk",
+            "username": "Oleksandr_Bortnyk",
+            "score": 3218,
+            "rank": 13,
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "GM",
+            "name": "Oleksandr Bortnyk",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28168290.451f25f9.200x200o.8f240686cf4e.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 21690,
+            "loss_count": 8912,
+            "draw_count": 1944
+        },
+        {
+            "player_id": 6083387,
+            "@id": "https://api.chess.com/pub/player/manudavid2910",
+            "url": "https://www.chess.com/member/ManuDavid2910",
+            "username": "ManuDavid2910",
+            "score": 3206,
+            "rank": 14,
+            "country": "https://api.chess.com/pub/country/IN",
+            "title": "FM",
+            "name": "Manu David",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/6083387.7db47bc1.200x200o.0634c485076c.jpg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 14
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 2
+            },
+            "flair_code": "nothing",
+            "win_count": 25769,
+            "loss_count": 17132,
+            "draw_count": 2187
+        },
+        {
             "player_id": 14498226,
             "@id": "https://api.chess.com/pub/player/fairchess_on_youtube",
             "url": "https://www.chess.com/member/FairChess_on_YouTube",
             "username": "FairChess_on_YouTube",
             "score": 3201,
-            "rank": 14,
+            "rank": 15,
             "country": "https://api.chess.com/pub/country/GE",
             "title": "GM",
             "name": "Dmitry Andreikin",
@@ -2826,8 +2850,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 1366,
@@ -2840,7 +2864,7 @@
             "url": "https://www.chess.com/member/LiemLe",
             "username": "LiemLe",
             "score": 3196,
-            "rank": 15,
+            "rank": 16,
             "country": "https://api.chess.com/pub/country/VN",
             "title": "GM",
             "name": "Liem Le",
@@ -2851,8 +2875,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 266,
@@ -2865,7 +2889,7 @@
             "url": "https://www.chess.com/member/MagnusCarlsen",
             "username": "MagnusCarlsen",
             "score": 3191,
-            "rank": 16,
+            "rank": 17,
             "country": "https://api.chess.com/pub/country/NO",
             "title": "GM",
             "name": "Magnus Carlsen",
@@ -2890,35 +2914,35 @@
             "url": "https://www.chess.com/member/Qopy01",
             "username": "Qopy01",
             "score": 3175,
-            "rank": 17,
+            "rank": 18,
             "country": "https://api.chess.com/pub/country/TR",
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/490142287.af8e235e.200x200o.8ed55c71d382.jpg",
             "trend_score": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 10
             },
             "trend_rank": {
                 "direction": 0,
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 1713,
-            "loss_count": 720,
-            "draw_count": 40
+            "win_count": 1733,
+            "loss_count": 726,
+            "draw_count": 43
         },
         {
-            "player_id": 28168290,
-            "@id": "https://api.chess.com/pub/player/oleksandr_bortnyk",
-            "url": "https://www.chess.com/member/Oleksandr_Bortnyk",
-            "username": "Oleksandr_Bortnyk",
-            "score": 3175,
-            "rank": 18,
-            "country": "https://api.chess.com/pub/country/US",
+            "player_id": 61085366,
+            "@id": "https://api.chess.com/pub/player/raunaksadhwani2005",
+            "url": "https://www.chess.com/member/RaunakSadhwani2005",
+            "username": "RaunakSadhwani2005",
+            "score": 3174,
+            "rank": 19,
+            "country": "https://api.chess.com/pub/country/IN",
             "title": "GM",
-            "name": "Oleksandr Bortnyk",
+            "name": "Raunak Sadhwani",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/28168290.451f25f9.200x200o.8f240686cf4e.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/61085366.7e6977ec.200x200o.fa27239336b6.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
@@ -2928,9 +2952,9 @@
                 "delta": 0
             },
             "flair_code": "nothing",
-            "win_count": 21642,
-            "loss_count": 8895,
-            "draw_count": 1935
+            "win_count": 5477,
+            "loss_count": 4106,
+            "draw_count": 711
         },
         {
             "player_id": 330779979,
@@ -2938,7 +2962,7 @@
             "url": "https://www.chess.com/member/Javokhir_Sindarov05",
             "username": "Javokhir_Sindarov05",
             "score": 3174,
-            "rank": 19,
+            "rank": 20,
             "country": "https://api.chess.com/pub/country/UZ",
             "title": "GM",
             "name": "Javokhir Sindarov",
@@ -2963,7 +2987,7 @@
             "url": "https://www.chess.com/member/wonderfultime",
             "username": "wonderfultime",
             "score": 3172,
-            "rank": 20,
+            "rank": 21,
             "country": "https://api.chess.com/pub/country/VN",
             "title": "GM",
             "name": "Tuan Minh Le",
@@ -2988,7 +3012,7 @@
             "url": "https://www.chess.com/member/FabianoCaruana",
             "username": "FabianoCaruana",
             "score": 3169,
-            "rank": 21,
+            "rank": 22,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Fabiano Caruana",
@@ -3013,7 +3037,7 @@
             "url": "https://www.chess.com/member/ShadowKing71",
             "username": "ShadowKing71",
             "score": 3168,
-            "rank": 22,
+            "rank": 23,
             "country": "https://api.chess.com/pub/country/BW",
             "title": "FM",
             "name": "James Chirilov",
@@ -3038,7 +3062,7 @@
             "url": "https://www.chess.com/member/dropstoneDP",
             "username": "dropstoneDP",
             "score": 3166,
-            "rank": 23,
+            "rank": 24,
             "country": "https://api.chess.com/pub/country/RU",
             "title": "GM",
             "name": "David Paravyan",
@@ -3063,7 +3087,7 @@
             "url": "https://www.chess.com/member/Konavets",
             "username": "Konavets",
             "score": 3165,
-            "rank": 24,
+            "rank": 25,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Sam Sevian",
@@ -3088,7 +3112,7 @@
             "url": "https://www.chess.com/member/ChessFighter_2011",
             "username": "ChessFighter_2011",
             "score": 3165,
-            "rank": 25,
+            "rank": 26,
             "country": "https://api.chess.com/pub/country/VN",
             "title": "IM",
             "name": "Dau Khuong Duy",
@@ -3108,79 +3132,29 @@
             "draw_count": 203
         },
         {
-            "player_id": 21261922,
-            "@id": "https://api.chess.com/pub/player/miterryble",
-            "url": "https://www.chess.com/member/MITerryble",
-            "username": "MITerryble",
-            "score": 3161,
-            "rank": 26,
-            "country": "https://api.chess.com/pub/country/PE",
-            "title": "IM",
-            "name": "Renato Terry",
-            "status": "premium",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 0,
-                "delta": 0
-            },
-            "flair_code": "nothing",
-            "win_count": 14899,
-            "loss_count": 5577,
-            "draw_count": 1330
-        },
-        {
-            "player_id": 61085366,
-            "@id": "https://api.chess.com/pub/player/raunaksadhwani2005",
-            "url": "https://www.chess.com/member/RaunakSadhwani2005",
-            "username": "RaunakSadhwani2005",
-            "score": 3160,
+            "player_id": 5081249,
+            "@id": "https://api.chess.com/pub/player/littleplotkin",
+            "url": "https://www.chess.com/member/littleplotkin",
+            "username": "littleplotkin",
+            "score": 3158,
             "rank": 27,
-            "country": "https://api.chess.com/pub/country/IN",
-            "title": "GM",
-            "name": "Raunak Sadhwani",
+            "country": "https://api.chess.com/pub/country/CA",
+            "title": "IM",
+            "name": "Mark Plotkin",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/61085366.7e6977ec.200x200o.fa27239336b6.jpeg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/5081249.6e61c86a.200x200o.5b315cc56f53.jpeg",
             "trend_score": {
                 "direction": 0,
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 5474,
-            "loss_count": 4106,
-            "draw_count": 711
-        },
-        {
-            "player_id": 21232844,
-            "@id": "https://api.chess.com/pub/player/msb2",
-            "url": "https://www.chess.com/member/Msb2",
-            "username": "Msb2",
-            "score": 3159,
-            "rank": 28,
-            "country": "https://api.chess.com/pub/country/DE",
-            "title": "GM",
-            "name": "Matthias Bluebaum",
-            "status": "premium",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
-            "trend_score": {
-                "direction": 1,
-                "delta": 21
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 4
-            },
-            "flair_code": "nothing",
-            "win_count": 12119,
-            "loss_count": 4406,
-            "draw_count": 1177
+            "win_count": 3321,
+            "loss_count": 2580,
+            "draw_count": 234
         },
         {
             "player_id": 1715324,
@@ -3188,7 +3162,7 @@
             "url": "https://www.chess.com/member/DanielNaroditsky",
             "username": "DanielNaroditsky",
             "score": 3153,
-            "rank": 29,
+            "rank": 28,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Daniel Naroditsky",
@@ -3199,7 +3173,7 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
+                "direction": 1,
                 "delta": 1
             },
             "flair_code": "nothing",
@@ -3213,7 +3187,7 @@
             "url": "https://www.chess.com/member/judenyc",
             "username": "judenyc",
             "score": 3149,
-            "rank": 30,
+            "rank": 29,
             "country": "https://api.chess.com/pub/country/NO",
             "name": "Jude Dude",
             "status": "premium",
@@ -3223,12 +3197,12 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
+                "direction": 1,
                 "delta": 1
             },
             "flair_code": "nothing",
-            "win_count": 6128,
-            "loss_count": 6838,
+            "win_count": 6130,
+            "loss_count": 6842,
             "draw_count": 668
         },
         {
@@ -3237,19 +3211,19 @@
             "url": "https://www.chess.com/member/platy3",
             "username": "platy3",
             "score": 3147,
-            "rank": 31,
+            "rank": 30,
             "country": "https://api.chess.com/pub/country/ES",
             "title": "GM",
             "name": "Alan Pichot",
             "status": "premium",
             "avatar": "https://images.chesscomfiles.com/uploads/v1/user/22639240.1da8984e.200x200o.b0b696b8f6da.jpg",
             "trend_score": {
-                "direction": 1,
-                "delta": 24
+                "direction": 0,
+                "delta": 0
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 7
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 5689,
@@ -3257,29 +3231,54 @@
             "draw_count": 799
         },
         {
-            "player_id": 6083387,
-            "@id": "https://api.chess.com/pub/player/manudavid2910",
-            "url": "https://www.chess.com/member/ManuDavid2910",
-            "username": "ManuDavid2910",
-            "score": 3143,
-            "rank": 32,
-            "country": "https://api.chess.com/pub/country/IN",
+            "player_id": 47102936,
+            "@id": "https://api.chess.com/pub/player/yavrukurt40",
+            "url": "https://www.chess.com/member/yavrukurt40",
+            "username": "yavrukurt40",
+            "score": 3145,
+            "rank": 31,
+            "country": "https://api.chess.com/pub/country/TR",
             "title": "FM",
-            "name": "Manu David",
+            "name": "Dincer Tasdogen",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/6083387.7db47bc1.200x200o.0634c485076c.jpg",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
             "trend_score": {
                 "direction": 1,
-                "delta": 8
+                "delta": 20
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 2
+                "delta": 9
             },
             "flair_code": "nothing",
-            "win_count": 25676,
-            "loss_count": 17120,
-            "draw_count": 2183
+            "win_count": 3650,
+            "loss_count": 2301,
+            "draw_count": 427
+        },
+        {
+            "player_id": 48765560,
+            "@id": "https://api.chess.com/pub/player/kingofthenil",
+            "url": "https://www.chess.com/member/kingofthenil",
+            "username": "kingofthenil",
+            "score": 3143,
+            "rank": 32,
+            "country": "https://api.chess.com/pub/country/FR",
+            "title": "GM",
+            "name": "Mahel Boyer",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/48765560.784ccb35.200x200o.5584f4c24c74.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 5480,
+            "loss_count": 4729,
+            "draw_count": 548
         },
         {
             "player_id": 20718020,
@@ -3298,8 +3297,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 3
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
             "win_count": 9450,
@@ -3323,8 +3322,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": -1,
-                "delta": 3
+                "direction": 0,
+                "delta": 0
             },
             "flair_code": "nothing",
             "win_count": 1037,
@@ -3332,12 +3331,85 @@
             "draw_count": 201
         },
         {
+            "player_id": 21232844,
+            "@id": "https://api.chess.com/pub/player/msb2",
+            "url": "https://www.chess.com/member/Msb2",
+            "username": "Msb2",
+            "score": 3140,
+            "rank": 35,
+            "country": "https://api.chess.com/pub/country/DE",
+            "title": "GM",
+            "name": "Matthias Bluebaum",
+            "status": "premium",
+            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
+            "trend_score": {
+                "direction": -1,
+                "delta": 22
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 8
+            },
+            "flair_code": "nothing",
+            "win_count": 12181,
+            "loss_count": 4436,
+            "draw_count": 1184
+        },
+        {
+            "player_id": 80871800,
+            "@id": "https://api.chess.com/pub/player/offbrandjudenyc",
+            "url": "https://www.chess.com/member/offbrandjudenyc",
+            "username": "offbrandjudenyc",
+            "score": 3138,
+            "rank": 36,
+            "country": "https://api.chess.com/pub/country/NO",
+            "status": "basic",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/80871800.a66fb482.200x200o.3e287eaf68a2.png",
+            "trend_score": {
+                "direction": 1,
+                "delta": 2
+            },
+            "trend_rank": {
+                "direction": 0,
+                "delta": 0
+            },
+            "flair_code": "nothing",
+            "win_count": 16435,
+            "loss_count": 8055,
+            "draw_count": 726
+        },
+        {
+            "player_id": 1647368,
+            "@id": "https://api.chess.com/pub/player/hansen",
+            "url": "https://www.chess.com/member/hansen",
+            "username": "hansen",
+            "score": 3137,
+            "rank": 37,
+            "country": "https://api.chess.com/pub/country/CA",
+            "title": "GM",
+            "name": "Eric Hansen",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/1647368.ae58bde0.200x200o.2ec2f48d150e.png",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 2
+            },
+            "flair_code": "nothing",
+            "win_count": 14701,
+            "loss_count": 7291,
+            "draw_count": 906
+        },
+        {
             "player_id": 11474230,
             "@id": "https://api.chess.com/pub/player/jefferyx",
             "url": "https://www.chess.com/member/jefferyx",
             "username": "jefferyx",
             "score": 3136,
-            "rank": 35,
+            "rank": 38,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Jeffery Xiong",
@@ -3349,7 +3421,7 @@
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 2
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 1226,
@@ -3362,7 +3434,7 @@
             "url": "https://www.chess.com/member/spectralsoul",
             "username": "spectralsoul",
             "score": 3133,
-            "rank": 36,
+            "rank": 39,
             "country": "https://api.chess.com/pub/country/CO",
             "title": "IM",
             "name": "Esteban Valderrama",
@@ -3382,12 +3454,36 @@
             "draw_count": 290
         },
         {
+            "player_id": 69197334,
+            "@id": "https://api.chess.com/pub/player/riley",
+            "url": "https://www.chess.com/member/Riley",
+            "username": "Riley",
+            "score": 3130,
+            "rank": 40,
+            "country": "https://api.chess.com/pub/country/AT",
+            "name": "Alesia",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/69197334.f8a3d927.200x200o.67a5d9e31029.jpg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 24
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 13
+            },
+            "flair_code": "nothing",
+            "win_count": 16920,
+            "loss_count": 14067,
+            "draw_count": 1707
+        },
+        {
             "player_id": 28692936,
             "@id": "https://api.chess.com/pub/player/rpragchess",
             "url": "https://www.chess.com/member/rpragchess",
             "username": "rpragchess",
             "score": 3128,
-            "rank": 37,
+            "rank": 41,
             "country": "https://api.chess.com/pub/country/IN",
             "title": "GM",
             "name": "Praggnanandhaa Rameshbabu",
@@ -3399,7 +3495,7 @@
             },
             "trend_rank": {
                 "direction": -1,
-                "delta": 1
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 3210,
@@ -3407,37 +3503,12 @@
             "draw_count": 419
         },
         {
-            "player_id": 6002986,
-            "@id": "https://api.chess.com/pub/player/yosephtaher",
-            "url": "https://www.chess.com/member/yosephtaher",
-            "username": "yosephtaher",
-            "score": 3123,
-            "rank": 38,
-            "country": "https://api.chess.com/pub/country/ID",
-            "title": "IM",
-            "name": "Yoseph Theolifus Taher",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/6002986.1775e777.200x200o.d57654f1bb6a.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": -1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 10790,
-            "loss_count": 3154,
-            "draw_count": 494
-        },
-        {
             "player_id": 74555550,
             "@id": "https://api.chess.com/pub/player/arysya",
             "url": "https://www.chess.com/member/Arysya",
             "username": "Arysya",
             "score": 3122,
-            "rank": 39,
+            "rank": 42,
             "country": "https://api.chess.com/pub/country/KZ",
             "title": "IM",
             "name": "Arystan Isanzhulov",
@@ -3448,8 +3519,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 1
             },
             "flair_code": "nothing",
             "win_count": 5813,
@@ -3457,12 +3528,62 @@
             "draw_count": 451
         },
         {
+            "player_id": 43499854,
+            "@id": "https://api.chess.com/pub/player/tactic",
+            "url": "https://www.chess.com/member/tactic",
+            "username": "tactic",
+            "score": 3122,
+            "rank": 43,
+            "country": "https://api.chess.com/pub/country/XX",
+            "title": "NM",
+            "name": "Kent Slate",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/43499854.0a852c94.200x200o.01ea0d739943.jpg",
+            "trend_score": {
+                "direction": 1,
+                "delta": 7
+            },
+            "trend_rank": {
+                "direction": 1,
+                "delta": 4
+            },
+            "flair_code": "nothing",
+            "win_count": 25652,
+            "loss_count": 17322,
+            "draw_count": 2125
+        },
+        {
+            "player_id": 26867272,
+            "@id": "https://api.chess.com/pub/player/jospem",
+            "url": "https://www.chess.com/member/Jospem",
+            "username": "Jospem",
+            "score": 3121,
+            "rank": 44,
+            "country": "https://api.chess.com/pub/country/MX",
+            "title": "GM",
+            "name": "Jose Martinez",
+            "status": "premium",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/26867272.ae9f1c80.200x200o.8b42d2759267.jpg",
+            "trend_score": {
+                "direction": 0,
+                "delta": 0
+            },
+            "trend_rank": {
+                "direction": -1,
+                "delta": 2
+            },
+            "flair_code": "nothing",
+            "win_count": 83351,
+            "loss_count": 15988,
+            "draw_count": 1323
+        },
+        {
             "player_id": 88920388,
             "@id": "https://api.chess.com/pub/player/hansontwitch",
             "url": "https://www.chess.com/member/HansOnTwitch",
             "username": "HansOnTwitch",
             "score": 3120,
-            "rank": 40,
+            "rank": 45,
             "country": "https://api.chess.com/pub/country/US",
             "title": "GM",
             "name": "Hans Niemann",
@@ -3473,8 +3594,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 1694,
@@ -3487,7 +3608,7 @@
             "url": "https://www.chess.com/member/tptagain",
             "username": "tptagain",
             "score": 3120,
-            "rank": 41,
+            "rank": 46,
             "country": "https://api.chess.com/pub/country/ES",
             "title": "GM",
             "name": "David Anton Guijarro",
@@ -3498,8 +3619,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 582,
@@ -3512,7 +3633,7 @@
             "url": "https://www.chess.com/member/quizden37",
             "username": "quizden37",
             "score": 3120,
-            "rank": 42,
+            "rank": 47,
             "country": "https://api.chess.com/pub/country/PH",
             "title": "GM",
             "name": "Daniel Quizon",
@@ -3523,8 +3644,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 777,
@@ -3537,7 +3658,7 @@
             "url": "https://www.chess.com/member/Dolphin_2010",
             "username": "Dolphin_2010",
             "score": 3117,
-            "rank": 43,
+            "rank": 48,
             "country": "https://api.chess.com/pub/country/RU",
             "title": "FM",
             "name": "Aleksandr Usov",
@@ -3548,8 +3669,8 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 0,
-                "delta": 0
+                "direction": -1,
+                "delta": 2
             },
             "flair_code": "nothing",
             "win_count": 947,
@@ -3557,37 +3678,12 @@
             "draw_count": 67
         },
         {
-            "player_id": 43499854,
-            "@id": "https://api.chess.com/pub/player/tactic",
-            "url": "https://www.chess.com/member/tactic",
-            "username": "tactic",
-            "score": 3115,
-            "rank": 44,
-            "country": "https://api.chess.com/pub/country/XX",
-            "title": "NM",
-            "name": "Kent Slate",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/43499854.0a852c94.200x200o.01ea0d739943.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 25504,
-            "loss_count": 17281,
-            "draw_count": 2119
-        },
-        {
             "player_id": 26572336,
             "@id": "https://api.chess.com/pub/player/zhigalko_sergei",
             "url": "https://www.chess.com/member/Zhigalko_Sergei",
             "username": "Zhigalko_Sergei",
             "score": 3115,
-            "rank": 45,
+            "rank": 49,
             "country": "https://api.chess.com/pub/country/XX",
             "title": "GM",
             "name": "Sergei Zhigalko",
@@ -3598,7 +3694,7 @@
                 "delta": 0
             },
             "trend_rank": {
-                "direction": 1,
+                "direction": -1,
                 "delta": 1
             },
             "flair_code": "nothing",
@@ -3607,126 +3703,29 @@
             "draw_count": 1035
         },
         {
-            "player_id": 27421320,
-            "@id": "https://api.chess.com/pub/player/monomita",
-            "url": "https://www.chess.com/member/monomita",
-            "username": "monomita",
-            "score": 3112,
-            "rank": 46,
-            "country": "https://api.chess.com/pub/country/IN",
-            "title": "IM",
-            "name": "Mayank Chakraborty",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/27421320.cf17acdf.200x200o.9a1a4ab66650.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 1617,
-            "loss_count": 1308,
-            "draw_count": 204
-        },
-        {
-            "player_id": 2308922,
-            "@id": "https://api.chess.com/pub/player/denizozen",
-            "url": "https://www.chess.com/member/denizozen",
-            "username": "denizozen",
-            "score": 3110,
-            "rank": 47,
-            "country": "https://api.chess.com/pub/country/TR",
-            "title": "IM",
-            "name": "Deniz Ozen",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/2308922.4ff83824.200x200o.ebbcff721fdf.jpeg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 4287,
-            "loss_count": 3389,
-            "draw_count": 598
-        },
-        {
-            "player_id": 108520120,
-            "@id": "https://api.chess.com/pub/player/nikotheodorou",
-            "url": "https://www.chess.com/member/NikoTheodorou",
-            "username": "NikoTheodorou",
-            "score": 3110,
-            "rank": 48,
-            "country": "https://api.chess.com/pub/country/GR",
-            "title": "GM",
-            "name": "Nikolas Theodorou",
-            "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/108520120.b86cc966.200x200o.d85a0c84f2ae.jpg",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 2073,
-            "loss_count": 1915,
-            "draw_count": 324
-        },
-        {
-            "player_id": 301895675,
-            "@id": "https://api.chess.com/pub/player/theystolemysanity",
-            "url": "https://www.chess.com/member/TheyStoleMySanity",
-            "username": "TheyStoleMySanity",
-            "score": 3109,
-            "rank": 49,
-            "country": "https://api.chess.com/pub/country/XX",
-            "status": "basic",
-            "avatar": "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif",
-            "trend_score": {
-                "direction": 0,
-                "delta": 0
-            },
-            "trend_rank": {
-                "direction": 1,
-                "delta": 1
-            },
-            "flair_code": "nothing",
-            "win_count": 657,
-            "loss_count": 649,
-            "draw_count": 85
-        },
-        {
-            "player_id": 69197334,
-            "@id": "https://api.chess.com/pub/player/riley",
-            "url": "https://www.chess.com/member/Riley",
-            "username": "Riley",
-            "score": 3106,
+            "player_id": 197695851,
+            "@id": "https://api.chess.com/pub/player/the",
+            "url": "https://www.chess.com/member/the",
+            "username": "the",
+            "score": 3113,
             "rank": 50,
-            "country": "https://api.chess.com/pub/country/BR",
-            "name": "Lucas",
+            "country": "https://api.chess.com/pub/country/US",
+            "title": "NM",
+            "name": "Eric Feng",
             "status": "premium",
-            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/69197334.96911641.200x200o.18728ab93857.jpg",
+            "avatar": "https://images.chesscomfiles.com/uploads/v1/user/197695851.fe20c2ec.200x200o.0e19c85f8f18.png",
             "trend_score": {
-                "direction": 0,
-                "delta": 0
+                "direction": 1,
+                "delta": 113
             },
             "trend_rank": {
                 "direction": 1,
-                "delta": 1
+                "delta": 117
             },
             "flair_code": "nothing",
-            "win_count": 16743,
-            "loss_count": 13943,
-            "draw_count": 1694
+            "win_count": 5782,
+            "loss_count": 3242,
+            "draw_count": 553
         }
     ]
 }

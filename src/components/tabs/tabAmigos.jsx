@@ -9,7 +9,6 @@ const TabAmigo = ({ amigos = [], handleAnalyze, handleFavorite, isFavorited }) =
 
     const totalPages = Math.max(1, Math.ceil(amigos.length / pageSize))
 
-    // FIX 1: Resetear la página si la lista cambia o si la página actual ya no existe
     useEffect(() => {
         if (page > totalPages) {
             setPage(1);
@@ -17,7 +16,6 @@ const TabAmigo = ({ amigos = [], handleAnalyze, handleFavorite, isFavorited }) =
     }, [amigos.length, totalPages, page]);
 
     const start = (page - 1) * pageSize
-    // Seguridad adicional para el slice
     const currentPlayers = amigos.slice(start, start + pageSize)
 
     const handlePrev = () => setPage(p => Math.max(1, p - 1))
@@ -39,11 +37,8 @@ const TabAmigo = ({ amigos = [], handleAnalyze, handleFavorite, isFavorited }) =
                 <div className="text-center py-10 text-gray-500">No hay jugadores en esta categoría.</div>
             )}
 
-            {/* Pagination controls */}
-            {/* Ocultamos los controles si no hay datos para que se vea más limpio */}
             {amigos.length > 0 && (
                 <div className="flex items-center justify-between mt-2">
-                    {/* FIX 2: Texto correcto cuando hay 0 items o la lista se vacía */}
                     <div className="text-sm text-gray-600">
                         Showing {start + 1} - {Math.min(start + pageSize, amigos.length)} of {amigos.length}
                     </div>

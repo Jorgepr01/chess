@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BodyRigth from './components/BodyR';
 import StatsDashboard from './components/StatsDashboard';
 import { MOCK_DATA } from './components/mockData';
+import api from "./api.js";
+
+
+
 const ChessDashboard = () => {
+  const [perfil, setPerfil] = useState(null);
+  const [topPlayer, setTopPlayer] = useState(null);
   const [selectedGameMode, setSelectedGameMode] = useState('bullet');
   // const [searchTerm, setSearchTerm] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState(null);
@@ -11,6 +17,29 @@ const ChessDashboard = () => {
   const handleAnalyze = (player) => {
     setSelectedPlayer(player);
   };
+
+  const fetchTopPlayers = async () => {
+  try {
+    const response = await api.get('/top-players');
+    setTopPlayer(response.data);
+  } catch (err) {
+    console.error("Error fetching top players", err);
+  }
+  };
+
+  const fetchuser = async () => {
+  try {
+    const response = await api.get('/chessyo/jorgepr1');
+    setPerfil(response.data);
+  } catch (err) {
+    console.error("Error fetching top players", err);
+  }
+  };
+
+  useEffect(() => {
+    fetchTopPlayers();
+    fetchuser();
+  }, []);
 
   const handleFavorite = (player) => {
     setFavorites(prev => {
@@ -35,16 +64,12 @@ const ChessDashboard = () => {
 
 
   return (
-    // 1. CONTENEDOR PRINCIPAL: Ocupa toda la altura (h-screen) y no deja que la pagina entera haga scroll (overflow-hidden)
     <div className="flex h-screen w-full bg-white overflow-hidden">
-      
-      {/* 2. PANEL IZQUIERDO (Navegación y Lista) */}
-      {/* w-1/3: Ocupa un tercio del ancho. border-r: línea divisoria a la derecha */}
       <div className="w-[60%] border-r border-gray-200 flex flex-col bg-white h-full">
            <div className="flex-1 h-full">
-           <BodyRigth 
-              Datosuser={user}
-              topPlayers={topPlayers}
+           <BodyRigth
+              Datosuser={perfil}
+              topPlayers={topPlayer}
               amigos={amigos}
               handleAnalyze={handleAnalyze}  
               selectedGameMode={selectedGameMode}
@@ -55,13 +80,12 @@ const ChessDashboard = () => {
             />
         </div>
       </div>
-
+      {/* parte derecha stats */}
       <main className="flex-1 bg-gray-50 flex flex-col h-full">
         <StatsDashboard 
           player={selectedPlayer} 
           playerData={selectedPlayer?.stats ? { stats: selectedPlayer.stats } : MOCK_DATA.currentUser}
         />
-
       </main>
     </div>
   )

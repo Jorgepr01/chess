@@ -147,9 +147,10 @@ def top_players():
     if response.status_code == 200:
         data = response.json()
         data = {
-            "rapidas": data.get("live_rapid", []),   # Rapid
-            "blitz":   data.get("live_blitz", []),   # Blitz
-            "bala":    data.get("live_bullet", [])   # Bullet
+            "rapid": data.get("live_rapid", []), 
+            "blitz":   data.get("live_blitz", []),
+            "bullet":    data.get("live_bullet", []),
+            "tactics":    data.get("tactics", [])
         }
         with open(nombre_archivo, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)

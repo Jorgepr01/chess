@@ -19,7 +19,7 @@ const StatsDashboard = ({ player, playerData }) => {
     <div className="p-6 overflow-y-auto h-full">
       <div className="space-y-6">
         <div className="border-b border-gray-200 pb-4">
-          <h2 className="text-2xl font-bold text-gray-900">{player.name}</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{player.username}</h2>
           <p className="text-gray-500 mt-1">Resumen anual de estadísticas</p>
         </div>
 

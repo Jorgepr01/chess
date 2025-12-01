@@ -38,7 +38,6 @@ const TabTop = ({ topPlayers, selectedGameMode, setSelectedGameMode, handleAnaly
                     <SelectItem value="rapid">Rapid</SelectItem>
                 </SelectContent>
             </Select>
-
             {currentPlayers.length > 0 ? (
                 currentPlayers.map((player) => (
                     <PlayerCard
@@ -53,7 +52,6 @@ const TabTop = ({ topPlayers, selectedGameMode, setSelectedGameMode, handleAnaly
                 <div className="text-center py-10 text-gray-500">No hay jugadores en esta categoría.</div>
             )}
 
-            {/* Pagination controls */}
             <div className="flex items-center justify-between mt-2">
                 <div className="text-sm text-gray-600">
                     Showing {playersList.length > 0 ? start + 1 : 0} - {Math.min(start + pageSize, playersList.length)} of {playersList.length}
