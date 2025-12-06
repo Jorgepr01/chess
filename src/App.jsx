@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BodyRigth from './components/BodyR';
 // import StatsDashboard from './components/StatsDashboard';
-import { MOCK_DATA } from './components/mockData';
 import api from "./api.js";
 import { BarChart3} from 'lucide-react';
 import ChessWrapped from './components/ChessWrapped';
@@ -65,9 +64,15 @@ const ChessDashboard = () => {
   };
 
 
-  const user = MOCK_DATA.currentUser;
-  const topPlayers = MOCK_DATA.topPlayers;
-  const amigos = MOCK_DATA.friends;
+  const amigos = [
+    { id: 'friend1', name: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
+    { id: 'friend2', name: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
+    { id: 'friend3', name: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
+    { id: 'friend4', name: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
+    { id: 'friend5', name: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
+    { id: 'friend6', name: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
+    { id: 'friend7', name: 'María Torres', gamesPlayed: 32, stats: { totalGames: 156, wins: 89, losses: 56, draws: 11, winRate: 57.1, favoriteOpening: 'Apertura Inglesa', currentStreak: 4, nemesis: 'Pedro López', mascot: 'Torre Firme', winsReasons: ['Jaque mate: 52%', 'Rendición: 33%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 50%', 'Error: 30%', 'Tiempo: 20%'], recentGames: [] } }
+  ];
 
   useEffect(() => {
     fetchTopPlayers();
