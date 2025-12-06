@@ -6,7 +6,6 @@ import PlayerCard from './../PlayerCard'
 const TabTop = ({ topPlayers, selectedGameMode, setSelectedGameMode, handleAnalyze, handleFavorite, isFavorited }) => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)
-    console.log(topPlayers)
 
     const modeKey = selectedGameMode || 'bullet'
     const playersList = topPlayers[modeKey] || []
@@ -41,7 +40,7 @@ const TabTop = ({ topPlayers, selectedGameMode, setSelectedGameMode, handleAnaly
             {currentPlayers.length > 0 ? (
                 currentPlayers.map((player) => (
                     <PlayerCard
-                        key={player.id}
+                        key={player.player_id}
                         player={player}
                         onFavorite={handleFavorite}
                         onAnalyze={handleAnalyze}

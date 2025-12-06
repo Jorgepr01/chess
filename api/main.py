@@ -107,7 +107,7 @@ def archives(user):
 
 
 
-@app.get("/chessgames{user}/{year}/{month}", tags=["consultas"])
+@app.get("/chessgames/{user}/{year}/{month}", tags=["consultas"])
 def games(user,year,month):
     nombre_archivo = f"{user}_{year}_{month}_games.json"
     if os.path.exists(nombre_archivo):

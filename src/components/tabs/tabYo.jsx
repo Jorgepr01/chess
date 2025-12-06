@@ -5,7 +5,6 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
     return(
         <main className="flex flex-col justify-center h-screen flex items-center max-w-xl mx-auto px-6 py-12">
         <div className="relative mb-12 mr-auto">
-            <Sparkles className="absolute -top-8 -left-8 text-yellow-500 w-12 h-12 rotate-12" />
             <h1 className="text-7xl font-black text-gray-900 tracking-tight">
                 Hola, <br />
                 <span className="relative inline-block mt-2">
@@ -23,7 +22,7 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
                 <Crown className="w-8 h-8 text-yellow-600 flex-shrink-0 mt-1" />
                 <p className="text-xl text-gray-700 font-medium leading-relaxed">
                     Veo que tienes madera de <span className="font-bold text-gray-900">ajedrecista</span>. 
-                    Se nota que disfrutas mucho la sensación de <span className="underline decoration-wavy decoration-yellow-400 decoration-2">ganar partidas</span>. :)
+                    Se nota que disfrutas mucho la sensación de ganar partidas :)
                 </p>
             </div>
           

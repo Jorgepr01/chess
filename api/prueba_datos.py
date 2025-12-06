@@ -56,8 +56,6 @@ def data_first_level(games, user="jorgepr1"):
             raw_name = eco_url.split("/")[-1] 
             opening_name = raw_name.replace("-", " ")
             
-            # Opcional: Si quieres nombres más cortos, puedes cortar antes del primer punto
-            # Ej: "Pirc Defense Maroczy..." -> "Pirc Defense Maroczy Defense"
             opening_name = opening_name.split(".")[0] 
 
             if opening_name not in rhythm[type_r]["aperturas"]:

@@ -5,9 +5,6 @@ const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) 
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)
 
-    console.log(favorites)
-    console.log("aaaa")
-    console.log(favorites.length)
     const totalPages = Math.max(1, Math.ceil(favorites.length / pageSize))
     const start = (page - 1) * pageSize
     const currentPlayers = favorites.slice(start, start + pageSize)
@@ -23,7 +20,7 @@ const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) 
             <div className="space-y-3">
                 {currentPlayers.map(player => (
                 <PlayerCard
-                    key={player.id}
+                    key={player.player_id}
                     player={player}
                     onAnalyze={handleAnalyze}
                     onFavorite={handleFavorite}

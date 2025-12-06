@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button"
 
 const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
     const isFav = isFavorited && isFavorited(player)
-    console.log(player)
-    console.log(isFav)
 
     return (
         <Card className="hover:bg-slate-50 transition-colors cursor-pointer py-0 mt-3">
@@ -36,6 +34,7 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
                         onClick={(e) => {
                             e.stopPropagation();
                             onAnalyze && onAnalyze(player);
+                            console.log(player)
                         }}
                     >
                         <Gem className="h-4 w-4" />

@@ -1,0 +1,17 @@
+{
+    "player_id": 341886071,
+    "@id": "https://api.chess.com/pub/player/worriedegg",
+    "url": "https://www.chess.com/member/WorriedEgg",
+    "name": "Aaron Jacobson",
+    "username": "worriedegg",
+    "title": "IM",
+    "followers": 102,
+    "country": "https://api.chess.com/pub/country/US",
+    "last_online": 1764977739,
+    "joined": 1706492475,
+    "status": "premium",
+    "is_streamer": false,
+    "verified": false,
+    "league": "Legend",
+    "streaming_platforms": []
+}
