@@ -1,0 +1,89 @@
+{
+    "chess_daily": {
+        "last": {
+            "rating": 815,
+            "date": 1760667547,
+            "rd": 166
+        },
+        "best": {
+            "rating": 1126,
+            "date": 1668545080,
+            "game": "https://www.chess.com/game/daily/442986491"
+        },
+        "record": {
+            "win": 5,
+            "loss": 10,
+            "draw": 0,
+            "time_per_move": 12108,
+            "timeout_percent": 0
+        }
+    },
+    "chess_rapid": {
+        "last": {
+            "rating": 1006,
+            "date": 1765575231,
+            "rd": 103
+        },
+        "best": {
+            "rating": 1296,
+            "date": 1717816544,
+            "game": "https://www.chess.com/game/live/128885032403"
+        },
+        "record": {
+            "win": 291,
+            "loss": 238,
+            "draw": 45
+        }
+    },
+    "chess_bullet": {
+        "last": {
+            "rating": 893,
+            "date": 1765146080,
+            "rd": 35
+        },
+        "best": {
+            "rating": 1004,
+            "date": 1763250471,
+            "game": "https://www.chess.com/game/live/145562057714"
+        },
+        "record": {
+            "win": 869,
+            "loss": 770,
+            "draw": 44
+        }
+    },
+    "chess_blitz": {
+        "last": {
+            "rating": 747,
+            "date": 1765575905,
+            "rd": 51
+        },
+        "best": {
+            "rating": 955,
+            "date": 1604792464,
+            "game": "https://www.chess.com/game/live/61945231467"
+        },
+        "record": {
+            "win": 389,
+            "loss": 334,
+            "draw": 59
+        }
+    },
+    "fide": 0,
+    "tactics": {
+        "highest": {
+            "rating": 1665,
+            "date": 1755898173
+        },
+        "lowest": {
+            "rating": 1556,
+            "date": 1763381092
+        }
+    },
+    "puzzle_rush": {
+        "best": {
+            "total_attempts": 19,
+            "score": 16
+        }
+    }
+}

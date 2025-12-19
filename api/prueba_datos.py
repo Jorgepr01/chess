@@ -4,7 +4,7 @@ import os
 nombre_profil = "jorgepr1_profile.json"
 nombre_stats = "jorgepr1_archives.json"
 nombre_archives = "jorgepr1_stats.json"
-nombre_games_11 = "jorgepr1_2025_11_games.json"
+nombre_games_11 = "jorgepr1_2025_12_games.json"
 nombre_top="top.json"
 #avrir y guardar archivos
 #with open(nombre_profil, 'r', encoding='utf-8') as f:
@@ -47,7 +47,6 @@ def data_first_level(games, user="jorgepr1"):
     for game in games:
         type_r = game.get("time_class", "")
         
-        # 1. Inicializar estructura (agregamos "aperturas")
         if type_r not in rhythm:
             rhythm[type_r] = get_new_stats_template()
         

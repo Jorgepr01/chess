@@ -10,7 +10,13 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
             <CardContent className="flex items-center justify-between p-4">
                 <div>
                     <p className="font-semibold text-gray-800">{player.username}</p>
+                    {player.score ? (
                     <p className="text-xs text-gray-500">Rating: {player.score}</p>
+                    ):(
+                        <p className="text-xs text-gray-500"></p>
+                    )
+
+                    }
                 </div>
                 <div className="flex gap-2">
                     <Button

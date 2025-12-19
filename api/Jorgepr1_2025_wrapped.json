@@ -1,0 +1,161 @@
+{
+    "bullet": {
+        "cantidad_games": 776,
+        "elo_max": 1004,
+        "elo_min": 572,
+        "w_with": 216,
+        "w_black": 197,
+        "reason_loss": {
+            "timeout": 222,
+            "checkmated": 60,
+            "resigned": 62,
+            "abandoned": 1
+        },
+        "reason_win": {
+            "timeout": 288,
+            "abandoned": 8,
+            "checkmated": 85,
+            "resigned": 32
+        },
+        "racha": 9,
+        "racha_cache": 0,
+        "nemesis": {
+            "Samcavag": 11,
+            "fabryromero10": 7,
+            "joiedeunvivre": 4,
+            "Zenas7": 3,
+            "Yasinx49": 3
+        },
+        "pet": {
+            "Samcavag": 30,
+            "Yasinx49": 5,
+            "joiedeunvivre": 5,
+            "fabryromero10": 4,
+            "Zenas7": 3
+        },
+        "aperturas": {
+            "Scandinavian Defense": 57,
+            "Scandinavian Defense Mieses Kotrc Variation 3": 41,
+            "Scandinavian Defense Mieses Kotrc Main Line 4": 35,
+            "Scandinavian Defense Mieses Kotrc Main Line": 26,
+            "Nimzowitsch Defense Declined": 19,
+            "Caro Kann Defense Exchange Variation 3": 18,
+            "Van t Kruijs Opening 1": 18,
+            "Kings Pawn Opening Kings Knight Variation": 17,
+            "Scandinavian Defense Closed 2": 16,
+            "Italian Game": 15
+        },
+        "mes_elo_max": "2025-11",
+        "mes_elo_min": "2025-01"
+    },
+    "blitz": {
+        "cantidad_games": 330,
+        "elo_max": 1057,
+        "elo_min": 406,
+        "w_with": 91,
+        "w_black": 93,
+        "reason_loss": {
+            "checkmated": 36,
+            "resigned": 60,
+            "timeout": 21,
+            "abandoned": 6
+        },
+        "reason_win": {
+            "timeout": 36,
+            "abandoned": 12,
+            "resigned": 48,
+            "checkmated": 78,
+            "threecheck": 10
+        },
+        "racha": 9,
+        "racha_cache": 0,
+        "nemesis": {
+            "Samcavag": 21,
+            "dartamAan": 2,
+            "Langovski": 1,
+            "hhaazeemm": 1,
+            "JackiDziekanowski": 1
+        },
+        "pet": {
+            "Samcavag": 75,
+            "Chalocrack40": 2,
+            "MAGA2024": 1,
+            "JanMarathon": 1,
+            "MaxP92": 1
+        },
+        "aperturas": {
+            "Scandinavian Defense Mieses Kotrc Variation 3": 11,
+            "Italian Game": 11,
+            "Kings Pawn Opening 1": 10,
+            "Undefined": 10,
+            "Giuoco Piano Game 4": 9,
+            "Giuoco Piano Game Main Line Giuoco Pianissimo Variation 5": 9,
+            "Philidor Defense 3": 8,
+            "Caro Kann Defense Exchange Variation 3": 8,
+            "Van t Kruijs Opening 1": 8,
+            "Queens Pawn Opening 1": 6
+        },
+        "mes_elo_max": "2025-08",
+        "mes_elo_min": "2025-08"
+    },
+    "rapid": {
+        "cantidad_games": 12,
+        "elo_max": 1274,
+        "elo_min": 950,
+        "w_with": 2,
+        "w_black": 3,
+        "reason_loss": {
+            "checkmated": 5
+        },
+        "reason_win": {
+            "checkmated": 5
+        },
+        "racha": 1,
+        "racha_cache": 0,
+        "nemesis": {
+            "Samcavag": 4,
+            "ChessCurios": 1
+        },
+        "pet": {
+            "Samcavag": 3,
+            "EstresseCompulsivo": 1,
+            "chimiwilsob": 1
+        },
+        "aperturas": {
+            "Caro Kann Defense Exchange Variation 3": 1,
+            "Giuoco Piano Game Giuoco Pianissimo Variation 4": 1,
+            "Kings Pawn Opening Kings Knight Variation": 1,
+            "Scandinavian Defense Mieses Kotrc Variation": 1,
+            "Scandinavian Defense Closed": 1,
+            "Sicilian Defense Old Sicilian Variation 3": 1,
+            "Scandinavian Defense": 1,
+            "French Defense": 1,
+            "Modern Defense with 1 d4": 1,
+            "French Defense St George Defense": 1
+        },
+        "mes_elo_max": "2025-11",
+        "mes_elo_min": "2025-11"
+    },
+    "daily": {
+        "cantidad_games": 1,
+        "elo_max": 815,
+        "elo_min": 815,
+        "w_with": 0,
+        "w_black": 0,
+        "reason_loss": {
+            "resigned": 1
+        },
+        "reason_win": {},
+        "racha": 0,
+        "racha_cache": 0,
+        "nemesis": {
+            "Batya-Zakirov_1986": 1
+        },
+        "pet": {},
+        "aperturas": {
+            "Van t Kruijs Opening 1": 1
+        },
+        "mes_elo_max": "2025-10",
+        "mes_elo_min": "2025-10"
+    }
+}

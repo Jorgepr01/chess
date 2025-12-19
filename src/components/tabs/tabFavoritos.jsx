@@ -1,14 +1,14 @@
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react'
 import PlayerCard from './../PlayerCard'
-const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) => {
+const TabListados = ({ listado, handleAnalyze, handleFavorite, isFavorited }) => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)
 
-    const totalPages = Math.max(1, Math.ceil(favorites.length / pageSize))
+    const totalPages = Math.max(1, Math.ceil(listado.length / pageSize))
     const start = (page - 1) * pageSize
-    const currentPlayers = favorites.slice(start, start + pageSize)
-
+    const currentPlayers = listado.slice(start, start + pageSize)
+    
     const handlePrev = () => setPage(p => Math.max(1, p - 1))
     const handleNext = () => setPage(p => Math.min(totalPages, p + 1))
 
@@ -33,7 +33,7 @@ const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) 
             )}
             {/* Pagination controls */}
             <div className="flex items-center justify-between mt-2">
-                <div className="text-sm text-gray-600">Showing {start + 1} - {Math.min(start + pageSize, favorites.length)} of {favorites.length}</div>
+                <div className="text-sm text-gray-600">Showing {start + 1} - {Math.min(start + pageSize, listado.length)} of {listado.length}</div>
 
                 <div className="flex items-center gap-2">
                     <Button variant="outline" size="sm" onClick={handlePrev} disabled={page === 1}>
@@ -50,4 +50,4 @@ const TabFavorito = ({ favorites, handleAnalyze, handleFavorite, isFavorited }) 
 
 }
 
-export default TabFavorito
+export default TabListados

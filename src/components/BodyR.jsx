@@ -5,9 +5,8 @@ import { Button } from "@/components/ui/button"
 import TabYo from './tabs/tabYo'
 import TabTop from './tabs/tabTop'
 import TabAmigo from './tabs/tabAmigos'
-import TabFavorito from './tabs/tabFavoritos'
+import TabListados from './tabs/tabFavoritos'
 import api from "../api.js";
-import { Target } from 'lucide-react';
 
 const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameMode, setSelectedGameMode, handleFavorite, isFavorited, favorites}) => {
   
@@ -80,14 +79,19 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
   {
     name: 'Amigos',
     value: 'Amigos',
-    content: <TabAmigo amigos={amigos} handleAnalyze={handleAnalyze} handleFavorite={handleFavorite} isFavorited={isFavorited} />
+    content: <TabListados  
+    key='amigos'
+    listado={amigos} 
+    handleAnalyze={handleAnalyze} 
+    handleFavorite={handleFavorite} 
+    isFavorited={isFavorited} />
   },
   {
     name: 'Favoritos',
     value: 'Favoritos',
-    content: <TabFavorito
+    content: <TabListados
       key='favoritos'
-      favorites={favorites}
+      listado={favorites}
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}
       isFavorited={isFavorited}
@@ -96,9 +100,9 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
   {
     name: 'Buscados',
     value: 'Buscados',
-    content: <TabFavorito
+    content: <TabListados
       key='buscados'
-      favorites={buscados}
+      listado={buscados}
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}
       isFavorited={isFavorited}
@@ -144,6 +148,4 @@ return (
   );
 }
 
-// Tip extra: Los componentes de React deben empezar con Mayúscula por convención
-// Debería ser BodyRight en lugar de bodyRigth
 export default bodyRigth;

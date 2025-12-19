@@ -25,7 +25,7 @@ const ChessWrapped = ({ player, playerData }) => {
     if (audioRef.current && playerData) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(error => {
-          console.log("Autoplay bloqueado (raro si está muteado):", error);
+          console.log(" bloqueado (raro si está muteado):", error);
       });
     }
   }, [playerData]);
