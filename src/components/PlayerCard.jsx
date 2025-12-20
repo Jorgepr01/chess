@@ -1,4 +1,4 @@
-import { Heart, Gem } from "lucide-react"
+import { Heart, ChartNoAxesCombined } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
@@ -36,14 +36,15 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
                     </Button>
 
                     {/* Botón Diamante/Análisis */}
-                    <Button size="icon" className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
+                    <Button className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white"
                         onClick={(e) => {
                             e.stopPropagation();
                             onAnalyze && onAnalyze(player);
                             console.log(player)
                         }}
                     >
-                        <Gem className="h-4 w-4" />
+                        Analizar
+                        <ChartNoAxesCombined/>
                     </Button>
 
                 </div>

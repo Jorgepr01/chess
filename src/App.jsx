@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useMemo } from 'react';
 import BodyRigth from './components/BodyR';
 // import StatsDashboard from './components/StatsDashboard';
 import api from "./api.js";
@@ -16,6 +16,7 @@ const ChessDashboard = () => {
   const[playerStats, setPlayerStats]= useState(null);
   const handleAnalyze = (player) => {
     setSelectedPlayer(player);
+    setPlayerStats(null); 
     fetchStast(player.username);
   };
   
@@ -30,7 +31,7 @@ const ChessDashboard = () => {
 
   const fetchUser = async () => {
   try {
-    const response = await api.get('/chessyo/Hikaru');
+    const response = await api.get('/chessyo/jorgepr1');
     setPerfil(response.data);
   } catch (err) {
     console.error("Error fetching top players", err);
@@ -38,7 +39,7 @@ const ChessDashboard = () => {
   };
   const fetchStast = async (username) => {
   try {
-    const response =await api.get('/chessstats/'+username);
+    const response =await api.get('/chesswrapped/'+username+"/2025");
     setPlayerStats(response.data);
   }
   catch(err){
@@ -64,19 +65,39 @@ const ChessDashboard = () => {
   };
 
 
-  const amigos = [
-    { player_id: 'friend1', username: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
-    { player_id: 'friend2', username: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
-    { player_id: 'friend3', username: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
-    { player_id: 'friend4', username: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
-    { player_id: 'friend5', username: 'Ana Rodríguez', gamesPlayed: 45, stats: { totalGames: 234, wins: 134, losses: 89, draws: 11, winRate: 57.3, favoriteOpening: 'Defensa Francesa', currentStreak: 3, nemesis: 'Juan García', mascot: 'Dama Blanca', winsReasons: ['Jaque mate: 50%', 'Rendición: 35%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 48%', 'Error: 32%', 'Tiempo: 20%'], recentGames: [{ opponent: 'Juan García', result: 'Victoria', date: '2024-11-28' }] } },
-    { player_id: 'friend6', username: 'Pedro López', gamesPlayed: 38, stats: { totalGames: 189, wins: 98, losses: 78, draws: 13, winRate: 51.9, favoriteOpening: 'Apertura Italiana', currentStreak: 2, nemesis: 'Ana Rodríguez', mascot: 'Peón Valiente', winsReasons: ['Jaque mate: 45%', 'Rendición: 40%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 55%', 'Error: 25%', 'Tiempo: 20%'], recentGames: [] } },
-    { player_id: 'friend7', username: 'María Torres', gamesPlayed: 32, stats: { totalGames: 156, wins: 89, losses: 56, draws: 11, winRate: 57.1, favoriteOpening: 'Apertura Inglesa', currentStreak: 4, nemesis: 'Pedro López', mascot: 'Torre Firme', winsReasons: ['Jaque mate: 52%', 'Rendición: 33%', 'Tiempo: 15%'], lossReasons: ['Jaque mate: 50%', 'Error: 30%', 'Tiempo: 20%'], recentGames: [] } }
-  ];
+
+  const amigos = useMemo(() => {
+    const dataOrigen = playerStats; 
+    if (!dataOrigen) return [];
+    const nombresUnicos = new Set();
+    const categorias = ['bullet', 'blitz', 'rapid', 'daily'];
+    categorias.forEach(cat => {
+      if (dataOrigen[cat]) {
+        if (dataOrigen[cat].nemesis) {
+          Object.keys(dataOrigen[cat].nemesis).forEach(name => nombresUnicos.add(name));
+        }
+        if (dataOrigen[cat].pet) {
+          Object.keys(dataOrigen[cat].pet).forEach(name => nombresUnicos.add(name));
+        }
+      }
+    });
+
+
+    return Array.from(nombresUnicos).map(nombre => ({
+      username: nombre,
+      player_id: nombre,
+      avatar: null 
+    }));
+
+  }, [perfil]);
 
   useEffect(() => {
     fetchTopPlayers();
     fetchUser();
+    fetchStast('jorgepr1');
+
+    
+    
   }, []);
 
 
@@ -84,6 +105,7 @@ const ChessDashboard = () => {
     if (selectedPlayer) {
       console.log("El estado ya se actualizó:", selectedPlayer["username"]);
     }
+
   }, [selectedPlayer]);
   return (
 
@@ -112,7 +134,8 @@ const ChessDashboard = () => {
             //   player={selectedPlayer} 
             //   playerData={playerStats ? { stats: playerStats } : null}
             // />
-            <ChessWrapped 
+            <ChessWrapped
+              key={selectedPlayer.username}
               player={selectedPlayer} 
               playerData={playerStats ? { stats: playerStats } : null}
             />

@@ -1,4 +1,4 @@
-import { Crown, ScrollText, Sparkles } from 'lucide-react';
+import { Crown, ScrollText, Cannabis } from 'lucide-react';
 import { Button } from '@/components/ui/button'
 
 const TabYo = ({Datosuser,handleAnalyze}) => {
@@ -36,7 +36,7 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
             </div>
         </div>
         
-        <Button className='my-4' onClick={() => handleAnalyze(Datosuser)}>Ver mi resumen</Button>
+        <Button className='my-4' onClick={() => handleAnalyze(Datosuser)}>Ver mi resumen <Cannabis className="animate-bounce"/></Button>
 
 
       </main>

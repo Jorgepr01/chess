@@ -16,20 +16,24 @@ def get_new_stats_template():
         "aperturas": Counter()
     }
 
-def data_first_level(games, user):
+def data_first_level(games, user="jorgepr1"):
     rhythm = {}
     user = user.lower()
-    games.sort(key=lambda x: x.get('end_time', 0))
+
     for game in games:
         type_r = game.get("time_class", "")
-        if not type_r: continue
-            
         if type_r not in rhythm:
             rhythm[type_r] = get_new_stats_template()
+        
         eco_url = game.get("eco", "")
         if eco_url:
-            raw_name = eco_url.split("/")[-1]
-            opening_name = raw_name.replace("-", " ").split(".")[0]
+            raw_name = eco_url.split("/")[-1] 
+            opening_name = raw_name.replace("-", " ")
+            
+            opening_name = opening_name.split(".")[0] 
+
+            if opening_name not in rhythm[type_r]["aperturas"]:
+                rhythm[type_r]["aperturas"][opening_name] = 0
             rhythm[type_r]["aperturas"][opening_name] += 1
 
         white_ = game.get("white", {})
@@ -37,33 +41,60 @@ def data_first_level(games, user):
         rhythm[type_r]["cantidad_games"] += 1
         
         if white_["username"].lower() == user:
-            my_color, user_rating = "white", white_["rating"]
-            result, opponent_name = white_["result"], black_["username"]
+            # Eres Blancas
+            user_rating = white_["rating"]
+            opponent_name = black_["username"]
+            result = white_["result"]
             opponent_result = black_["result"]
+
+            if user_rating > rhythm[type_r]["elo_max"]: rhythm[type_r]["elo_max"] = user_rating
+            if user_rating < rhythm[type_r]["elo_min"]: rhythm[type_r]["elo_min"] = user_rating
+
+            if result == "win":
+                rhythm[type_r]["w_with"] += 1
+                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
+                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
+                rhythm[type_r]["pet"][opponent_name] += 1
+                rhythm[type_r]["racha_cache"] += 1
+                if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
+            else:
+                if result in ["checkmated", "timeout", "resigned", "abandoned"]:
+                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
+                    rhythm[type_r]["reson_loss"][result] += 1
+                    if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
+                    rhythm[type_r]["nemesis"][opponent_name] += 1
+                    rhythm[type_r]["racha_cache"] = 0
+                elif result in ["stalemate", "repetition", "insufficient", "agreed"]:
+                     rhythm[type_r]["racha_cache"] = 0
+
         else:
-            my_color, user_rating = "black", black_["rating"]
-            result, opponent_name = black_["result"], white_["username"]
+            # Eres Negras
+            user_rating = black_["rating"]
+            opponent_name = white_["username"]
+            result = black_["result"]
             opponent_result = white_["result"]
 
-        if user_rating > rhythm[type_r]["elo_max"]: rhythm[type_r]["elo_max"] = user_rating
-        if user_rating < rhythm[type_r]["elo_min"]: rhythm[type_r]["elo_min"] = user_rating
+            if user_rating > rhythm[type_r]["elo_max"]: rhythm[type_r]["elo_max"] = user_rating
+            if user_rating < rhythm[type_r]["elo_min"]: rhythm[type_r]["elo_min"] = user_rating
 
-        if result == "win":
-            if my_color == "white": rhythm[type_r]["w_with"] += 1
-            else: rhythm[type_r]["w_black"] += 1
-            
-            rhythm[type_r]["reason_win"][opponent_result] += 1
-            rhythm[type_r]["pet"][opponent_name] += 1
-            
-            rhythm[type_r]["racha_cache"] += 1
-            if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]:
-                rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
-        else:
-            rhythm[type_r]["racha_cache"] = 0 # Reiniciar racha
-            if result in ["checkmated", "timeout", "resigned", "abandoned"]:
-                rhythm[type_r]["reason_loss"][result] += 1
-                rhythm[type_r]["nemesis"][opponent_name] += 1
-
+            if result == "win":
+                rhythm[type_r]["w_black"] += 1
+                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
+                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
+                rhythm[type_r]["pet"][opponent_name] += 1
+                rhythm[type_r]["racha_cache"] += 1
+                if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
+            else:
+                if result in ["checkmated", "timeout", "resigned", "abandoned"]:
+                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
+                    rhythm[type_r]["reson_loss"][result] += 1
+                    if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
+                    rhythm[type_r]["nemesis"][opponent_name] += 1
+                    rhythm[type_r]["racha_cache"] = 0
+                elif result in ["stalemate", "repetition", "insufficient", "agreed"]:
+                     rhythm[type_r]["racha_cache"] = 0
     return rhythm
 
 def process_month_data(mes_data, total_general, user, mes):
@@ -109,3 +140,14 @@ def clean_stats_for_json(total_general):
         total_general[modo]['reason_loss'] = dict(total_general[modo]['reason_loss'])
         total_general[modo]['reason_win'] = dict(total_general[modo]['reason_win'])
     return total_general
+
+def datos_Importantes(stats):
+    resumen = {}
+    total_games,total_win,racha_final = 0
+    for modo in stats:
+        data_modo = stats[modo]
+        total_games += data_modo.get("cantidad_games", 0)
+        total_win += data_modo.get("w_with", 0) + data_modo.get("w_black", 0)
+        if data_modo.get("racha", 0) > racha_final:
+            racha_final = data_modo.get("racha", 0)
+        
