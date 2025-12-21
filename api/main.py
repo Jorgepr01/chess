@@ -5,6 +5,8 @@ import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import analisis as chess_engine
+import pandas as pd
+import analisis_hib as chess_engine_hib
 app = FastAPI()
 HEADERS = {'User-Agent': 'JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)'}
 origins = [
@@ -77,21 +79,40 @@ def games(user: str, year: str, month: str):
 def generate_year_report(user: str, year: str):
     report_filename = f"{user}_{year}_wrapped.json"
     if os.path.exists(report_filename):
-         with open(report_filename, 'r', encoding='utf-8') as f:
+        with open(report_filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     total_general = {}
+    rachas_temporales = {} 
     meses = [f"{i:02d}" for i in range(1, 13)]
     for mes in meses:
-        print(f"Procesando {year}-{mes}...")
-        data = games(user, year, mes) 
+        data = games(user, year, mes)
         if "games" in data and data["games"]:
+            for modo, racha_val in rachas_temporales.items():
+                if modo in total_general:
+                    total_general[modo]["racha_cache"] = racha_val
             chess_engine.process_month_data(data["games"], total_general, user, f"{year}-{mes}")
-    
+            for modo in total_general:
+                rachas_temporales[modo] = total_general[modo]["racha_cache"]
+
     total_general = chess_engine.clean_stats_for_json(total_general)
     with open(report_filename, 'w', encoding='utf-8') as f:
         json.dump(total_general, f, ensure_ascii=False, indent=4)
-
     return total_general
+
+
+@app.get("/chesswrappedpandas/{user}/{year}", tags=["analytics"])
+def generate_year_report_pandas(user: str, year: str):
+    report_filename = f"{user}_{year}_wrapped.json"
+    meses = [f"{i:02d}" for i in range(1, 13)]
+    filas_pandas=[]
+    for mes in meses:
+        data = games(user, year, mes)
+        if "games" in data and data["games"]:
+            filas_pandas.extend(chess_engine_hib.limpieza_fila(data["games"],user=user))
+    datafinal=chess_engine_hib.analisis_pandas(filas_pandas)
+    return datafinal
+
+
 
 @app.get("/top-players", tags=["consultas"])
 def top_players():

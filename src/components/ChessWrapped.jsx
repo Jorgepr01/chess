@@ -138,7 +138,21 @@ const ChessWrapped = ({ player, playerData }) => {
         personality = "El Dominante"; // Se rinden ante él
         personalityIcon = <Crown size={80} className="mb-6 text-purple-400" />;
     }
-
+    console.log({
+        totalGames,
+        totalWins,
+        globalWinRate, // Agregado para la slide antigua
+        totalMinutesPlayed,
+        totalHours,
+        totalDays,
+        categoryDetails,
+        maxStreakGlobal,
+        topOpening,
+        topNemesis,
+        topPet, // Agregado para la slide antigua
+        personality,
+        personalityIcon 
+    })
     return {
         totalGames,
         totalWins,

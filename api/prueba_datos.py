@@ -30,8 +30,8 @@ def get_new_stats_template():
         "elo_min": 10000, # Tu valor inicial personalizado
         "w_with": 0,
         "w_black": 0,
-        "reson_loss": {}, 
-        "reson_win": {}, 
+        "reason_loss": {}, 
+        "reason_win": {}, 
         "racha": 0,
         "racha_cache": 0,
         "nemesis": {}, 
@@ -77,16 +77,16 @@ def data_first_level(games, user="jorgepr1"):
 
             if result == "win":
                 rhythm[type_r]["w_with"] += 1
-                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
-                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_result not in rhythm[type_r]["reason_win"]: rhythm[type_r]["reason_win"][opponent_result] = 0
+                rhythm[type_r]["reason_win"][opponent_result] += 1
                 if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
                 rhythm[type_r]["pet"][opponent_name] += 1
                 rhythm[type_r]["racha_cache"] += 1
                 if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
             else:
                 if result in ["checkmated", "timeout", "resigned", "abandoned"]:
-                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
-                    rhythm[type_r]["reson_loss"][result] += 1
+                    if result not in rhythm[type_r]["reason_loss"]: rhythm[type_r]["reason_loss"][result] = 0
+                    rhythm[type_r]["reason_loss"][result] += 1
                     if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
                     rhythm[type_r]["nemesis"][opponent_name] += 1
                     rhythm[type_r]["racha_cache"] = 0
@@ -105,16 +105,16 @@ def data_first_level(games, user="jorgepr1"):
 
             if result == "win":
                 rhythm[type_r]["w_black"] += 1
-                if opponent_result not in rhythm[type_r]["reson_win"]: rhythm[type_r]["reson_win"][opponent_result] = 0
-                rhythm[type_r]["reson_win"][opponent_result] += 1
+                if opponent_result not in rhythm[type_r]["reason_win"]: rhythm[type_r]["reason_win"][opponent_result] = 0
+                rhythm[type_r]["reason_win"][opponent_result] += 1
                 if opponent_name not in rhythm[type_r]["pet"]: rhythm[type_r]["pet"][opponent_name] = 0
                 rhythm[type_r]["pet"][opponent_name] += 1
                 rhythm[type_r]["racha_cache"] += 1
                 if rhythm[type_r]["racha_cache"] > rhythm[type_r]["racha"]: rhythm[type_r]["racha"] = rhythm[type_r]["racha_cache"]
             else:
                 if result in ["checkmated", "timeout", "resigned", "abandoned"]:
-                    if result not in rhythm[type_r]["reson_loss"]: rhythm[type_r]["reson_loss"][result] = 0
-                    rhythm[type_r]["reson_loss"][result] += 1
+                    if result not in rhythm[type_r]["reason_loss"]: rhythm[type_r]["reason_loss"][result] = 0
+                    rhythm[type_r]["reason_loss"][result] += 1
                     if opponent_name not in rhythm[type_r]["nemesis"]: rhythm[type_r]["nemesis"][opponent_name] = 0
                     rhythm[type_r]["nemesis"][opponent_name] += 1
                     rhythm[type_r]["racha_cache"] = 0
