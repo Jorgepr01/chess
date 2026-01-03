@@ -1,15 +1,14 @@
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import Stories from 'react-insta-stories';
 import { 
-  Trophy, Zap, Activity, Volume2, VolumeX, 
+  Trophy, Zap, Volume2, VolumeX, 
   Flame, Skull, Sword, Crown, Clock, Heart,
-  Hourglass, Target, Brain
+  Hourglass, Target, Brain, Calendar, Watch, Users,Activity
 } from 'lucide-react';
+import miMusicaLocal from '../assets/piado-xhand-victory-183654.mp3';
 
-const MUSIC_URL = "https://cdn.pixabay.com/audio/2023/12/31/audio_dbcb35517e.mp3";
-
-
-
+// const MUSIC_URL = "https://cdn.pixabay.com/download/audio/2023/04/13/audio_845dd566d7.mp3?filename=phonk-furious-145636.mp3";
+const MUSIC_URL = miMusicaLocal;
 const ChessWrapped = ({ player, playerData }) => {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -19,7 +18,7 @@ const ChessWrapped = ({ player, playerData }) => {
     const audio = audioRef.current;
     if (!audio) return;
     if (isMuted) {
-      audio.volume = 0.15;
+      audio.volume = 0.15; 
       if (audio.paused) audio.play();
     }
     setIsMuted(!isMuted);
@@ -28,149 +27,105 @@ const ChessWrapped = ({ player, playerData }) => {
   useEffect(() => {
     if (audioRef.current && playerData) {
       audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(error => {
-          console.log("Autoplay bloqueado:", error);
-      });
+      audioRef.current.play().catch(error => console.log("Autoplay bloqueado:", error));
     }
   }, [playerData]);
 
+  // --- CONFIGURACIÓN VISUAL ---
+  const MODE_CONFIG = {
+    bullet: { 
+        label: 'Bullet', color: 'from-orange-500 to-red-600', 
+        icon: <Zap size={80} className="mb-4 text-yellow-300 animate-pulse"/> 
+    },
+    blitz:  { 
+        label: 'Blitz',  color: 'from-purple-600 to-indigo-700', 
+        icon: <Flame size={80} className="mb-4 text-orange-300 animate-bounce"/> 
+    },
+    rapid:  { 
+        label: 'Rapid',  color: 'from-emerald-500 to-teal-700', 
+        icon: <Hourglass size={80} className="mb-4 text-emerald-200"/> 
+    },
+    daily:  { 
+        label: 'Daily',  color: 'from-blue-500 to-cyan-600', 
+        icon: <Brain size={80} className="mb-4 text-white"/> 
+    }
+  };
+
+  // --- HELPER PARA LA HORA (24h -> 12h AM/PM) ---
+  const formatHour = (hour24) => {
+      const h = parseInt(hour24);
+      if (isNaN(h)) return "N/A";
+      if (h === 0) return "12 AM";
+      if (h < 12) return `${h} AM`;
+      if (h === 12) return "12 PM";
+      return `${h - 12} PM`;
+  };
+
+  // --- PROCESAMIENTO DE DATOS ---
   const data = useMemo(() => {
-    if (!playerData || !playerData.stats) return null;
-
-    const stats = playerData.stats;
+    if (!playerData || !playerData.total) return null;
     
-    // Configuración de tiempos y colores
-    const modesConfig = {
-        bullet: { label: 'Bullet', timePerGame: 2, color: 'from-orange-500 to-red-600', icon: <Zap size={80} className="mb-4 text-yellow-300"/> },
-        blitz:  { label: 'Blitz',  timePerGame: 10, color: 'from-purple-600 to-indigo-700', icon: <Flame size={80} className="mb-4 text-orange-300"/> },
-        rapid:  { label: 'Rapid',  timePerGame: 20, color: 'from-emerald-500 to-teal-700', icon: <Hourglass size={80} className="mb-4 text-emerald-200"/> },
-        daily:  { label: 'Daily',  timePerGame: 5,  color: 'from-blue-500 to-cyan-600', icon: <Brain size={80} className="mb-4 text-white"/> } 
-    };
+    const total = playerData.total;
+    console.log("cargando")
     
-    let totalGames = 0;
-    let totalWins = 0; // Necesario para la slide de personalidad antigua
-    let totalMinutesPlayed = 0;
-    const categoryDetails = [];
-    let bestModeName = 'blitz';
-    let maxGamesInMode = 0;
-    let maxStreakGlobal = 0;
+    // 1. Tiempos
+    const hoursPlayed = Math.floor(total.tiempo_jugado / 3600);
+    const daysPlayed = (hoursPlayed / 24).toFixed(1);
 
-    // 1. Iterar por categorías
-    Object.keys(modesConfig).forEach(key => {
-        if (stats[key] && stats[key].cantidad_games > 0) {
-            const s = stats[key];
-            const config = modesConfig[key];
-            
-            const games = s.cantidad_games || 0;
-            const wins = (s.w_with || 0) + (s.w_black || 0);
-            const winRate = games > 0 ? ((wins / games) * 100).toFixed(1) : 0;
-            
-            totalGames += games;
-            totalWins += wins;
-            totalMinutesPlayed += (games * config.timePerGame);
+    // 2. Personalidad
+    let personalityIcon = <Trophy size={80} className="mb-6 text-yellow-300" />;
+    if (total.personality === "Barry Allen") personalityIcon = <Zap size={80} className="mb-6 text-yellow-400 animate-pulse" />;
+    if (total.personality === "El Carnicero") personalityIcon = <Sword size={80} className="mb-6 text-red-500" />;
+    if (total.personality === "El Estratega") personalityIcon = <Brain size={80} className="mb-6 text-blue-300" />;
 
-            if (games > maxGamesInMode) {
-                maxGamesInMode = games;
-                bestModeName = key;
-            }
-            if (s.racha > maxStreakGlobal) maxStreakGlobal = s.racha;
+    // 3. Procesar Categorías (Bullet, Blitz, Rapid, Daily)
+    const categorySlides = [];
+    ['bullet', 'blitz', 'rapid', 'daily'].forEach(modeKey => {
+        // Verificamos si existe la key en el JSON y si tiene partidas
+        if (playerData[modeKey] && playerData[modeKey].total_partidas > 0) {
+            const stats = playerData[modeKey];
+            const config = MODE_CONFIG[modeKey];
+            const winRate = stats.total_partidas > 0 
+                ? ((stats.victorias / stats.total_partidas) * 100).toFixed(1) 
+                : 0;
 
-            categoryDetails.push({
-                mode: key,
+            categorySlides.push({
+                mode: modeKey,
                 label: config.label,
-                games,
-                wins,
-                winRate,
-                eloMax: s.elo_max,
-                streak: s.racha,
+                icon: config.icon,
                 gradient: config.color,
-                icon: config.icon
+                eloMax: stats.elo_maximo,
+                games: stats.total_partidas,
+                winRate: winRate,
+                streak: stats.racha_maxima
             });
         }
     });
-    Object.keys(modesConfig).forEach(key => {
-      if (stats[key] && stats[key].cantidad_games > 0) {
-      
-      }
-    });
-    const sumaTotal=(obj)=>{
-      if (!obj || Object.keys(obj).length === 0) return { name: 'N/A', count: 0 };
 
+    // 4. Procesar Amigos (Objeto a Array ordenado)
+    let topFriends = [];
+    if (total.amigos) {
+        topFriends = Object.entries(total.amigos)
+            .sort(([, a], [, b]) => b - a) // Mayor a menor
+            .slice(0, 3) // Solo el Top 3
+            .map(([name, count]) => ({ name, count }));
     }
 
+    // 5. Formatear Hora Top
+    const formattedTime = formatHour(total.hora_top.name);
 
-    // 2. Extraer datos del modo principal (Némesis/Pet/Apertura)
-    const mainStats = stats[bestModeName] || {};
-    
-    const getTop1 = (obj) => {
-        if (!obj || Object.keys(obj).length === 0) return { name: 'N/A', count: 0 };
-        console.log("Objeto recibido para pet/nemesis:", obj);
-        const sorted = Object.entries(obj).sort((a, b) => b[1] - a[1]);
-        return { name: sorted[0][0], count: sorted[0][1] };
-    };
-    const getMainpet_nemesis = (obj) => {
-      console.log("Objeto recibido para pet/nemesis:", obj);
-    }
-
-    const topOpening = getTop1(mainStats.aperturas);
-    const topNemesis = getTop1(mainStats.nemesis);
-    const topPet = getTop1(mainStats.pet); // Recuperamos al "Hijo"
-    
-    const totalHours = Math.floor(totalMinutesPlayed / 60);
-    const totalDays = (totalHours / 24).toFixed(1);
-    const globalWinRate = totalGames > 0 ? ((totalWins / totalGames) * 100).toFixed(1) : 0;
-
-    const reasonWin = mainStats.reason_win || {};
-    const mates = reasonWin.checkmated || 0;
-    const resigns = reasonWin.resigned || 0;
-    const timeouts = reasonWin.timeout || 0;
-    
-    let personality = "Equilibrado";
-    let personalityIcon = <Trophy size={80} className="mb-6 text-yellow-300" />;
-
-    if (mates > resigns && mates > timeouts) {
-        personality = "El Carnicero"; // Gana por mate
-        personalityIcon = <Sword size={80} className="mb-6 text-red-500" />;
-    } else if (timeouts > mates && timeouts > resigns) {
-        personality = "El Sucio (Flagger)"; // Gana por tiempo
-        personalityIcon = <Clock size={80} className="mb-6 text-blue-300" />;
-    } else if (resigns > mates) {
-        personality = "El Dominante"; // Se rinden ante él
-        personalityIcon = <Crown size={80} className="mb-6 text-purple-400" />;
-    }
-    console.log({
-        totalGames,
-        totalWins,
-        globalWinRate, // Agregado para la slide antigua
-        totalMinutesPlayed,
-        totalHours,
-        totalDays,
-        categoryDetails,
-        maxStreakGlobal,
-        topOpening,
-        topNemesis,
-        topPet, // Agregado para la slide antigua
-        personality,
-        personalityIcon 
-    })
     return {
-        totalGames,
-        totalWins,
-        globalWinRate, // Agregado para la slide antigua
-        totalMinutesPlayed,
-        totalHours,
-        totalDays,
-        categoryDetails,
-        maxStreakGlobal,
-        topOpening,
-        topNemesis,
-        topPet, // Agregado para la slide antigua
-        personality,
-        personalityIcon // Agregado para la slide antigua
+        total,
+        hoursPlayed,
+        daysPlayed,
+        personalityIcon,
+        categorySlides,
+        topFriends,
+        formattedTime
     };
   }, [playerData]);
 
-  if (!data) return <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 text-white">
+    if (!data) return <div className="w-full h-full flex flex-col items-center justify-center bg-gray-900 text-white">
           <Activity className="animate-spin mb-4 text-green-500" size={40} />
           <p>Calculando estadísticas...</p>
         </div>;
@@ -182,9 +137,9 @@ const ChessWrapped = ({ player, playerData }) => {
     </div>
   );
 
-  // --- CONSTRUCCIÓN DE STORIES ---
+  // --- DEFINICIÓN DE HISTORIAS ---
   const storiesList = [
-    // 1. INTRO
+    // 1. INTRODUCCIÓN
     {
       content: () => (
         <StoryLayout bg="bg-gradient-to-b from-gray-900 via-gray-800 to-black">
@@ -193,7 +148,9 @@ const ChessWrapped = ({ player, playerData }) => {
           )}
           <h1 className="text-4xl font-bold mb-2">{player.username}</h1>
           <h2 className="text-2xl font-bold text-green-400 mb-6">CHESS WRAPPED 2025</h2>
-          <p className="text-gray-400">¿Estás listo para ver tus números?</p>
+          <div className="bg-white/10 px-4 py-2 rounded-full border border-white/20">
+             <p className="text-gray-300 text-sm">Resumen Oficial</p>
+          </div>
         </StoryLayout>
       ),
     },
@@ -201,18 +158,37 @@ const ChessWrapped = ({ player, playerData }) => {
     {
       content: () => (
         <StoryLayout bg="bg-gradient-to-br from-slate-800 to-black">
-          <Clock size={80} className="mb-6 text-blue-400 animate-pulse" />
-          <h2 className="text-7xl font-black mb-2">{data.totalHours}</h2>
+          <Watch size={80} className="mb-6 text-blue-400 animate-pulse" />
+          <h2 className="text-7xl font-black mb-2">{data.hoursPlayed}</h2>
           <p className="text-2xl font-medium mb-2 text-blue-200">Horas Jugadas</p>
           <div className="w-20 h-1 bg-blue-500 my-4 rounded-full"></div>
-          <p className="text-lg">Eso equivale a <span className="font-bold text-yellow-400">{data.totalDays} días</span> enteros sin dormir.</p>
+          <p className="text-lg">Equivalente a <span className="font-bold text-yellow-400">{data.daysPlayed} días</span> enteros.</p>
         </StoryLayout>
       ),
+    },
+    // 3. MOMENTO FAVORITO (Hora y Día)
+    {
+        content: () => (
+          <StoryLayout bg="bg-gradient-to-br from-indigo-900 to-purple-900">
+            <Calendar size={80} className="mb-6 text-purple-300" />
+            <p className="text-xl opacity-80 mb-4">Tu Momento Favorito</p>
+            
+            <div className="bg-white/10 p-6 rounded-xl w-full max-w-sm mb-4 border border-white/5">
+                <p className="text-sm uppercase tracking-widest text-purple-200">Día más activo</p>
+                <h2 className="text-4xl font-bold">{data.total.dia_semana_top.name}</h2>
+            </div>
+
+            <div className="bg-white/10 p-6 rounded-xl w-full max-w-sm border border-white/5">
+                <p className="text-sm uppercase tracking-widest text-purple-200">Hora de vicio</p>
+                <h2 className="text-4xl font-bold">{data.formattedTime}</h2>
+            </div>
+          </StoryLayout>
+        ),
     }
   ];
 
-  // 3. DIAPOSITIVAS POR CATEGORÍA
-  data.categoryDetails.forEach(cat => {
+  // 4. DIAPOSITIVAS POR MODO (Bullet, Blitz, etc.)
+  data.categorySlides.forEach(cat => {
     storiesList.push({
         content: () => (
             <StoryLayout bg={`bg-gradient-to-br ${cat.gradient}`}>
@@ -233,68 +209,96 @@ const ChessWrapped = ({ player, playerData }) => {
                             <p className="text-2xl font-bold text-yellow-300">x{cat.streak}</p>
                         </div>
                     </div>
+                    <p className="mt-4 text-xs opacity-50 text-center">{cat.games} partidas jugadas</p>
                 </div>
             </StoryLayout>
         )
     });
   });
 
-  // 4. DIAPOSITIVAS FINALES (Las que te gustaron)
+  // 5. FUN STORIES FINALES
   const funStories = [
+     // APERTURA
      {
         content: () => (
          <StoryLayout bg="bg-gradient-to-br from-pink-600 to-purple-800">
-           <Target size={80} className="mb-6 text-white" />
+           <Target size={80} className="mb-6 text-white animate-spin-slow" />
            <p className="text-xl opacity-80 mb-2">Tu Arma Favorita</p>
            <h2 className="text-3xl font-black mb-4 px-2 leading-tight bg-black/20 py-2 rounded-lg">
-             {data.topOpening.name}
+             {data.total.apertura_top.name}
            </h2>
-           <p>La usaste <span className="font-bold text-yellow-300 text-2xl">{data.topOpening.count}</span> veces.</p>
+           <p>La usaste <span className="font-bold text-yellow-300 text-2xl">{data.total.apertura_top.count}</span> veces.</p>
          </StoryLayout>
        ), 
      },
-     // 6. NÉMESIS VS PET (Restaurada original)
-     (data.topNemesis.count > 0 || data.topPet.count > 0) && {
+
+     // NÉMESIS VS PET (Usando el JSON total)
+     (data.total.nemesis.count > 0 || data.total.pet.count > 0) && {
         content: () => (
          <StoryLayout bg="bg-gradient-to-br from-gray-900 to-red-900">
-            {data.topNemesis.count > 0 && (
-                <div className="mb-8 w-full">
+            {/* NÉMESIS */}
+            {data.total.nemesis.count > 0 && (
+                <div className="mb-6 w-full">
                     <div className="flex items-center justify-center gap-2 mb-2 text-red-400">
-                        <Skull size={24} /> <span className="uppercase font-bold tracking-widest">Tu Pesadilla</span>
+                        <Skull size={24} className="animate-bounce"/> <span className="uppercase font-bold tracking-widest">Tu Pesadilla</span>
                     </div>
-                    <h3 className="text-3xl font-bold">{data.topNemesis.name}</h3>
-                    <p className="text-sm text-red-200">Te ganó {data.topNemesis.count} veces</p>
+                    <h3 className="text-3xl font-bold">{data.total.nemesis.name}</h3>
+                    <p className="text-sm text-red-200">Te ganó {data.total.nemesis.count} veces</p>
                 </div>
             )}
             
-            {data.topNemesis.count > 0 && data.topPet.count > 0 && (
+            {/* SEPARADOR */}
+            {data.total.nemesis.count > 0 && data.total.pet.count > 0 && (
                 <div className="w-16 h-1 bg-white/20 my-2 rounded-full"></div>
             )}
 
-            {data.topPet.count > 0 && (
-                <div className="mt-8 w-full">
+            {/* PET (Hijo/Cliente) */}
+            {data.total.pet.count > 0 && (
+                <div className="mt-6 w-full">
                     <div className="flex items-center justify-center gap-2 mb-2 text-green-400">
-                        <Heart size={24} /> <span className="uppercase font-bold tracking-widest">Tu Cliente VIP</span>
+                        <Heart size={24} className="animate-pulse"/> <span className="uppercase font-bold tracking-widest">Tu Cliente VIP</span>
                     </div>
-                    <h3 className="text-3xl font-bold">{data.topPet.name}</h3>
-                    <p className="text-sm text-green-200">Le ganaste {data.topPet.count} veces</p>
+                    <h3 className="text-3xl font-bold">{data.total.pet.name}</h3>
+                    <p className="text-sm text-green-200">Le ganaste {data.total.pet.count} veces</p>
                 </div>
             )}
          </StoryLayout>
        ), 
      },
-     // 7. PERSONALIDAD (Restaurada original)
+
+     // CÍRCULO SOCIAL (Rivales Frecuentes / Amigos)
+     (data.topFriends.length > 0) && {
+        content: () => (
+            <StoryLayout bg="bg-gradient-to-br from-cyan-600 to-blue-800">
+                <Users size={80} className="mb-6 text-cyan-200" />
+                <h2 className="text-3xl font-bold mb-6">Rivales Frecuentes</h2>
+                <div className="w-full max-w-xs space-y-4">
+                    {data.topFriends.map((friend, idx) => (
+                        <div key={idx} className="flex justify-between items-center bg-black/20 p-4 rounded-lg border border-white/10">
+                            <div className="flex items-center gap-3">
+                                <span className="text-cyan-300 font-bold">#{idx + 1}</span>
+                                <span className="font-bold">{friend.name}</span>
+                            </div>
+                            <span className="bg-white/20 px-2 py-1 rounded text-xs">{friend.count} games</span>
+                        </div>
+                    ))}
+                </div>
+            </StoryLayout>
+        )
+     },
+
+     // PERSONALIDAD
      {
         content: () => (
-         <StoryLayout bg="bg-gradient-to-br from-pink-600 to-rose-800">
+         <StoryLayout bg="bg-gradient-to-br from-green-600 to-emerald-900">
            {data.personalityIcon}
-           <p className="text-xl mb-4 opacity-80">Tu Estilo de Victoria</p>
-           <h2 className="text-5xl font-black mb-6 uppercase">{data.personality}</h2>
+           <p className="text-xl mb-4 opacity-80">Tu Personalidad</p>
+           <h2 className="text-5xl font-black mb-6 uppercase">{data.total.personality}</h2>
            <div className="grid grid-cols-2 gap-4 w-full max-w-xs text-left text-sm bg-black/20 p-4 rounded-xl">
-                <div>Win Rate Global:</div>
-                <div className="text-right font-bold">{data.globalWinRate}%</div>
-                <div>Total Wins:</div>
-                <div className="text-right font-bold">{data.totalWins}</div>
+                <div>Total Victorias:</div>
+                <div className="text-right font-bold">{data.total.victorias}</div>
+                <div>Racha Global:</div>
+                <div className="text-right font-bold">{data.total.racha_maxima}</div>
            </div>
          </StoryLayout>
        ), 
@@ -321,7 +325,7 @@ const ChessWrapped = ({ player, playerData }) => {
       <div className="absolute inset-0 z-0">
           <Stories
                 stories={finalStories}
-                defaultInterval={8000}
+                defaultInterval={7000}
                 width="100%"
                 height="100%"
                 loop={true}

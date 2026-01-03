@@ -81,6 +81,7 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
     value: 'Amigos',
     content: <TabListados  
     key='amigos'
+    tipo='Amigos'
     listado={amigos} 
     handleAnalyze={handleAnalyze} 
     handleFavorite={handleFavorite} 
@@ -91,6 +92,7 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
     value: 'Favoritos',
     content: <TabListados
       key='favoritos'
+      tipo='Favoritos'
       listado={favorites}
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}
@@ -102,6 +104,7 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
     value: 'Buscados',
     content: <TabListados
       key='buscados'
+      tipo='Buscados'
       listado={buscados}
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}

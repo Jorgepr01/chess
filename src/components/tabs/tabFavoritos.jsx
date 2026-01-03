@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react'
 import PlayerCard from './../PlayerCard'
-const TabListados = ({ listado, handleAnalyze, handleFavorite, isFavorited }) => {
+const TabListados = ({ listado,tipo, handleAnalyze, handleFavorite, isFavorited }) => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)
 
@@ -15,7 +15,7 @@ const TabListados = ({ listado, handleAnalyze, handleFavorite, isFavorited }) =>
     return (
         
         <div>
-            <h2 className="text-xl font-bold mb-6">Favoritos</h2>
+            <h2 className="text-xl font-bold mb-6">{tipo}</h2>
             {currentPlayers.length > 0 ? (
             <div className="space-y-3">
                 {currentPlayers.map(player => (

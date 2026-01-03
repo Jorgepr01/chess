@@ -39,8 +39,10 @@ const ChessDashboard = () => {
   };
   const fetchStast = async (username) => {
   try {
-    const response =await api.get('/chesswrapped/'+username+"/2025");
+    // const response =await api.get('/chesswrapped/'+username+"/2025");
+    const response =await api.get('/chesswrappedpandas/'+username+"/2025");
     setPlayerStats(response.data);
+    
   }
   catch(err){
     console.error("el error es", err);
@@ -66,30 +68,22 @@ const ChessDashboard = () => {
 
 
 
-  const amigos = useMemo(() => {
-    const dataOrigen = playerStats; 
-    if (!dataOrigen) return [];
-    const nombresUnicos = new Set();
-    const categorias = ['bullet', 'blitz', 'rapid', 'daily'];
-    categorias.forEach(cat => {
-      if (dataOrigen[cat]) {
-        if (dataOrigen[cat].nemesis) {
-          Object.keys(dataOrigen[cat].nemesis).forEach(name => nombresUnicos.add(name));
-        }
-        if (dataOrigen[cat].pet) {
-          Object.keys(dataOrigen[cat].pet).forEach(name => nombresUnicos.add(name));
-        }
-      }
-    });
+const amigos = useMemo(() => {
+    // Verificamos si existe la estructura correcta
+    if (!playerStats || !playerStats.total || !playerStats.total.amigos) return [];
 
-
-    return Array.from(nombresUnicos).map(nombre => ({
+    const amigosObj = playerStats.total.amigos;
+    
+    // Convertimos las llaves del objeto (nombres) en un array para la lista lateral
+    return Object.keys(amigosObj).map(nombre => ({
       username: nombre,
-      player_id: nombre,
-      avatar: null 
+      player_id: nombre, // Usamos el nombre como ID temporal
+      avatar: null,      // La API de stats no devuelve avatar del amigo, se queda null
+      games_count: amigosObj[nombre] // Podemos pasar cuántos juegos jugaron
     }));
+  }, []);
 
-  }, [perfil]);
+
 
   useEffect(() => {
     fetchTopPlayers();
@@ -137,7 +131,7 @@ const ChessDashboard = () => {
             <ChessWrapped
               key={selectedPlayer.username}
               player={selectedPlayer} 
-              playerData={playerStats ? { stats: playerStats } : null}
+              playerData={playerStats}
             />
           ) : (
             //mostrar algo si no hay jugador seleccionado

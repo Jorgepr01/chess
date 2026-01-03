@@ -102,14 +102,21 @@ def generate_year_report(user: str, year: str):
 
 @app.get("/chesswrappedpandas/{user}/{year}", tags=["analytics"])
 def generate_year_report_pandas(user: str, year: str):
-    report_filename = f"{user}_{year}_wrapped.json"
+    user=user.lower()
+    report_filename = f"{user}_{year}_wrapped_pandas.json"
+    if os.path.exists(report_filename):
+        with open(report_filename, 'r', encoding='utf-8') as f:
+            return json.load(f)
     meses = [f"{i:02d}" for i in range(1, 13)]
     filas_pandas=[]
     for mes in meses:
+        print(f"Procesando mes {mes}_{year}")
         data = games(user, year, mes)
         if "games" in data and data["games"]:
             filas_pandas.extend(chess_engine_hib.limpieza_fila(data["games"],user=user))
     datafinal=chess_engine_hib.analisis_pandas(filas_pandas)
+    with open(report_filename, 'w', encoding='utf-8') as f:
+        json.dump(datafinal, f, ensure_ascii=False, indent=4)
     return datafinal
 
 
