@@ -108,13 +108,29 @@ def generate_year_report_pandas(user: str, year: str):
         with open(report_filename, 'r', encoding='utf-8') as f:
             return json.load(f)
     meses = [f"{i:02d}" for i in range(1, 13)]
+    heatmap_total=[[0 for _ in range(8)] for _ in range(8)]
     filas_pandas=[]
     for mes in meses:
         print(f"Procesando mes {mes}_{year}")
+        print("Dato")
         data = games(user, year, mes)
         if "games" in data and data["games"]:
-            filas_pandas.extend(chess_engine_hib.limpieza_fila(data["games"],user=user))
+            datos_mes,heatmap_mes=chess_engine_hib.limpieza_fila(data["games"],user=user)
+            filas_pandas.extend(datos_mes)
+            for f in range(8):
+                for c in range(8):
+                    heatmap_total[f][c] += heatmap_mes[f][c]
     datafinal=chess_engine_hib.analisis_pandas(filas_pandas)
+    # AGREGAMOS EL HEATMAP AL JSON FINAL
+    #normalizamos
+    max_valor = max(max(fila) for fila in heatmap_total)
+
+    heatmap_normalizado = []
+    for fila in heatmap_total:
+        nueva_fila = [valor / max_valor for valor in fila] # Da 0.0 a 1.0
+        heatmap_normalizado.append(nueva_fila)
+
+    datafinal['heatmap'] = heatmap_normalizado
     with open(report_filename, 'w', encoding='utf-8') as f:
         json.dump(datafinal, f, ensure_ascii=False, indent=4)
     return datafinal

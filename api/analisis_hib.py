@@ -1,9 +1,44 @@
-from collections import Counter
 import pandas as pd
-import json
 import io
 import json
 import os
+import chess
+import chess.pgn
+
+def procesar_pgn(partida,heatmap_mes,diccionario_aperturas):
+  if not partida:
+      return "Desconocida", "Desconocida", heatmap_mes
+  pgn = io.StringIO(partida)
+  game = chess.pgn.read_game(pgn)
+  if not game:
+    return "Desconocida", "Desconocida", heatmap_mes
+  # game.mainline()
+  eco_partida = game.headers.get("ECO","")
+  tipo_apertura='Desconocida'
+  if eco_partida[0]=='A':
+      tipo_apertura = 'Aperturas de flanco'
+  elif eco_partida[0]=='B':
+      tipo_apertura = 'Aperturas semiabiertas'
+  elif eco_partida[0]=='C':
+      tipo_apertura = 'Aperturas abiertas.'
+  elif eco_partida[0]=='D':
+      tipo_apertura = 'Aperturas cerradas y semicerradas'
+  elif eco_partida[0]=='E':
+      tipo_apertura = 'Defensas Indias'
+  nombre_apertura = diccionario_aperturas.get(eco_partida,'Desconocida')
+  
+  #Procesar heatmap
+  board = game.board()
+  for move in game.mainline_moves():
+      casilla_destino = move.to_square 
+      fila = 7 - chess.square_rank(casilla_destino)
+      columna = chess.square_file(casilla_destino)
+      heatmap_mes[fila][columna] += 1
+      board.push(move)
+
+  return nombre_apertura,tipo_apertura,heatmap_mes
+
+
 def limpieza_fila(games,user='jorgepr1'):
     user=user.lower()
     stats_globales = {
@@ -11,7 +46,14 @@ def limpieza_fila(games,user='jorgepr1'):
     "mejor_racha": 0
     }
     filas_para_pandas = []
+    heatmap_mes = [[0 for _ in range(8)] for _ in range(8)]
     games.sort(key=lambda x: x['end_time'])
+    #Cargar aperturas
+    diccionario_aperturas = {}
+    filename='aperturas.json'
+    if os.path.exists(filename):
+      with open(filename, 'r', encoding='utf-8') as f:
+          diccionario_aperturas = json.load(f)
     for game in games:
         es_blancas = game['white']['username'].lower() == user
         mi_color='white' if es_blancas else 'black'
@@ -32,11 +74,14 @@ def limpieza_fila(games,user='jorgepr1'):
             reason_result = mi_resultado
             mi_resultado = 'loss'
             stats_globales['racha_actual'] = 0
-        eco=game.get("eco")
-        if eco != None: 
-          nombre_apertura = eco.split("/")[-1].replace("-"," ")
-        else:
-          nombre_apertura = "Apertura no encontrada"
+
+        
+        #Analisis PGN
+
+        partida=game.get('pgn')
+        nombre_apertura,tipo_apertura,heatmap_mes=procesar_pgn(partida,heatmap_mes,diccionario_aperturas)
+        
+        
         fila = {
                 'fecha_ts': game['end_time'], # Timestamp crudo
                 'color': 'Blanco' if es_blancas else 'Negro',
@@ -47,20 +92,21 @@ def limpieza_fila(games,user='jorgepr1'):
                 'oponente': oponente,
                 'elo_oponente':elo_oponente,
                 'apertura': nombre_apertura,
+                'tipo_apertura':tipo_apertura,
                 'tiempo_control': int(eval(game['time_control'].split("+")[0])),## sin contar el incremento
                 'racha_en_este_juego': stats_globales["racha_actual"]
             }
         filas_para_pandas.append(fila)
-    return filas_para_pandas
+    return filas_para_pandas,heatmap_mes
 
 
 def analisis_pandas(games):
-  modesConfig = {
-        'bullet': { 'label': 'Bullet', 'timePerGame': 2, 'color': 'from-orange-500 to-red-600', 'icon': '<Zap size={80} className="mb-4 text-yellow-300"/>' },
-        'blitz':  { 'label': 'Blitz',  'timePerGame': 10, 'color': 'from-purple-600 to-indigo-700', 'icon': '<Flame size={80} className="mb-4 text-orange-300"/>' },
-        'rapid':  { 'label': 'Rapid',  'timePerGame': 20, 'color': 'from-emerald-500 to-teal-700', 'icon': '<Hourglass size={80} className="mb-4 text-emerald-200"/>' },
-        'daily':  { 'label': 'Daily',  'timePerGame': 5,  'color': 'from-blue-500 to-cyan-600', 'icon': '<Brain size={80} className="mb-4 text-white"/>' },
-    };
+  # modesConfig = {
+  #       'bullet': { 'label': 'Bullet', 'timePerGame': 2, 'color': 'from-orange-500 to-red-600', 'icon': '<Zap size={80} className="mb-4 text-yellow-300"/>' },
+  #       'blitz':  { 'label': 'Blitz',  'timePerGame': 10, 'color': 'from-purple-600 to-indigo-700', 'icon': '<Flame size={80} className="mb-4 text-orange-300"/>' },
+  #       'rapid':  { 'label': 'Rapid',  'timePerGame': 20, 'color': 'from-emerald-500 to-teal-700', 'icon': '<Hourglass size={80} className="mb-4 text-emerald-200"/>' },
+  #       'daily':  { 'label': 'Daily',  'timePerGame': 5,  'color': 'from-blue-500 to-cyan-600', 'icon': '<Brain size={80} className="mb-4 text-white"/>' },
+  #   };
   final={'total':{}}
   df_anual=pd.DataFrame(games)
   df_anual['fecha'] = pd.to_datetime(df_anual['fecha_ts'], unit='s')
@@ -179,16 +225,16 @@ def analisis_pandas(games):
   cantidad_mates = int(conteos_reason.get("checkmated", 0))
   cantidad_resigns = int(conteos_reason.get("resigned", 0))
   cantidad_tablas = int(len(df_anual[df_anual['resultado'] == "draw"]))
-  personality = "Equilibrado";
+  personality = "Equilibrado"
 
   if cantidad_tablas > cantidad_partidas/6:
-    personality = "El inexpugnable"; #muchas tablas
+    personality = "El inexpugnable" #muchas tablas
   if cantidad_mates > cantidad_resigns and cantidad_mates > cantidad_timeouts:
-    personality = "El Carnicero"; # Gana por mate
+    personality = "El Carnicero" # Gana por mate
   if cantidad_timeouts > cantidad_mates and cantidad_timeouts > cantidad_resigns:
-    personality = "Barry Allen"; # Gana por tiempo
+    personality = "Barry Allen" # Gana por tiempo
   if cantidad_resigns > cantidad_mates:
-    personality = "El Dominante"; # Se rinden ante él
+    personality = "El Dominante" # Se rinden ante él
 
   final['total']['personality']=personality
   return final
