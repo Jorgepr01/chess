@@ -1,9 +1,10 @@
-import React, { useState, useEffect,useMemo } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import BodyRigth from './components/BodyR';
 // import StatsDashboard from './components/StatsDashboard';
 import api from "./api.js";
 import { BarChart3} from 'lucide-react';
 import ChessWrapped from './components/ChessWrapped';
+
 
 
 const ChessDashboard = () => {
@@ -14,10 +15,12 @@ const ChessDashboard = () => {
   const [favorites, setFavorites] = useState([]);
   
   const[playerStats, setPlayerStats]= useState(null);
+  const [misAmigos, setMisAmigos] = useState([]);
+  const isFirstLoad = useRef(true);
   const handleAnalyze = (player) => {
     setSelectedPlayer(player);
     setPlayerStats(null); 
-    fetchStast(player.username);
+    fetchStats(player.username);
   };
   
   const fetchTopPlayers = async () => {
@@ -37,12 +40,26 @@ const ChessDashboard = () => {
     console.error("Error fetching top players", err);
   }
   };
-  const fetchStast = async (username) => {
+  const fetchStats = async (username,isMainUser = false) => {
   try {
     // const response =await api.get('/chesswrapped/'+username+"/2025");
     const response =await api.get('/chesswrappedpandas/'+username+"/2025");
-    setPlayerStats(response.data);
-    
+    const data=response.data
+    setPlayerStats(data);
+    if (isMainUser && data.total && data.total.amigos) {
+         const rivalsObj = data.total.amigos;
+         
+         // Convertimos el objeto de rivales a una lista limpia
+         const listaAmigos = Object.keys(rivalsObj).map(nombre => ({
+            username: nombre,
+            player_id: nombre,
+            avatar: null,
+            games_count: rivalsObj[nombre]
+          }));
+          
+          console.log("Amigos iniciales fijados:", listaAmigos);
+          setMisAmigos(listaAmigos);
+      }
   }
   catch(err){
     console.error("el error es", err);
@@ -68,30 +85,11 @@ const ChessDashboard = () => {
 
 
 
-const amigos = useMemo(() => {
-    // Verificamos si existe la estructura correcta
-    if (!playerStats || !playerStats.total || !playerStats.total.amigos) return [];
-
-    const amigosObj = playerStats.total.amigos;
-    
-    // Convertimos las llaves del objeto (nombres) en un array para la lista lateral
-    return Object.keys(amigosObj).map(nombre => ({
-      username: nombre,
-      player_id: nombre, // Usamos el nombre como ID temporal
-      avatar: null,      // La API de stats no devuelve avatar del amigo, se queda null
-      games_count: amigosObj[nombre] // Podemos pasar cuántos juegos jugaron
-    }));
-  }, []);
-
-
 
   useEffect(() => {
     fetchTopPlayers();
     fetchUser();
-    fetchStast('jorgepr1');
-
-    
-    
+    fetchStats('jorgepr1', true);
   }, []);
 
 
@@ -111,7 +109,7 @@ const amigos = useMemo(() => {
             <BodyRigth
                 Datosuser={perfil || {}}
                 topPlayers={topPlayer}
-                amigos={amigos}
+                amigos={misAmigos}
                 handleAnalyze={handleAnalyze}  
                 selectedGameMode={selectedGameMode}
                 setSelectedGameMode={setSelectedGameMode}

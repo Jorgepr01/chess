@@ -32,37 +32,24 @@ print(nombre_apertura)
 heatmap = [[0 for _ in range(8)] for _ in range(8)]
 def procesar_heatmap():    
     board = game.board()
-
     for move in game.mainline_moves():
         casilla_destino = move.to_square 
-        
         fila = 7 - chess.square_rank(casilla_destino)
         columna = chess.square_file(casilla_destino)
-        
         # Sumamos +1 a esa casilla ("La calentamos")
         heatmap[fila][columna] += 1
-        
         # Avanzamos el tablero (necesario si quisiéramos filtrar capturas, etc.)
         board.push(move)
-
     return heatmap
-# --- EJECUCIÓN ---
-# (Asegúrate de tener un archivo .pgn real aquí)
 matriz_final = procesar_heatmap() 
-
-# Para el ejemplo, imprimamos cómo se vería una salida simulada
 print("Matriz generada (simulación):")
-# json.dumps lo formatea bonito para que lo veas
 print(json.dumps(heatmap, indent=2))
-
-# # Guardar para el Frontend
 # with open("heatmap_data.json", "w") as f:
 #     json.dump(heatmap, f)
-
 max_valor = max(max(fila) for fila in heatmap)
 
 heatmap_normalizado = []
 for fila in heatmap:
-    nueva_fila = [valor / max_valor for valor in fila] # Da 0.0 a 1.0
+    nueva_fila = [valor / max_valor for valor in fila]
     heatmap_normalizado.append(nueva_fila)
 

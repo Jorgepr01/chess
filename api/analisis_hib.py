@@ -13,7 +13,7 @@ def procesar_pgn(partida,heatmap_mes,diccionario_aperturas):
   if not game:
     return "Desconocida", "Desconocida", heatmap_mes
   # game.mainline()
-  eco_partida = game.headers.get("ECO","")
+  eco_partida = game.headers.get("ECO","Z")
   tipo_apertura='Desconocida'
   if eco_partida[0]=='A':
       tipo_apertura = 'Aperturas de flanco'
@@ -25,6 +25,8 @@ def procesar_pgn(partida,heatmap_mes,diccionario_aperturas):
       tipo_apertura = 'Aperturas cerradas y semicerradas'
   elif eco_partida[0]=='E':
       tipo_apertura = 'Defensas Indias'
+  elif eco_partida[0]=='Z':
+      tipo_apertura = 'Desconocida'
   nombre_apertura = diccionario_aperturas.get(eco_partida,'Desconocida')
   
   #Procesar heatmap

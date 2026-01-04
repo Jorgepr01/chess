@@ -5,7 +5,6 @@ import requests
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import analisis as chess_engine
-import pandas as pd
 import analisis_hib as chess_engine_hib
 app = FastAPI()
 HEADERS = {'User-Agent': 'JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)'}

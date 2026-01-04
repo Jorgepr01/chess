@@ -6,9 +6,14 @@ import {
   Hourglass, Target, Brain, Calendar, Watch, Users,Activity
 } from 'lucide-react';
 import miMusicaLocal from '../assets/piado-xhand-victory-183654.mp3';
-
+import HeatmapSlide from './Analitics/ChessHeatmap'
 // const MUSIC_URL = "https://cdn.pixabay.com/download/audio/2023/04/13/audio_845dd566d7.mp3?filename=phonk-furious-145636.mp3";
 const MUSIC_URL = miMusicaLocal;
+const StoryLayout = ({ bg, children }) => (
+  <div className={`w-full h-full flex flex-col items-center justify-center p-6 ${bg} text-white text-center`}>
+    {children}
+  </div>
+);
 const ChessWrapped = ({ player, playerData }) => {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -51,7 +56,7 @@ const ChessWrapped = ({ player, playerData }) => {
     }
   };
 
-  // --- HELPER PARA LA HORA (24h -> 12h AM/PM) ---
+  // --- HELPER PARA LA HORA ---
   const formatHour = (hour24) => {
       const h = parseInt(hour24);
       if (isNaN(h)) return "N/A";
@@ -66,7 +71,6 @@ const ChessWrapped = ({ player, playerData }) => {
     if (!playerData || !playerData.total) return null;
     
     const total = playerData.total;
-    console.log("cargando")
     
     // 1. Tiempos
     const hoursPlayed = Math.floor(total.tiempo_jugado / 3600);
@@ -78,10 +82,9 @@ const ChessWrapped = ({ player, playerData }) => {
     if (total.personality === "El Carnicero") personalityIcon = <Sword size={80} className="mb-6 text-red-500" />;
     if (total.personality === "El Estratega") personalityIcon = <Brain size={80} className="mb-6 text-blue-300" />;
 
-    // 3. Procesar Categorías (Bullet, Blitz, Rapid, Daily)
+    // 3. Procesar Categorías
     const categorySlides = [];
     ['bullet', 'blitz', 'rapid', 'daily'].forEach(modeKey => {
-        // Verificamos si existe la key en el JSON y si tiene partidas
         if (playerData[modeKey] && playerData[modeKey].total_partidas > 0) {
             const stats = playerData[modeKey];
             const config = MODE_CONFIG[modeKey];
@@ -102,17 +105,20 @@ const ChessWrapped = ({ player, playerData }) => {
         }
     });
 
-    // 4. Procesar Amigos (Objeto a Array ordenado)
+    // 4. Procesar Amigos
     let topFriends = [];
     if (total.amigos) {
         topFriends = Object.entries(total.amigos)
-            .sort(([, a], [, b]) => b - a) // Mayor a menor
-            .slice(0, 3) // Solo el Top 3
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 3)
             .map(([name, count]) => ({ name, count }));
     }
 
     // 5. Formatear Hora Top
     const formattedTime = formatHour(total.hora_top.name);
+    
+    // 6. Extraer Heatmap
+    const heatmapMatrix = playerData.heatmap || null;
 
     return {
         total,
@@ -121,7 +127,8 @@ const ChessWrapped = ({ player, playerData }) => {
         personalityIcon,
         categorySlides,
         topFriends,
-        formattedTime
+        formattedTime,
+        heatmapMatrix // Lo pasamos al return para usarlo en funStories
     };
   }, [playerData]);
 
@@ -130,16 +137,9 @@ const ChessWrapped = ({ player, playerData }) => {
           <p>Calculando estadísticas...</p>
         </div>;
 
-  // --- LAYOUT ---
-  const StoryLayout = ({ bg, children }) => (
-    <div className={`w-full h-full flex flex-col items-center justify-center p-6 ${bg} text-white text-center`}>
-      {children}
-    </div>
-  );
-
   // --- DEFINICIÓN DE HISTORIAS ---
   const storiesList = [
-    // 1. INTRODUCCIÓN
+    // 1. INTRO
     {
       content: () => (
         <StoryLayout bg="bg-gradient-to-b from-gray-900 via-gray-800 to-black">
@@ -154,7 +154,7 @@ const ChessWrapped = ({ player, playerData }) => {
         </StoryLayout>
       ),
     },
-    // 2. TIEMPO TOTAL
+    // 2. TIEMPO
     {
       content: () => (
         <StoryLayout bg="bg-gradient-to-br from-slate-800 to-black">
@@ -166,18 +166,16 @@ const ChessWrapped = ({ player, playerData }) => {
         </StoryLayout>
       ),
     },
-    // 3. MOMENTO FAVORITO (Hora y Día)
+    // 3. MOMENTO
     {
         content: () => (
           <StoryLayout bg="bg-gradient-to-br from-indigo-900 to-purple-900">
             <Calendar size={80} className="mb-6 text-purple-300" />
             <p className="text-xl opacity-80 mb-4">Tu Momento Favorito</p>
-            
             <div className="bg-white/10 p-6 rounded-xl w-full max-w-sm mb-4 border border-white/5">
                 <p className="text-sm uppercase tracking-widest text-purple-200">Día más activo</p>
                 <h2 className="text-4xl font-bold">{data.total.dia_semana_top.name}</h2>
             </div>
-
             <div className="bg-white/10 p-6 rounded-xl w-full max-w-sm border border-white/5">
                 <p className="text-sm uppercase tracking-widest text-purple-200">Hora de vicio</p>
                 <h2 className="text-4xl font-bold">{data.formattedTime}</h2>
@@ -187,7 +185,7 @@ const ChessWrapped = ({ player, playerData }) => {
     }
   ];
 
-  // 4. DIAPOSITIVAS POR MODO (Bullet, Blitz, etc.)
+  // 4. DIAPOSITIVAS POR MODO
   data.categorySlides.forEach(cat => {
     storiesList.push({
         content: () => (
@@ -232,11 +230,16 @@ const ChessWrapped = ({ player, playerData }) => {
        ), 
      },
 
-     // NÉMESIS VS PET (Usando el JSON total)
+     // --- HEATMAP INTERACTIVO (Con Switch) ---
+     // Esta es la parte que integra tus componentes
+     (data.heatmapMatrix) && {
+        content: () => <HeatmapSlide matrix={data.heatmapMatrix} />
+     },
+
+     // NÉMESIS VS PET
      (data.total.nemesis.count > 0 || data.total.pet.count > 0) && {
         content: () => (
          <StoryLayout bg="bg-gradient-to-br from-gray-900 to-red-900">
-            {/* NÉMESIS */}
             {data.total.nemesis.count > 0 && (
                 <div className="mb-6 w-full">
                     <div className="flex items-center justify-center gap-2 mb-2 text-red-400">
@@ -246,13 +249,9 @@ const ChessWrapped = ({ player, playerData }) => {
                     <p className="text-sm text-red-200">Te ganó {data.total.nemesis.count} veces</p>
                 </div>
             )}
-            
-            {/* SEPARADOR */}
             {data.total.nemesis.count > 0 && data.total.pet.count > 0 && (
                 <div className="w-16 h-1 bg-white/20 my-2 rounded-full"></div>
             )}
-
-            {/* PET (Hijo/Cliente) */}
             {data.total.pet.count > 0 && (
                 <div className="mt-6 w-full">
                     <div className="flex items-center justify-center gap-2 mb-2 text-green-400">
@@ -266,7 +265,7 @@ const ChessWrapped = ({ player, playerData }) => {
        ), 
      },
 
-     // CÍRCULO SOCIAL (Rivales Frecuentes / Amigos)
+     // CÍRCULO SOCIAL
      (data.topFriends.length > 0) && {
         content: () => (
             <StoryLayout bg="bg-gradient-to-br from-cyan-600 to-blue-800">
