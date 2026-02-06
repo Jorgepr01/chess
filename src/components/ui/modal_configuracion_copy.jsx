@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -27,6 +27,7 @@ import {
 
 import MultiSelect from "@/components/ui/multi_check"
 // --- 1. CONFIGURACIÓN Y DATOS ---
+
 
 // Fechas constantes (Milisegundos)
 const MIN_DATE = new Date("2020-01-01").getTime()
@@ -95,11 +96,12 @@ const formatApiDate = (ts) => {
   return new Date(ts).toISOString().split('T')[0]
 }
 
-
 // --- 5. COMPONENTE PRINCIPAL (DIALOG) ---
 export default function ChessAnalysisDialog({player,analyzeFiltros}) {
   const [open, setOpen] = useState(false)
+  const [userMinDate, setUserMinDate] = useState(MIN_DATE)
   // console.log(player)
+  
   const form = useForm({
     resolver: zodResolver(formSchema),
     // CONFIGURACIÓN POR DEFECTO: TODO SELECCIONADO
@@ -112,6 +114,31 @@ export default function ChessAnalysisDialog({player,analyzeFiltros}) {
       aperturas: aperturasOptions.map((o) => o.value),
     },
   })
+
+  useEffect(() => {
+    if (open && player.username) {
+      const fetchUserStartDate = async () => {
+        try {
+          const response = await api.get(`http://localhost:8000/chessarchives/${player.username}`)
+          console.log("Datos recibidos:", response.data)
+          const firstUrl = response.data.archives[0].split('/');
+          const year = firstUrl[firstUrl.length - 2]; 
+          const month = firstUrl[firstUrl.length - 1];
+          const serverDate = new Date(`${year}-${month}-01`).getTime();
+          if (!isNaN(serverDate)) {
+             setUserMinDate(serverDate)
+             form.setValue("time_range", [serverDate, MAX_DATE])
+          }
+
+        } catch (err) {
+          console.error("Error obteniendo primera fecha:", err);
+          // Si falla, nos quedamos con el default
+        }
+      }
+
+      fetchUserStartDate()
+    }
+  }, [open, player.username, form])
 
   async function onSubmit(values) {
     // Transformación final para la API
@@ -182,7 +209,7 @@ export default function ChessAnalysisDialog({player,analyzeFiltros}) {
                   name="time_range"
                   render={({ field }) => (
                     <Slider
-                      min={MIN_DATE}
+                      min={userMinDate}
                       max={MAX_DATE}
                       step={ONE_DAY_MS} // Paso de 1 día exacto
                       value={field.value}

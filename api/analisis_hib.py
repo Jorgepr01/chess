@@ -120,6 +120,11 @@ def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user=""):
             stats_globales['racha_actual'] = 0
 
         
+        try:
+            time_control_str = game['time_control'].split("+")[0]
+            tiempo_control_val = int(time_control_str) # REEMPLAZO DE EVAL
+        except (ValueError, IndexError):
+            tiempo_control_val = 0
         #Analisis PGN
 
         partida=game.get('pgn')
@@ -138,7 +143,7 @@ def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user=""):
                 'elo_oponente':elo_oponente,
                 'apertura': nombre_apertura,
                 'tipo_apertura':tipo_apertura,
-                'tiempo_control': int(eval(game['time_control'].split("+")[0])),## sin contar el incremento
+                'tiempo_control': tiempo_control_val,## sin contar el incremento
                 'racha_en_este_juego': stats_globales["racha_actual"]
             }
         
