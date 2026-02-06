@@ -12,8 +12,8 @@ filtros_default= FiltroPartidas(start_date=date(2025,1,1),
                        win_types=["checkmated","timeout","resigned","agreed","timevsinsufficient","abandoned","repetition","stalemate","insufficient"],
                        days_played= ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
                         time_control= ["blitz","rapid","bullet","daily"],
-                        aperturas=["USA"],
-                        username="jorgepr1")
+                        aperturas=["A","B","C","D","E","Z"],
+                        username="")
 
 def procesar_pgn(partida,heatmap_mes,diccionario_aperturas,es_blancas,conteo_piezas,filtro_apertura):
   if not partida:
@@ -60,8 +60,10 @@ def procesar_pgn(partida,heatmap_mes,diccionario_aperturas,es_blancas,conteo_pie
   return nombre_apertura,tipo_apertura,heatmap_mes,conteo_piezas
 
 
-def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user='jorgepr1'):
+def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user=""):
     # user=user.lower()
+    if(user != ""):
+       filtros.username=user
     stats_globales = {
     "racha_actual": 0,
     "mejor_racha": 0

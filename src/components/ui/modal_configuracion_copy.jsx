@@ -99,7 +99,7 @@ const formatApiDate = (ts) => {
 // --- 5. COMPONENTE PRINCIPAL (DIALOG) ---
 export default function ChessAnalysisDialog({player,analyzeFiltros}) {
   const [open, setOpen] = useState(false)
-
+  // console.log(player)
   const form = useForm({
     resolver: zodResolver(formSchema),
     // CONFIGURACIÓN POR DEFECTO: TODO SELECCIONADO

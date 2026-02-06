@@ -13,7 +13,7 @@ const ChessDashboard = () => {
   const [selectedGameMode, setSelectedGameMode] = useState('bullet');
   const [selectedPlayer, setSelectedPlayer] = useState(null);
   const [favorites, setFavorites] = useState([]);
-  
+  const [userError, setUserError] = useState(false);
   const[playerStats, setPlayerStats]= useState(null);
   const [misAmigos, setMisAmigos] = useState([]);
   const isFirstLoad = useRef(true);
@@ -37,9 +37,9 @@ const ChessDashboard = () => {
   }
   };
 
-  const fetchUser = async () => {
+  const fetchUser = async (pathUsername) => {
   try {
-    const response = await api.get('/chessyo/jorgepr1');
+    const response = await api.get('/chessyo/'+pathUsername);
     setPerfil(response.data);
   } catch (err) {
     console.error("Error fetching top players", err);
@@ -53,6 +53,10 @@ const ChessDashboard = () => {
     // const response =await api.get('/chesswrapped/'+username+"/2025");
     const response =await api.get('/chesswrappedpandas/'+username+"/2025");
     const data=response.data
+    if (!data || data.error) {
+       setUserError(true);
+       return;
+    }
     setPlayerStats(data);
     if (isMainUser && data.total && data.total.amigos) {
          const rivalsObj = data.total.amigos;
@@ -71,15 +75,19 @@ const ChessDashboard = () => {
   }
   catch(err){
     console.error("el error es", err);
+    setUserError(true);
+    setSelectedPlayer(null);
   };
   }
 
 
 
   const handleFavorite = (player) => {
+    console.log(player)
     setFavorites(prev => {
       const exists = prev.find(f => f.player_id === player.player_id);
       if (exists) {
+        
         return prev.filter(f => f.player_id !== player.player_id);
       }
       return [...prev, player];
@@ -96,8 +104,15 @@ const ChessDashboard = () => {
 
   useEffect(() => {
     fetchTopPlayers();
-    fetchUser();
-    fetchStats('jorgepr1', true);
+    const pathUsername = window.location.pathname.split('/')[1];
+    
+    if (pathUsername) {
+      // setSelectedPlayer({ username: pathUsername });
+      fetchStats(pathUsername, true);
+      fetchUser(pathUsername);
+    } else {
+      fetchStats('jorgepr1', true);
+    }
   }, []);
 
 
@@ -131,24 +146,35 @@ const ChessDashboard = () => {
         </div>
         {/* parte derecha stats */}
         <main className="flex-1 bg-gray-50 flex flex-col h-full">
-          {selectedPlayer ? (
-            // <StatsDashboard
-            //   player={selectedPlayer} 
-            //   playerData={playerStats ? { stats: playerStats } : null}
-            // />
+          {userError ? (
+            // CASO 1: El usuario no existe
+            <div className="flex items-center justify-center h-full text-red-500">
+              <div className="text-center">
+                <p className="text-2xl font-bold">¡Ups!</p>
+                <p className="text-lg text-gray-600">El usuario "{window.location.pathname.split('/')[1]}" no existe en Chess.com</p>
+                <button 
+                  onClick={() => window.location.href = '/'} 
+                  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+                >
+                  Volver al inicio
+                </button>
+              </div>
+            </div>
+          ) : selectedPlayer ? (
+            // CASO 2: Todo bien, mostramos el análisis
             <ChessWrapped
               key={selectedPlayer.username}
               player={selectedPlayer} 
               playerData={playerStats}
             />
           ) : (
-            //mostrar algo si no hay jugador seleccionado
+            // CASO 3: Estado inicial (esperando selección)
             <div className="flex items-center justify-center h-full text-gray-500">
-                <div className="text-center">
-                  <BarChart3 size={64} className="mx-auto mb-4 text-gray-300" />
-                  <p className="text-lg">Selecciona un jugador para ver sus estadísticas</p>
-                </div>
+              <div className="text-center">
+                <BarChart3 size={64} className="mx-auto mb-4 text-gray-300" />
+                <p className="text-lg">Selecciona un jugador para ver sus estadísticas</p>
               </div>
+            </div>
           )}
         </main>
       </div>
