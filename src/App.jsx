@@ -22,6 +22,11 @@ const ChessDashboard = () => {
     setPlayerStats(null); 
     fetchStats(player.username);
   };
+  const analyzeFiltros = (player,data) =>{
+    setSelectedPlayer(player);
+    setPlayerStats(null); 
+    setPlayerStats(data);
+  }
   
   const fetchTopPlayers = async () => {
   try {
@@ -40,6 +45,9 @@ const ChessDashboard = () => {
     console.error("Error fetching top players", err);
   }
   };
+
+
+  
   const fetchStats = async (username,isMainUser = false) => {
   try {
     // const response =await api.get('/chesswrapped/'+username+"/2025");
@@ -96,12 +104,13 @@ const ChessDashboard = () => {
   useEffect(() => {
     if (selectedPlayer) {
       console.log("El estado ya se actualizó:", selectedPlayer["username"]);
+      console.log(selectedPlayer)
     }
 
   }, [selectedPlayer]);
-  return (
 
-      
+
+  return (
       <div className="flex h-screen w-full bg-white overflow-hidden">
         
         <div className="w-[60%] border-r border-gray-200 flex flex-col bg-white h-full">
@@ -116,6 +125,7 @@ const ChessDashboard = () => {
                 handleFavorite={handleFavorite}
                 isFavorited={isFavorited}
                 favorites={favorites}
+                analyzeFiltros= {analyzeFiltros}
               />
           </div>
         </div>

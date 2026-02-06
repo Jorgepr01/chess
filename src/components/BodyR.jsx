@@ -4,11 +4,10 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import TabYo from './tabs/tabYo'
 import TabTop from './tabs/tabTop'
-import TabAmigo from './tabs/tabAmigos'
 import TabListados from './tabs/tabFavoritos'
 import api from "../api.js";
 
-const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameMode, setSelectedGameMode, handleFavorite, isFavorited, favorites}) => {
+const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameMode, setSelectedGameMode, handleFavorite, isFavorited, favorites,analyzeFiltros}) => {
   
   const [buscados, setBuscados] = useState([]);
   const [busqueda, setBusqueda] = useState('');
@@ -55,7 +54,8 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
       <>
         <TabYo
             Datosuser={Datosuser} 
-            handleAnalyze={handleAnalyze}  
+            handleAnalyze={handleAnalyze}
+            analyzeFiltros={analyzeFiltros}
         />
       </>
     )
@@ -85,7 +85,9 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
     listado={amigos} 
     handleAnalyze={handleAnalyze} 
     handleFavorite={handleFavorite} 
-    isFavorited={isFavorited} />
+    isFavorited={isFavorited} 
+    analyzeFiltros={analyzeFiltros} />
+    
   },
   {
     name: 'Favoritos',
@@ -97,6 +99,7 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}
       isFavorited={isFavorited}
+      analyzeFiltros={analyzeFiltros}
     />
   },
   {
@@ -109,6 +112,7 @@ const bodyRigth = ({ Datosuser, topPlayers, amigos, handleAnalyze, selectedGameM
       handleAnalyze={handleAnalyze}
       handleFavorite={handleFavorite}
       isFavorited={isFavorited}
+      analyzeFiltros={analyzeFiltros}
     />
   },
 ]

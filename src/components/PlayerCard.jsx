@@ -1,8 +1,9 @@
 import { Heart, ChartNoAxesCombined } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import ChessAnalysisDialog from "@/components/ui/modal_configuracion_copy"
 
-const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
+const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited,analyzeFiltros }) => {
     const isFav = isFavorited && isFavorited(player)
 
     return (
@@ -46,6 +47,7 @@ const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited }) => {
                         Analizar
                         <ChartNoAxesCombined/>
                     </Button>
+                    <ChessAnalysisDialog key={player.username} player={player} analyzeFiltros={analyzeFiltros}/>
 
                 </div>
 

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button"
 import React, { useState } from 'react'
 import PlayerCard from './../PlayerCard'
-const TabListados = ({ listado,tipo, handleAnalyze, handleFavorite, isFavorited }) => {
+const TabListados = ({ listado,tipo, handleAnalyze, handleFavorite, isFavorited,analyzeFiltros }) => {
     const [page, setPage] = useState(1)
     const [pageSize, setPageSize] = useState(5)
 
@@ -25,6 +25,7 @@ const TabListados = ({ listado,tipo, handleAnalyze, handleFavorite, isFavorited 
                     onAnalyze={handleAnalyze}
                     onFavorite={handleFavorite}
                     isFavorited={isFavorited}
+                    analyzeFiltros={analyzeFiltros}
                 />
                 ))}
             </div>

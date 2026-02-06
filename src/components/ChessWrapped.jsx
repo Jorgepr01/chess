@@ -3,17 +3,34 @@ import Stories from 'react-insta-stories';
 import { 
   Trophy, Zap, Volume2, VolumeX, 
   Flame, Skull, Sword, Crown, Clock, Heart,
-  Hourglass, Target, Brain, Calendar, Watch, Users,Activity
+  Hourglass, Target, Brain, Calendar, Watch, Users,Activity,Gamepad2
 } from 'lucide-react';
+import { ChessBishop,ChessKing,BadgeQuestionMark,ChessKnight,ChessRook,ChessQueen,ChessPawn } from 'lucide-react';
 import miMusicaLocal from '../assets/piado-xhand-victory-183654.mp3';
 import HeatmapSlide from './Analitics/ChessHeatmap'
 // const MUSIC_URL = "https://cdn.pixabay.com/download/audio/2023/04/13/audio_845dd566d7.mp3?filename=phonk-furious-145636.mp3";
 const MUSIC_URL = miMusicaLocal;
+
+
+
 const StoryLayout = ({ bg, children }) => (
   <div className={`w-full h-full flex flex-col items-center justify-center p-6 ${bg} text-white text-center`}>
     {children}
   </div>
 );
+
+const getPieceInfo = (symbol) => {
+    switch(symbol) {
+        case 'P': return { name: 'El Peón', icon: <ChessPawn size={80} className="text-gray-300" />, desc: 'Alma del ajedrez' };
+        case 'N': return { name: 'El Caballo', icon: <ChessKnight size={80} className="text-orange-400" />, desc: 'Maestro de la táctica' };
+        case 'B': return { name: 'El Alfil', icon: <ChessBishop size={80} className="text-yellow-400" />, desc: 'Francotirador' };
+        case 'R': return { name: 'La Torre', icon: <ChessRook size={80} className="text-yellow-400" />, desc: 'Fuerza bruta' };
+        case 'Q': return { name: 'La Dama', icon: <ChessQueen size={80} className="text-yellow-400" />, desc: 'Poder absoluto' };
+        case 'K': return { name: 'El Rey', icon: <ChessKing size={80} className="text-yellow-400" />, desc: 'El líder' };
+        default: return { name: 'Desconocido', icon: <BadgeQuestionMark />, desc: '' };
+    }
+};
+
 const ChessWrapped = ({ player, playerData }) => {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(true);
@@ -114,12 +131,52 @@ const ChessWrapped = ({ player, playerData }) => {
             .map(([name, count]) => ({ name, count }));
     }
 
-    // 5. Formatear Hora Top
     const formattedTime = formatHour(total.hora_top.name);
     
-    // 6. Extraer Heatmap
-    const heatmapMatrix = playerData.heatmap || null;
 
+    const heatmapMatrix = playerData.heatmap || null;
+    const statsWhite = total.stats_blancas || { winrate: 0, total: 0 };
+    const statsBlack = total.stats_negras || { winrate: 0, total: 0 };
+
+
+    // pieza favorita
+    let piezaFavorita = { name: 'N/A', count: 0, icon: null };
+    
+    // El backend nos manda: { P: 100, N: 50... } (Puede estar en playerData raíz o en total, revisa tu main.py)
+    // Según mi código de main.py arriba, lo pusimos en datafinal['piezas_movidas'] -> playerData.piezas_movidas
+    const piezasRaw = playerData.piezas_movidas || {};
+    const PIECE_COUNTS = { P: 8, N: 2, B: 2, R: 2, Q: 1.5, K: 1.5 };
+    if (Object.keys(piezasRaw).length > 0) {
+        let maxScore = -1;
+        let bestKey = null;
+        let totalMovesAll = 0;
+
+        Object.entries(piezasRaw).forEach(([key, rawCount]) => {
+            totalMovesAll += rawCount;
+            
+            // FORMULA DE JUSTICIA:
+            // Dividimos los movimientos entre la cantidad de piezas.
+            // Ejemplo: 800 movs de peón / 8 = 100 puntos.
+            //          300 movs de dama / 1 = 300 puntos. (Gana la Dama)
+            const divisor = PIECE_COUNTS[key] || 1;
+            const score = rawCount / divisor;
+
+            if (score > maxScore) {
+                maxScore = score;
+                bestKey = key;
+            }
+        });
+
+        if (bestKey) {
+            const info = getPieceInfo(bestKey);
+            piezaFavorita = {
+                ...info,
+                count: piezasRaw[bestKey], // Mostramos el número real (ej. 300)
+                totalMoves: totalMovesAll
+            };
+        }
+    }
+    console.log()
     return {
         total,
         hoursPlayed,
@@ -128,7 +185,10 @@ const ChessWrapped = ({ player, playerData }) => {
         categorySlides,
         topFriends,
         formattedTime,
-        heatmapMatrix // Lo pasamos al return para usarlo en funStories
+        heatmapMatrix,
+        statsWhite,
+        statsBlack,
+        piezaFavorita
     };
   }, [playerData]);
 
@@ -159,10 +219,24 @@ const ChessWrapped = ({ player, playerData }) => {
       content: () => (
         <StoryLayout bg="bg-gradient-to-br from-slate-800 to-black">
           <Watch size={80} className="mb-6 text-blue-400 animate-pulse" />
+          
           <h2 className="text-7xl font-black mb-2">{data.hoursPlayed}</h2>
           <p className="text-2xl font-medium mb-2 text-blue-200">Horas Jugadas</p>
+          
           <div className="w-20 h-1 bg-blue-500 my-4 rounded-full"></div>
-          <p className="text-lg">Equivalente a <span className="font-bold text-yellow-400">{data.daysPlayed} días</span> enteros.</p>
+          
+          <p className="text-lg mb-8">Equivalente a <span className="font-bold text-yellow-400">{data.daysPlayed} días</span> enteros.</p>
+
+          {/* --- AQUÍ ESTÁ EL NUEVO BLOQUE DE TOTAL DE PARTIDAS --- */}
+          <div className="flex items-center gap-4 bg-white/10 px-6 py-3 rounded-xl border border-white/10 shadow-lg transform scale-100 hover:scale-105 transition-transform">
+             <div className="bg-blue-500/20 p-2 rounded-full">
+                <Gamepad2 className="text-blue-400" size={28} />
+             </div>
+             <div className="text-left">
+                <p className="text-[10px] uppercase tracking-wider opacity-60 font-bold">Total Partidas</p>
+                <p className="text-3xl font-bold text-white leading-none">{data.total.total_partidas}</p>
+             </div>
+          </div>
         </StoryLayout>
       ),
     },
@@ -229,11 +303,75 @@ const ChessWrapped = ({ player, playerData }) => {
          </StoryLayout>
        ), 
      },
+     {
+        content: () => (
+            <StoryLayout bg="bg-gradient-to-br from-gray-800 via-gray-900 to-black">
+                <div className="flex flex-col items-center justify-center w-full h-full gap-8">
+                    <h2 className="text-3xl font-black uppercase text-white mb-4">Tu Color Dominante</h2>
+                    
+                    {/* BLANCAS */}
+                    <div className="w-full max-w-xs bg-gray-200 text-black p-4 rounded-xl shadow-lg transform -rotate-1">
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="font-bold text-xl">Blancas</span>
+                            <Crown size={24} className="text-yellow-600"/>
+                        </div>
+                        <div className="text-5xl font-black mb-1">{data.statsWhite.winrate}%</div>
+                        <p className="text-xs opacity-60 font-bold uppercase">Victoria</p>
+                        <p className="text-xs mt-2">{data.statsWhite.total} partidas</p>
+                    </div>
 
-     // --- HEATMAP INTERACTIVO (Con Switch) ---
-     // Esta es la parte que integra tus componentes
+                    {/* VS */}
+                    <div className="font-black text-2xl text-red-500 italic">VS</div>
+
+                    {/* NEGRAS */}
+                    <div className="w-full max-w-xs bg-gray-900 text-white p-4 rounded-xl shadow-lg border border-gray-700 transform rotate-1">
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="font-bold text-xl">Negras</span>
+                            <Crown size={24} className="text-gray-500"/>
+                        </div>
+                        <div className="text-5xl font-black mb-1">{data.statsBlack.winrate}%</div>
+                        <p className="text-xs opacity-60 font-bold uppercase">Victoria</p>
+                         <p className="text-xs mt-2">{data.statsBlack.total} partidas</p>
+                    </div>
+                </div>
+            </StoryLayout>
+        )
+     },
+     // heatmapMatrix
      (data.heatmapMatrix) && {
         content: () => <HeatmapSlide matrix={data.heatmapMatrix} />
+     },
+     (data.piezaFavorita.count > 0) && {
+        content: () => (
+         <StoryLayout bg="bg-gradient-to-br from-indigo-900 via-purple-900 to-black">
+           <div className="animate-bounce mb-6">
+               {data.piezaFavorita.icon}
+           </div>
+           
+           <p className="text-xl opacity-70 mb-2 uppercase tracking-widest">Tu Fiel Compañero</p>
+           
+           <h2 className="text-5xl font-black mb-2 text-white">
+             {data.piezaFavorita.name}
+           </h2>
+           
+           <div className="bg-white/10 px-6 py-2 rounded-full border border-white/20 mb-8 inline-block">
+                <span className="text-purple-200 italic">"{data.piezaFavorita.desc}"</span>
+           </div>
+
+           <div className="grid grid-cols-2 gap-4 w-full max-w-xs text-left">
+                <div className="bg-black/30 p-4 rounded-xl border border-white/10">
+                    <p className="text-xs uppercase opacity-60 mb-1">Movimientos</p>
+                    <p className="text-3xl font-bold text-purple-300">{data.piezaFavorita.count}</p>
+                </div>
+                <div className="bg-black/30 p-4 rounded-xl border border-white/10">
+                    <p className="text-xs uppercase opacity-60 mb-1">% del Total</p>
+                    <p className="text-3xl font-bold text-pink-300">
+                        {((data.piezaFavorita.count / data.piezaFavorita.totalMoves) * 100).toFixed(0)}%
+                    </p>
+                </div>
+           </div>
+         </StoryLayout>
+       ), 
      },
 
      // NÉMESIS VS PET
@@ -324,7 +462,7 @@ const ChessWrapped = ({ player, playerData }) => {
       <div className="absolute inset-0 z-0">
           <Stories
                 stories={finalStories}
-                defaultInterval={7000}
+                defaultInterval={20000}
                 width="100%"
                 height="100%"
                 loop={true}

@@ -1,7 +1,8 @@
 import { Crown, ScrollText, Cannabis } from 'lucide-react';
 import { Button } from '@/components/ui/button'
+import ChessAnalysisDialog from "@/components/ui/modal_configuracion_copy"
 
-const TabYo = ({Datosuser,handleAnalyze}) => {
+const TabYo = ({Datosuser,handleAnalyze,analyzeFiltros}) => {
     return(
         <main className="flex flex-col justify-center h-screen flex items-center max-w-xl mx-auto px-6 py-12">
         <div className="relative mb-12 mr-auto">
@@ -37,8 +38,7 @@ const TabYo = ({Datosuser,handleAnalyze}) => {
         </div>
         
         <Button className='my-4' onClick={() => handleAnalyze(Datosuser)}>Ver mi resumen <Cannabis className="animate-bounce"/></Button>
-
-
+        <ChessAnalysisDialog key={Datosuser.username} player={Datosuser} analyzeFiltros={analyzeFiltros}/>
       </main>
     )
 }
