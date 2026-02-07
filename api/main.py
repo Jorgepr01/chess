@@ -43,11 +43,11 @@ def fetch_and_cache(url, filename):
 
 
 
-@app.get("/", tags=["Home"])
+@app.get("/api/", tags=["Home"])
 def home():
     return {"Hello": "Chess API is running split in 2 files"}
 
-@app.get("/chessyo/{user}", tags=["consultas"])
+@app.get("/api/chessyo/{user}", tags=["consultas"])
 def user_profile(user: str):
     data = fetch_and_cache(
         f'https://api.chess.com/pub/player/{user}', 
@@ -56,7 +56,7 @@ def user_profile(user: str):
     if data: return data
     raise HTTPException(status_code=404, detail="User not found")
 
-@app.get("/chessstats/{user}", tags=["consultas"])
+@app.get("/api/chessstats/{user}", tags=["consultas"])
 def stats(user: str):
     data = fetch_and_cache(
         f'https://api.chess.com/pub/player/{user}/stats', 
@@ -65,7 +65,7 @@ def stats(user: str):
     if data: return data
     raise HTTPException(status_code=404, detail="Stats not found")
 
-@app.get("/chessarchives/{user}", tags=["consultas"])
+@app.get("/api/chessarchives/{user}", tags=["consultas"])
 def archives(user: str):
     data = fetch_and_cache(
         f'https://api.chess.com/pub/player/{user}/games/archives', 
@@ -74,7 +74,7 @@ def archives(user: str):
     if data: return data
     raise HTTPException(status_code=404, detail="Archives not found")
 
-@app.get("/chessgames/{user}/{year}/{month}", tags=["consultas"])
+@app.get("/api/chessgames/{user}/{year}/{month}", tags=["consultas"])
 def games(user: str, year: str, month: str):
     data = fetch_and_cache(
         f'https://api.chess.com/pub/player/{user}/games/{year}/{month}',
@@ -84,7 +84,7 @@ def games(user: str, year: str, month: str):
          return {"games": []}
     return data
 
-@app.get("/chesswrapped/{user}/{year}", tags=["analytics"])
+@app.get("/api/chesswrapped/{user}/{year}", tags=["analytics"])
 def generate_year_report(user: str, year: str):
     temp_dir = tempfile.gettempdir()
     report_filename = f"{user}_{year}_wrapped.json"
@@ -111,7 +111,7 @@ def generate_year_report(user: str, year: str):
     return total_general
 
 
-@app.get("/chesswrappedpandas/{user}/{year}", tags=["analytics"])
+@app.get("/api/chesswrappedpandas/{user}/{year}", tags=["analytics"])
 def generate_year_report_pandas(user: str, year: str):
     user=user.lower()
     temp_dir = tempfile.gettempdir()
@@ -154,7 +154,7 @@ def generate_year_report_pandas(user: str, year: str):
 
 
 
-@app.get("/top-players", tags=["consultas"])
+@app.get("/api/top-players", tags=["consultas"])
 def top_players():
     filename = "top.json"
     data = fetch_and_cache("https://api.chess.com/pub/leaderboards", filename)  

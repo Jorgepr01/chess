@@ -119,7 +119,7 @@ export default function ChessAnalysisDialog({player,analyzeFiltros}) {
     if (open && player.username) {
       const fetchUserStartDate = async () => {
         try {
-          const response = await api.get(`http://localhost:8000/chessarchives/${player.username}`)
+          const response = await api.get(`/chessarchives/${player.username}`)
           console.log("Datos recibidos:", response.data)
           const firstUrl = response.data.archives[0].split('/');
           const year = firstUrl[firstUrl.length - 2]; 
@@ -153,7 +153,7 @@ export default function ChessAnalysisDialog({player,analyzeFiltros}) {
     console.log("📤 ENVIANDO JSON A FASTAPI:", payload)
 
     try {
-      const response = await api.post('http://localhost:8000/api/analizar', payload)
+      const response = await api.post('/analizar', payload)
       console.log(response.data)
       analyzeFiltros(player,response.data)
       setOpen(false) // Cerrar modal
