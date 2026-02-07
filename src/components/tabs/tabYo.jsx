@@ -1,6 +1,6 @@
 import { Crown, ScrollText, Cannabis } from 'lucide-react';
 import { Button } from '@/components/ui/button'
-import ChessAnalysisDialog from "@/components/ui/modal_configuracion_copy"
+import ChessAnalysisDialog from "@/components/Analitics/modal_configuracion_copy"
 
 const TabYo = ({Datosuser,handleAnalyze,analyzeFiltros}) => {
     return(

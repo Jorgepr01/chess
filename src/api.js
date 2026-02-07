@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url="http://localhost:8000/" //local
+const url="" //local
 // const url="https://glorious-acorn-gpj7pj4gp5v3v4pw-8000.app.github.dev/" //repo
 const api=axios.create({
     baseURL: url

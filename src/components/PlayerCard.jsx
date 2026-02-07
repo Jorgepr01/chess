@@ -1,7 +1,7 @@
 import { Heart, ChartNoAxesCombined } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import ChessAnalysisDialog from "@/components/ui/modal_configuracion_copy"
+import ChessAnalysisDialog from "@/components/Analitics/modal_configuracion_copy"
 
 const PlayerCard = ({ player, onFavorite, onAnalyze, isFavorited,analyzeFiltros }) => {
     const isFav = isFavorited && isFavorited(player)
