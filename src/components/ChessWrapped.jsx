@@ -207,7 +207,7 @@ const ChessWrapped = ({ player, playerData }) => {
               <img src={player.avatar} alt="Avatar" className="w-32 h-32 rounded-full border-4 border-green-500 mb-6 shadow-2xl" />
           )}
           <h1 className="text-4xl font-bold mb-2">{player.username}</h1>
-          <h2 className="text-2xl font-bold text-green-400 mb-6">CHESS WRAPPED 2025</h2>
+          <h2 className="text-2xl font-bold text-green-400 mb-6">Recopilatoria</h2>
           <div className="bg-white/10 px-4 py-2 rounded-full border border-white/20">
              <p className="text-gray-300 text-sm">Resumen Oficial</p>
           </div>

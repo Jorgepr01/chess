@@ -167,7 +167,7 @@ def top_players():
 
 
 @app.post("/api/analizar")
-async def analizar_partidas(filtros: FiltroPartidas):
+def analizar_partidas(filtros: FiltroPartidas):
     
     temp_dir = tempfile.gettempdir()
     report_filename = f"{filtros.username}_{filtros.start_date}_{filtros.end_date}_wrapped_filtro.json"
