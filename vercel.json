@@ -1,0 +1,11 @@
+{
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/main.py" }
+  ],
+  "functions": {
+    "api/main.py": {
+      "includeFiles": "api/**",
+      "excludeFiles": "public/**, src/**, node_modules/**, dist/**"
+    }
+  }
+}

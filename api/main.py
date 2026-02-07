@@ -8,7 +8,7 @@ import analisis as chess_engine
 import analisis_hib as chess_engine_hib
 from modelos.esquemas import FiltroPartidas
 import time
-
+import tempfile
 
 
 
@@ -28,13 +28,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 def fetch_and_cache(url, filename):
-    if os.path.exists(filename):
-        with open(filename, 'r', encoding='utf-8') as f:
+    temp_dir = tempfile.gettempdir()
+    file_path = os.path.join(temp_dir, filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     response = requests.get(url, headers=HEADERS)
     if response.status_code == 200:
         data = response.json()
-        with open(filename, 'w', encoding='utf-8') as f:
+        with open(file_path, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return data
     return None
@@ -84,9 +86,11 @@ def games(user: str, year: str, month: str):
 
 @app.get("/chesswrapped/{user}/{year}", tags=["analytics"])
 def generate_year_report(user: str, year: str):
+    temp_dir = tempfile.gettempdir()
     report_filename = f"{user}_{year}_wrapped.json"
-    if os.path.exists(report_filename):
-        with open(report_filename, 'r', encoding='utf-8') as f:
+    file_path = os.path.join(temp_dir, report_filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     total_general = {}
     rachas_temporales = {} 
@@ -102,7 +106,7 @@ def generate_year_report(user: str, year: str):
                 rachas_temporales[modo] = total_general[modo]["racha_cache"]
 
     total_general = chess_engine.clean_stats_for_json(total_general)
-    with open(report_filename, 'w', encoding='utf-8') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(total_general, f, ensure_ascii=False, indent=4)
     return total_general
 
@@ -110,9 +114,11 @@ def generate_year_report(user: str, year: str):
 @app.get("/chesswrappedpandas/{user}/{year}", tags=["analytics"])
 def generate_year_report_pandas(user: str, year: str):
     user=user.lower()
+    temp_dir = tempfile.gettempdir()
     report_filename = f"{user}_{year}_wrapped_pandas.json"
-    if os.path.exists(report_filename):
-        with open(report_filename, 'r', encoding='utf-8') as f:
+    file_path = os.path.join(temp_dir, report_filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     meses = [f"{i:02d}" for i in range(1, 13)]
     heatmap_total=[[0 for _ in range(8)] for _ in range(8)]
@@ -142,7 +148,7 @@ def generate_year_report_pandas(user: str, year: str):
 
     datafinal['heatmap'] = heatmap_normalizado
     datafinal['piezas_movidas'] = piezas_total
-    with open(report_filename, 'w', encoding='utf-8') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(datafinal, f, ensure_ascii=False, indent=4)
     return datafinal
 
@@ -161,70 +167,14 @@ def top_players():
     return filtered_data
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@app.get("/chessw_amalisis_filtro/{user}/{year}", tags=["analytics"])
-def generate_year_report_filtros(user: str, year: str):
-    user=user.lower()
-    report_filename = f"{user}_{year}_wrapped_pandas.json"
-    if os.path.exists(report_filename):
-        with open(report_filename, 'r', encoding='utf-8') as f:
-            return json.load(f)
-    meses = [f"{i:02d}" for i in range(1, 13)]
-    heatmap_total=[[0 for _ in range(8)] for _ in range(8)]
-    filas_pandas=[]
-    piezas_total = {'P': 0, 'N': 0, 'B': 0, 'R': 0, 'Q': 0, 'K': 0}
-    for mes in meses:
-        print(f"Procesando mes {mes}_{year}")
-        print("Dato")
-        data = games(user, year, mes)
-        if "games" in data and data["games"]:
-            datos_mes,heatmap_mes,conteo_mes=chess_engine_hib.limpieza_fila(data["games"],user=user)
-            filas_pandas.extend(datos_mes)
-            for f in range(8):
-                for c in range(8):
-                    heatmap_total[f][c] += heatmap_mes[f][c]
-            for pieza, cantidad in conteo_mes.items():
-                piezas_total[pieza] += cantidad
-    datafinal=chess_engine_hib.analisis_pandas(filas_pandas)
-    # AGREGAMOS EL HEATMAP AL JSON FINAL
-    #normalizamos
-    max_valor = max(max(fila) for fila in heatmap_total)
-
-    heatmap_normalizado = []
-    for fila in heatmap_total:
-        nueva_fila = [valor / max_valor for valor in fila] # Da 0.0 a 1.0
-        heatmap_normalizado.append(nueva_fila)
-
-    datafinal['heatmap'] = heatmap_normalizado
-    datafinal['piezas_movidas'] = piezas_total
-    with open(report_filename, 'w', encoding='utf-8') as f:
-        json.dump(datafinal, f, ensure_ascii=False, indent=4)
-    return datafinal
-
-
-
-
 @app.post("/api/analizar")
 async def analizar_partidas(filtros: FiltroPartidas):
+    
+    temp_dir = tempfile.gettempdir()
     report_filename = f"{filtros.username}_{filtros.start_date}_wrapped_filtro.json"
-    if os.path.exists(report_filename):
-        with open(report_filename, 'r', encoding='utf-8') as f:
+    file_path = os.path.join(temp_dir, report_filename)
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     heatmap_total=[[0 for _ in range(8)] for _ in range(8)]
     filas_pandas=[]
@@ -258,7 +208,6 @@ async def analizar_partidas(filtros: FiltroPartidas):
                     heatmap_total[f][c] += heatmap_mes[f][c]
             for pieza, cantidad in conteo_mes.items():
                 piezas_total[pieza] += cantidad
-        time.sleep(0.5)
     datafinal=chess_engine_hib.analisis_pandas(filas_pandas,filtros)
 
     if datafinal==None:
@@ -274,25 +223,6 @@ async def analizar_partidas(filtros: FiltroPartidas):
 
     datafinal['heatmap'] = heatmap_normalizado
     datafinal['piezas_movidas'] = piezas_total
-    with open(report_filename, 'w', encoding='utf-8') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(datafinal, f, ensure_ascii=False, indent=4)
     return datafinal
-
-
-# @app.post("/api/analizar")
-# async def analizar_partidas(filtros: FiltroPartidas):
-#     # Aquí ya tienes los datos limpios y validados
-#     print(f"Buscando partidas desde {filtros.start_date} hasta {filtros.end_date}")
-#     print(f"Días seleccionados: {filtros.days_played}")
-
-#     # --- EJEMPLO DE USO CON SQLALCHEMY / ORM ---
-#     # query = session.query(Partida).filter(
-#     #     Partida.fecha >= filtros.start_date,
-#     #     Partida.fecha <= filtros.end_date,
-#     #     Partida.dia_semana.in_(filtros.days_played)
-#     # )
-    
-#     return {
-#         "status": "ok", 
-#         "mensaje": f"Análisis iniciado para {len(filtros.days_played)} días"
-#     }
