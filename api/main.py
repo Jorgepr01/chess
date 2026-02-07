@@ -7,7 +7,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import analisis as chess_engine
 import analisis_hib as chess_engine_hib
 from modelos.esquemas import FiltroPartidas
-import time
 import tempfile
 
 
@@ -171,7 +170,7 @@ def top_players():
 async def analizar_partidas(filtros: FiltroPartidas):
     
     temp_dir = tempfile.gettempdir()
-    report_filename = f"{filtros.username}_{filtros.start_date}_wrapped_filtro.json"
+    report_filename = f"{filtros.username}_{filtros.start_date}_{filtros.end_date}_wrapped_filtro.json"
     file_path = os.path.join(temp_dir, report_filename)
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as f:

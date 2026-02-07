@@ -1,7 +1,13 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "/api/main.py" }
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/main.py"
+    }
   ],
+  "env": {
+    "PYTHONPATH": "api"
+  },
   "functions": {
     "api/main.py": {
       "includeFiles": "api/**",
