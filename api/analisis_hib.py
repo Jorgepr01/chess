@@ -6,7 +6,7 @@ import chess
 import chess.pgn
 from modelos.esquemas import FiltroPartidas
 from datetime import date 
-
+from aperturas import datos_aperturas
 filtros_default= FiltroPartidas(start_date=date(2025,1,1),
                       end_date=date(2025,12,31),
                        win_types=["checkmated","timeout","resigned","agreed","timevsinsufficient","abandoned","repetition","stalemate","insufficient"],
@@ -73,11 +73,7 @@ def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user=""):
     conteo_piezas_mes = {'P': 0, 'N': 0, 'B': 0, 'R': 0, 'Q': 0, 'K': 0}
     games.sort(key=lambda x: x['end_time'])
     #Cargar aperturas
-    diccionario_aperturas = {}
     filename='aperturas.json'
-    if os.path.exists(filename):
-      with open(filename, 'r', encoding='utf-8') as f:
-          diccionario_aperturas = json.load(f)
     for game in games:
         ## FILTRO DE TIPO DE JUEGO
         if game['time_class'] not in filtros.time_control:
@@ -128,7 +124,7 @@ def limpieza_fila(games,filtros:FiltroPartidas=filtros_default,user=""):
         #Analisis PGN
 
         partida=game.get('pgn')
-        nombre_apertura,tipo_apertura,heatmap_mes,conteo_piezas_mes = procesar_pgn(partida,heatmap_mes,diccionario_aperturas,es_blancas,conteo_piezas_mes,filtros.aperturas)
+        nombre_apertura,tipo_apertura,heatmap_mes,conteo_piezas_mes = procesar_pgn(partida,heatmap_mes,datos_aperturas,es_blancas,conteo_piezas_mes,filtros.aperturas)
         if nombre_apertura==None:
            continue
         

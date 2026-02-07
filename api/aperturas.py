@@ -1,4 +1,4 @@
-{
+datos_aperturas={
     "A00": "Aperturas Irregulares",
     "A01": "Apertura Nimzowitsch",
     "A02": "Apertura Bird",
