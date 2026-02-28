@@ -1,16 +1,37 @@
-# React + Vite
+# Chess Wrapped
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Chess Wrapped es una aplicación web interactiva que permite a los usuarios de Chess.com generar y visualizar un resumen estadístico de sus partidas, inspirado en el popular formato de "Spotify Wrapped".
 
-Currently, two official plugins are available:
+## 🚀 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+*   **Resumen Anual:** Visualiza tu desempeño, porcentaje de victorias, derrotas y empates.
+*   **Análisis de Aperturas:** Descubre cuáles son tus aperturas más utilizadas tanto con piezas blancas como negras.
+*   **Personalidad de Juego:** Identifica tu estilo de juego basado en tus estadísticas (ej. agresivo, rápido).
+*   **Némesis y Cliente VIP:** Descubre a qué jugador le has ganado más veces (tu cliente) y quién te ha derrotado en más ocasiones (tu némesis).
+*   **Mapa de Calor (Heatmap):** Visualización interactiva de las casillas del tablero que más transitas durante tus partidas.
+*   **Presentación Animada:** Resultados presentados en un formato de "historias" visuales e interactivas con música de fondo.
 
-## React Compiler
+## 🛠️ Stack Tecnológico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
+*   **React** (con **Vite** como empaquetador)
+*   **Tailwind CSS** para el diseño y los estilos
+*   **Framer Motion** para animaciones fluidas
+*   Componentes de interfaz de usuario de **shadcn/ui**
+*   **Lucide React** para iconos
 
-## Expanding the ESLint configuration
+### Backend
+*   **Python** con **FastAPI**
+*   `python-chess` para la lectura y procesamiento de archivos PGN de las partidas de ajedrez.
+*   `pandas` para el análisis de datos y cálculos estadísticos avanzados.
+*   `requests` para consumir y comunicarse con la API pública de Chess.com.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ⚙️ Estructura del Proyecto
+
+*   `api/`: Contiene el código del backend (Python/FastAPI) encargado de conectarse a Chess.com, descargar el historial de partidas, limpiarlo y calcular las métricas.
+*   `src/`: Contiene el código fuente de la aplicación frontend (React), incluyendo componentes, vistas y estilos.
+*   `public/`: Directorio para archivos estáticos, imágenes, iconos y audios.
+
+## 💡 Cómo Empezar
+
+*Instrucciones pendientes para la instalación y ejecución local del entorno de desarrollo frontend y backend.*
