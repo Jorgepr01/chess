@@ -34,4 +34,50 @@ Chess Wrapped es una aplicación web interactiva que permite a los usuarios de C
 
 ## 💡 Cómo Empezar
 
-*Instrucciones pendientes para la instalación y ejecución local del entorno de desarrollo frontend y backend.*
+### Requisitos Previos
+Asegúrate de tener instalados en tu sistema:
+*   [Node.js](https://nodejs.org/)
+*   [Python](https://www.python.org/)
+
+### Instalación
+
+1.  Clona el repositorio:
+    ```bash
+    git clone https://github.com/Jorgepr01/chess.git
+    cd chess
+    ```
+
+2.  Crea y activa un entorno virtual de Python:
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # En Windows usa: venv\Scripts\activate
+    ```
+
+3.  Instala las dependencias del backend:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  Instala las dependencias del frontend:
+    ```bash
+    npm install
+    ```
+
+### Ejecución Local
+
+Para ejecutar el proyecto localmente, necesitarás iniciar tanto el backend como el frontend en terminales separadas.
+
+**1. Ejecutar el Backend (FastAPI):**
+```bash
+# Asegúrate de tener el entorno virtual activado
+cd api
+uvicorn main:app --reload
+```
+El backend estará corriendo en `http://localhost:8000`.
+
+**2. Ejecutar el Frontend (React/Vite):**
+Abre una nueva terminal en la raíz del proyecto y ejecuta:
+```bash
+npm run dev
+```
+El frontend estará corriendo en el puerto indicado por Vite (usualmente `http://localhost:5173`).

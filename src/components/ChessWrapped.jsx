@@ -13,6 +13,69 @@ const MUSIC_URL = miMusicaLocal;
 
 
 
+import { motion } from 'framer-motion';
+
+const EloLineChart = ({ history }) => {
+  const dates = Object.keys(history).sort();
+  const values = dates.map(d => history[d]);
+  
+  if (values.length < 2) return <p className="text-gray-400 italic">No hay suficientes datos para el gráfico</p>;
+
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 100;
+  
+  // Padding para que la línea no toque los bordes
+  const padding = 40;
+  const width = 300;
+  const height = 150;
+
+  const points = values.map((v, i) => ({
+    x: (i / (values.length - 1)) * (width - padding * 2) + padding,
+    y: height - ((v - min) / range) * (height - padding * 2) - padding
+  }));
+
+  const pathD = `M ${points.map(p => `${p.x},${p.y}`).join(' L ')}`;
+
+  return (
+    <div className="relative w-full flex flex-col items-center">
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} className="overflow-visible">
+        {/* Línea de fondo (guía) */}
+        <line x1={padding} y1={height-padding/2} x2={width-padding} y2={height-padding/2} stroke="white" strokeOpacity="0.1" strokeWidth="1" />
+        
+        {/* Trayectoria animada */}
+        <motion.path
+          d={pathD}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          className="text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]"
+        />
+
+        {/* Puntos inicio y fin */}
+        <motion.circle 
+          cx={points[0].x} cy={points[0].y} r="4" fill="white" 
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5 }}
+        />
+        <motion.circle 
+          cx={points[points.length-1].x} cy={points[points.length-1].y} r="6" fill="#10b981" 
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2 }}
+        />
+      </svg>
+      
+      <div className="flex justify-between w-full max-w-[220px] mt-2 text-[10px] uppercase tracking-widest opacity-50">
+        <span>{dates[0].split('-')[1]}/{dates[0].split('-')[0].slice(2)}</span>
+        <span>{dates[dates.length-1].split('-')[1]}/{dates[dates.length-1].split('-')[0].slice(2)}</span>
+      </div>
+    </div>
+  );
+};
+
 const StoryLayout = ({ bg, children }) => (
   <div className={`w-full h-full flex flex-col items-center justify-center p-6 ${bg} text-white text-center`}>
     {children}
@@ -115,9 +178,11 @@ const ChessWrapped = ({ player, playerData }) => {
                 icon: config.icon,
                 gradient: config.color,
                 eloMax: stats.elo_maximo,
+                eloMin: stats.elo_minimo,
                 games: stats.total_partidas,
                 winRate: winRate,
-                streak: stats.racha_maxima
+                streak: stats.racha_maxima,
+                eloHistory: stats.elo_history || null
             });
         }
     });
@@ -261,6 +326,7 @@ const ChessWrapped = ({ player, playerData }) => {
 
   // 4. DIAPOSITIVAS POR MODO
   data.categorySlides.forEach(cat => {
+    // A. Tarjeta de estadísticas generales
     storiesList.push({
         content: () => (
             <StoryLayout bg={`bg-gradient-to-br ${cat.gradient}`}>
@@ -286,6 +352,34 @@ const ChessWrapped = ({ player, playerData }) => {
             </StoryLayout>
         )
     });
+
+    // B. NUEVO: Gráfico de Evolución de ELO (Solo si hay historial)
+    if (cat.eloHistory && Object.keys(cat.eloHistory).length > 1) {
+        storiesList.push({
+            content: () => (
+                <StoryLayout bg={`bg-gradient-to-br ${cat.gradient} brightness-75`}>
+                    <Activity size={60} className="mb-6 opacity-50" />
+                    <p className="text-sm uppercase tracking-[0.2em] opacity-80 mb-2">Tu camino en {cat.label}</p>
+                    <h2 className="text-3xl font-black mb-10">Evolución de ELO</h2>
+                    
+                    <div className="w-full bg-white/5 backdrop-blur-sm p-8 rounded-3xl border border-white/10 shadow-2xl">
+                         <EloLineChart history={cat.eloHistory} />
+                         
+                         <div className="grid grid-cols-2 gap-8 mt-10 border-t border-white/10 pt-6">
+                             <div className="text-left">
+                                 <p className="text-[10px] uppercase opacity-40">Mínimo</p>
+                                 <p className="text-2xl font-bold opacity-70">{cat.eloMin}</p>
+                             </div>
+                             <div className="text-right">
+                                 <p className="text-[10px] uppercase opacity-40">Máximo</p>
+                                 <p className="text-2xl font-bold text-green-400">{cat.eloMax}</p>
+                             </div>
+                         </div>
+                    </div>
+                </StoryLayout>
+            )
+        });
+    }
   });
 
   // 5. FUN STORIES FINALES

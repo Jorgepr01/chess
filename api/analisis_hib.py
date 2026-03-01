@@ -187,6 +187,22 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
     return filas_para_pandas, heatmap_mes, conteo_piezas_mes
 
 
+def filters_is_default(filtros: FiltroPartidas, df=None):
+    """
+    Detecta si el filtro es el de por defecto (2025 completo) 
+    pero estamos analizando datos de otro año.
+    """
+    is_date_2025 = (filtros.start_date == date(2025, 1, 1) and 
+                    filtros.end_date == date(2025, 12, 31))
+    
+    # Si tenemos datos, chequeamos si el año de los datos es distinto de 2025
+    if df is not None and not df.empty and is_date_2025:
+        data_year = df["fecha"].dt.year.iloc[0]
+        if data_year != 2025:
+            return True
+            
+    return False
+
 def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
 
     final = {"total": {}}
@@ -202,11 +218,17 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
     df_anual["mes"] = df_anual["fecha"].dt.month_name()
 
     #   ##FILTROS
-    # Filtros fecha
-    mask_fecha = (df_anual["fecha_date"] >= filtros.start_date) & (
-        df_anual["fecha_date"] <= filtros.end_date
-    )
-    df_anual = df_anual[mask_fecha]
+    # Filtros fecha - Ajustamos dinámicamente si es el filtro por defecto
+    if filters_is_default(filtros, df_anual):
+        # Si es el filtro por defecto (2025) pero tenemos datos de otro año (ej. 2024),
+        # no aplicamos el filtro de fecha de 2025 para no borrar los datos.
+        pass
+    else:
+        mask_fecha = (df_anual["fecha_date"] >= filtros.start_date) & (
+            df_anual["fecha_date"] <= filtros.end_date
+        )
+        df_anual = df_anual[mask_fecha]
+
     if filtros.days_played:
         df_anual = df_anual[df_anual["dia_semana"].isin(filtros.days_played)]
 
@@ -255,7 +277,20 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
             "mes"
         ].iloc[0]
         final[modo]["tiempo_jugado"] = int(df_modo["tiempo_control"].sum() * 2)
-        # tiempo jugado
+        
+        # --- NUEVO: HISTORIAL DE ELO (Para el gráfico) ---
+        # Ordenamos por fecha para asegurar la línea de tiempo
+        df_modo = df_modo.sort_values("fecha")
+        # Resampleamos por semana para que el gráfico sea fluido pero el JSON ligero
+        # Tomamos el último ELO registrado en esa semana
+        elo_history = df_modo.set_index("fecha")["elo"].resample("W").last().ffill().dropna()
+        
+        # Convertimos las fechas a string (YYYY-MM-DD) para que sea serializable a JSON
+        final[modo]["elo_history"] = {
+            str(date.date()): int(val) 
+            for date, val in elo_history.items()
+        }
+        # ------------------------------------------------
 
     # analisis del general potente
     cantidad_partidas = len(df_anual)

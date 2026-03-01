@@ -8,7 +8,7 @@ import ChessWrapped from './components/ChessWrapped';
 // ==========================================
 // 2. TU DASHBOARD (ADAPTADO PARA RECIBIR USUARIO)
 // ==========================================
-const ChessDashboard = ({ initialUser, onBack }) => {
+const ChessDashboard = ({ initialUser, initialYear, onBack }) => {
   const [topPlayer, setTopPlayer] = useState([]); 
   const [perfil, setPerfil] = useState(null)
   const [selectedGameMode, setSelectedGameMode] = useState('bullet');
@@ -23,7 +23,7 @@ const ChessDashboard = ({ initialUser, onBack }) => {
   const handleAnalyze = (player) => {
     setSelectedPlayer(player);
     setPlayerStats(null); 
-    fetchStats(player.username);
+    fetchStats(player.username, false, initialYear);
   };
 
   const analyzeFiltros = (player,data) =>{
@@ -55,9 +55,9 @@ const ChessDashboard = ({ initialUser, onBack }) => {
     }
   };
 
-  const fetchStats = async (username, isMainUser = false) => {
+  const fetchStats = async (username, isMainUser = false, year = '2025') => {
     try {
-      const response = await api.get('/chesswrappedpandas/'+username+"/2025");
+      const response = await api.get(`/chesswrappedpandas/${username}/${year}`);
       const data = response.data
       setPlayerStats(data);
       if (isMainUser && data.total && data.total.amigos) {
@@ -96,14 +96,15 @@ const ChessDashboard = ({ initialUser, onBack }) => {
   // Este useEffect se activa cuando cambia el "initialUser" (lo que escribiste en el buscador)
   useEffect(() => {
     const usuarioActual = initialUser || 'jorgepr1';
+    const anioActual = initialYear || '2025';
     
     fetchTopPlayers();
     fetchUser(usuarioActual); 
-    fetchStats(usuarioActual, true);
+    fetchStats(usuarioActual, true, anioActual);
     // Auto-seleccionamos al usuario para que se muestre el Wrapped directamente
     // setSelectedPlayer({ username: usuarioActual });
     
-  }, [initialUser]);
+  }, [initialUser, initialYear]);
 
 
   return (

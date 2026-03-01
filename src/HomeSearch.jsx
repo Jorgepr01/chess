@@ -5,10 +5,11 @@ import { Button } from "@/components/ui/button";
 
 const HomeSearch = ({ onSearch }) => {
   const [input, setInput] = useState('');
+  const [year, setYear] = useState('2025');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input.trim()) onSearch(input.trim());
+    if (input.trim()) onSearch(input.trim(), year);
   };
 
   return (
@@ -24,22 +25,37 @@ const HomeSearch = ({ onSearch }) => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:flex-row">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
-            <Input 
-              placeholder="Ingresa tu usuario (ej: jorgepr1)" 
-              className="pl-10 h-12 text-base border-gray-200 focus-visible:ring-gray-900 rounded-lg"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              autoFocus
-            />
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+              <Input 
+                placeholder="Ingresa tu usuario (ej: jorgepr1)" 
+                className="pl-10 h-12 text-base border-gray-200 focus-visible:ring-gray-900 rounded-lg"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                autoFocus
+              />
+            </div>
+            
+            <div className="w-full sm:w-32">
+              <select 
+                className="w-full h-12 px-3 text-base border-gray-200 focus:ring-gray-900 focus:border-gray-900 rounded-lg bg-white border"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              >
+                {['2025','2024','2023','2022','2021','2020'].map(y => (
+                  <option key={y} value={y}>{y}</option>
+                ))}
+              </select>
+            </div>
           </div>
+
           <Button 
             type="submit" 
-            className="h-12 px-8 text-base font-medium bg-gray-900 hover:bg-gray-800 text-white rounded-lg"
+            className="w-full h-12 text-base font-medium bg-gray-900 hover:bg-gray-800 text-white rounded-lg"
           >
-            Analizar
+            Generar Resumen
           </Button>
         </form>
 
