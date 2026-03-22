@@ -81,3 +81,11 @@ Abre una nueva terminal en la raíz del proyecto y ejecuta:
 npm run dev
 ```
 El frontend estará corriendo en el puerto indicado por Vite (usualmente `http://localhost:5173`).
+
+
+# Extra
+En archivo `/api/crear_db.py` se creo un script para crear un csv con todos los datos de tus partidas, esta data ya esta limpia mediante el mismo proceso que utilice para el analisis, puedes ejecutarlo con el siguiente comando:
+```bash
+python crear_db.py
+```
+Mediante ese archivo puedes crear puedes crear muchas cosas analizar tus partidas con una analisis mas profundo o crear un modelo de machine learning para predecir tus resultados, posiblemente realizare un proyecto de analisis de mis partidas.

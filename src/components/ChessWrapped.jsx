@@ -735,7 +735,7 @@ const ChessWrapped = ({ player, playerData }) => {
       <div className="absolute inset-0 z-0">
         <Stories
           stories={finalStories}
-          defaultInterval={20000}
+          defaultInterval={7000}
           width="100%"
           height="100%"
           loop={true}
