@@ -5,6 +5,7 @@ from datetime import date
 
 import chess
 import chess.pgn
+import numpy as np
 import pandas as pd
 from aperturas import datos_aperturas
 from modelos.esquemas import FiltroPartidas
@@ -49,17 +50,36 @@ def procesar_pgn(
     conteo_piezas,
     filtro_apertura,
 ):
+    # 1. Definimos datos_macro desde el principio para retornos seguros
+    datos_macro = {
+        "tiempos_usuario": [],
+        "movimientos_usuario": 0,
+        "movimientos_oponente": 0,
+        "max_tiempo_pensado": 0.0,
+        "texto_jugada_mas_larga": "",
+        "turno_jugada_mas_larga": 0,
+        "jaques": 0,
+        "capturas": 0,
+        "coronaciones": 0,
+        "enroque": "Ninguno",
+        "jugada_enroque": None,
+        "promedio_tiempo": 0.0,
+        "desviacion_tiempo": 0.0,
+    }
+
+    # Retornos tempranos unificados (devuelven 5 elementos siempre)
     if not partida:
-        return "Desconocida", "Desconocida", heatmap_mes, conteo_piezas
+        return "Desconocida", "Desconocida", heatmap_mes, conteo_piezas, datos_macro
     pgn = io.StringIO(partida)
     game = chess.pgn.read_game(pgn)
     if not game:
-        return "Desconocida", "Desconocida", heatmap_mes, conteo_piezas
-    # game.mainline()
+        return "Desconocida", "Desconocida", heatmap_mes, conteo_piezas, datos_macro
+
+    # Validamos ECO de forma segura por si viene vacío
     eco_partida = game.headers.get("ECO", "Z")
     if eco_partida[0] not in filtro_apertura:
         print("filtro apertura")
-        return None, None, heatmap_mes, conteo_piezas
+        return None, None, heatmap_mes, conteo_piezas, datos_macro
     tipo_apertura = "Desconocida"
     if eco_partida[0] == "A":
         tipo_apertura = "Aperturas de flanco"
@@ -76,21 +96,80 @@ def procesar_pgn(
 
     nombre_apertura = diccionario_aperturas.get(eco_partida, "Desconocida")
 
-    # Procesar heatmap
+    time_control = game.headers.get("TimeControl", "0")
+    incremento = 0
+    if "+" in time_control:
+        try:
+            incremento = float(time_control.split("+")[1])
+        except ValueError:
+            pass
+
     board = game.board()
-    for move in game.mainline_moves():
+    tiempo_anterior = None
+
+    for node in game.mainline():
+        move = node.move
         if board.turn == es_blancas:
+            # TIEMPO
+            tiempo_restante = node.clock()
+            if tiempo_restante is not None:
+                if tiempo_anterior is not None:
+                    tiempo_gastado = (tiempo_anterior + incremento) - tiempo_restante
+                    tiempo_gastado = max(
+                        0.0, round(tiempo_gastado, 1)
+                    )  # Evitamos negativos por lag
+                    datos_macro["tiempos_usuario"].append(tiempo_gastado)
+
+                    if tiempo_gastado > datos_macro["max_tiempo_pensado"]:
+                        datos_macro["max_tiempo_pensado"] = tiempo_gastado
+                        datos_macro["texto_jugada_mas_larga"] = board.san(move)
+                        datos_macro["turno_jugada_mas_larga"] = board.fullmove_number
+                tiempo_anterior = tiempo_restante
+
+            # PIEZAS
             pieza = board.piece_at(move.from_square)
             if pieza:
-                symbol = pieza.symbol().upper()  # P, N, B, R, Q, K
+                symbol = pieza.symbol().upper()
                 conteo_piezas[symbol] = conteo_piezas.get(symbol, 0) + 1
-        casilla_destino = move.to_square
-        fila = 7 - chess.square_rank(casilla_destino)
-        columna = chess.square_file(casilla_destino)
-        heatmap_mes[fila][columna] += 1
+
+            # HEATMAP
+            casilla_destino = move.to_square
+            fila = 7 - chess.square_rank(casilla_destino)
+            columna = chess.square_file(casilla_destino)
+            heatmap_mes[fila][columna] += 1
+
+            # TÁCTICAS
+            if board.gives_check(move):
+                datos_macro["jaques"] += 1
+            if board.is_capture(move):
+                datos_macro["capturas"] += 1
+            if move.promotion is not None:
+                datos_macro["coronaciones"] += 1
+
+            # ENROQUE Y MOVIMIENTOS
+            datos_macro["movimientos_usuario"] += 1
+            if board.is_castling(move):
+                datos_macro["jugada_enroque"] = board.fullmove_number
+                if board.is_kingside_castling(move):
+                    datos_macro["enroque"] = "Corto (O-O)"
+                elif board.is_queenside_castling(move):
+                    datos_macro["enroque"] = "Largo (O-O-O)"
+
+        else:
+            # Corregido: accedemos al diccionario
+            datos_macro["movimientos_oponente"] += 1
+
         board.push(move)
 
-    return nombre_apertura, tipo_apertura, heatmap_mes, conteo_piezas
+    # --- FUERA DEL BUCLE ---
+    # Cálculos estadísticos seguros (evitando división por cero)
+    tiempos = datos_macro["tiempos_usuario"]
+    if len(tiempos) > 0:
+        datos_macro["promedio_tiempo"] = round(sum(tiempos) / len(tiempos), 1)
+        datos_macro["desviacion_tiempo"] = round(float(np.std(tiempos)), 1)
+
+    # Retornamos todo agrupado limpiamente
+    return nombre_apertura, tipo_apertura, heatmap_mes, conteo_piezas, datos_macro
 
 
 def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
@@ -159,13 +238,15 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
         # Analisis PGN
 
         partida = game.get("pgn")
-        nombre_apertura, tipo_apertura, heatmap_mes, conteo_piezas_mes = procesar_pgn(
-            partida,
-            heatmap_mes,
-            datos_aperturas,
-            es_blancas,
-            conteo_piezas_mes,
-            filtros.aperturas,
+        nombre_apertura, tipo_apertura, heatmap_mes, conteo_piezas_mes, datos_macro = (
+            procesar_pgn(
+                partida,
+                heatmap_mes,
+                datos_aperturas,
+                es_blancas,
+                conteo_piezas_mes,
+                filtros.aperturas,
+            )
         )
         if nombre_apertura is None:
             continue
@@ -183,6 +264,19 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
             "tipo_apertura": tipo_apertura,
             "tiempo_control": tiempo_control_val,  ## sin contar el incremento
             "racha_en_este_juego": stats_globales["racha_actual"],
+            # Nuevos campos de datos_macro
+            "movimientos_usuario": datos_macro["movimientos_usuario"],
+            "movimientos_oponente": datos_macro["movimientos_oponente"],
+            "max_tiempo_pensado": datos_macro["max_tiempo_pensado"],
+            "texto_jugada_mas_larga": datos_macro["texto_jugada_mas_larga"],
+            "turno_jugada_mas_larga": datos_macro["turno_jugada_mas_larga"],
+            "jaques": datos_macro["jaques"],
+            "capturas": datos_macro["capturas"],
+            "coronaciones": datos_macro["coronaciones"],
+            "enroque": datos_macro["enroque"],
+            "jugada_enroque": datos_macro["jugada_enroque"],
+            "promedio_tiempo": datos_macro["promedio_tiempo"],
+            "desviacion_tiempo": datos_macro["desviacion_tiempo"],
         }
 
         filas_para_pandas.append(fila)
