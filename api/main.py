@@ -12,7 +12,7 @@ from modelos.esquemas import FiltroPartidas
 
 app = FastAPI()
 HEADERS = {"User-Agent": "JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)"}
-origins = ["http://localhost:5173", "http://127.0.0.1:5173", "*"]
+origins = ["http://localhost:5173", "http://127.0.0.1:5173", "./"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
