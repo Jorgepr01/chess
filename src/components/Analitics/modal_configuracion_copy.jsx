@@ -45,6 +45,7 @@ const winTypeOptions = [
   { id: "repetition", label: "Repetición" },
   { id: "stalemate", label: "Rey Ahogado" },
   { id: "insufficient", label: "Material Insuf." },
+  { id: "50move", label: "50 Movimientos" },
 ]
 
 const daysOptions = [

@@ -23,6 +23,7 @@ filtros_default = FiltroPartidas(
         "repetition",
         "stalemate",
         "insufficient",
+        "50move",
         "threecheck",
         "bughousepartnerlose",
         "kingofthehill",
@@ -40,6 +41,19 @@ filtros_default = FiltroPartidas(
     aperturas=["A", "B", "C", "D", "E", "Z"],
     username="",
 )
+
+
+def safe_value_counts_top(series, default_name="Desconocido"):
+    s = series.dropna()
+    if s.empty:
+        return {"name": default_name, "count": 0}
+    vc = s.value_counts()
+    if vc.empty:
+        return {"name": default_name, "count": 0}
+    top_name = vc.idxmax()
+    if hasattr(top_name, "item"):
+        top_name = top_name.item()
+    return {"name": top_name, "count": int(vc.max())}
 
 
 def procesar_pgn(
@@ -172,8 +186,11 @@ def procesar_pgn(
     return nombre_apertura, tipo_apertura, heatmap_mes, conteo_piezas, datos_macro
 
 
-def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
-    # user=user.lower()
+def limpieza_fila(games, filtros: FiltroPartidas = None, user=""):
+    if filtros is None:
+        filtros = filtros_default.model_copy() if hasattr(filtros_default, 'model_copy') else filtros_default.copy()
+    else:
+        filtros = filtros.model_copy() if hasattr(filtros, 'model_copy') else filtros.copy()
     if user != "":
         filtros.username = user
     stats_globales = {"racha_actual": 0, "mejor_racha": 0}
@@ -184,9 +201,7 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
     # Cargar aperturas
     for game in games:
         ## FILTRO DE TIPO DE JUEGO
-        if game["time_class"] not in filtros.time_control:
-            print(game["time_class"])
-            print("chao1")
+        if game.get("time_class") not in filtros.time_control:
             continue
         es_blancas = game["white"]["username"].lower() == filtros.username.lower()
         mi_color = "white" if es_blancas else "black"
@@ -199,8 +214,6 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
             reason_result = game[oponente_color]["result"]
             ## FILTRO DE LA RAZON DE VICTORIA
             if reason_result not in filtros.win_types:
-                print(reason_result)
-                print("chao2")
                 continue
             stats_globales["racha_actual"] += 1
             if stats_globales["racha_actual"] > stats_globales["mejor_racha"]:
@@ -216,16 +229,12 @@ def limpieza_fila(games, filtros: FiltroPartidas = filtros_default, user=""):
             reason_result = mi_resultado
             ## FILTRO DE LA RAZON DE VICTORIA
             if reason_result not in filtros.win_types:
-                print(reason_result)
-                print("chao3")
                 continue
             mi_resultado = "draw"
         else:
             reason_result = mi_resultado
             ## FILTRO DE LA RAZON DE VICTORIA
             if reason_result not in filtros.win_types:
-                print(reason_result)
-                print("chao4")
                 continue
             mi_resultado = "loss"
             stats_globales["racha_actual"] = 0
@@ -350,30 +359,14 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
         final[modo]["reason_result_top"] = dict(
             df_modo["reason_result"].value_counts().head(1).to_dict()
         )
-        final[modo]["oponente_top"] = {
-            "name": df_modo["oponente"].value_counts().idxmax(),
-            "count": int(df_modo["oponente"].value_counts().max()),
-        }
-        final[modo]["apertura_top"] = {
-            "name": df_modo["apertura"].value_counts().idxmax(),
-            "count": int(df_modo["apertura"].value_counts().max()),
-        }
-        final[modo]["hora_top"] = {
-            "name": int(df_modo["hora"].value_counts().idxmax()),
-            "count": int(df_modo["hora"].value_counts().max()),
-        }
-        final[modo]["dia_semana_top"] = {
-            "name": df_modo["dia_semana"].value_counts().idxmax(),
-            "count": int(df_modo["dia_semana"].value_counts().max()),
-        }
-        final[modo]["mes_top"] = {
-            "name": df_modo["mes"].value_counts().idxmax(),
-            "count": int(df_modo["mes"].value_counts().max()),
-        }
-        final[modo]["racha_maxima"] = int(df_modo["racha_en_este_juego"].max())
-        final[modo]["mes_elo_maximo"] = df_modo[df_modo["elo"] == elo_maximo][
-            "mes"
-        ].iloc[0]
+        final[modo]["oponente_top"] = safe_value_counts_top(df_modo["oponente"])
+        final[modo]["apertura_top"] = safe_value_counts_top(df_modo["apertura"])
+        final[modo]["hora_top"] = safe_value_counts_top(df_modo["hora"])
+        final[modo]["dia_semana_top"] = safe_value_counts_top(df_modo["dia_semana"])
+        final[modo]["mes_top"] = safe_value_counts_top(df_modo["mes"])
+        final[modo]["racha_maxima"] = int(df_modo["racha_en_este_juego"].max()) if not df_modo.empty else 0
+        mes_match = df_modo[df_modo["elo"] == elo_maximo]["mes"]
+        final[modo]["mes_elo_maximo"] = mes_match.iloc[0] if not mes_match.empty else "Desconocido"
         final[modo]["tiempo_jugado"] = int(df_modo["tiempo_control"].sum() * 2)
 
         # --- NUEVO: HISTORIAL DE ELO (Para el gráfico) ---
@@ -401,10 +394,7 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
     final["total"]["reason_result_top"] = dict(
         df_anual["reason_result"].value_counts().head(1).to_dict()
     )
-    final["total"]["oponente_top"] = {
-        "name": df_anual["oponente"].value_counts().idxmax(),
-        "count": int(df_anual["oponente"].value_counts().max()),
-    }
+    final["total"]["oponente_top"] = safe_value_counts_top(df_anual["oponente"])
     vc = df_anual[df_anual["resultado"] == "loss"]["oponente"].dropna().value_counts()
 
     if vc.empty:
@@ -417,45 +407,35 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
         final["total"]["pet"] = {"name": None, "count": 0}
     else:
         final["total"]["pet"] = {"name": vc.idxmax(), "count": int(vc.max())}
-    final["total"]["apertura_top"] = {
-        "name": df_anual["apertura"].value_counts().idxmax(),
-        "count": int(df_anual["apertura"].value_counts().max()),
-    }
-    final["total"]["hora_top"] = {
-        "name": int(df_anual["hora"].value_counts().idxmax()),
-        "count": int(df_anual["hora"].value_counts().max()),
-    }
-    final["total"]["dia_semana_top"] = {
-        "name": df_anual["dia_semana"].value_counts().idxmax(),
-        "count": int(df_anual["dia_semana"].value_counts().max()),
-    }
-    final["total"]["mes_top"] = {
-        "name": df_anual["mes"].value_counts().idxmax(),
-        "count": int(df_anual["mes"].value_counts().max()),
-    }
-    final["total"]["racha_maxima"] = int(df_anual["racha_en_este_juego"].max())
-    final["total"]["mes_elo_maximo"] = df_anual[df_anual["elo"] == elo_maximo][
-        "mes"
-    ].iloc[0]
+    final["total"]["apertura_top"] = safe_value_counts_top(df_anual["apertura"])
+    final["total"]["hora_top"] = safe_value_counts_top(df_anual["hora"])
+    final["total"]["dia_semana_top"] = safe_value_counts_top(df_anual["dia_semana"])
+    final["total"]["mes_top"] = safe_value_counts_top(df_anual["mes"])
+    final["total"]["racha_maxima"] = int(df_anual["racha_en_este_juego"].max()) if not df_anual.empty else 0
+    mes_total_match = df_anual[df_anual["elo"] == elo_maximo]["mes"]
+    final["total"]["mes_elo_maximo"] = mes_total_match.iloc[0] if not mes_total_match.empty else "Desconocido"
     final["total"]["tiempo_jugado"] = int(df_anual["tiempo_control"].sum())
     final["total"]["amigos"] = dict(
         df_anual["oponente"].value_counts().head(10).to_dict()
     )
-    conteos_reason = df_anual["reason_result"].value_counts()
 
-    cantidad_timeouts = int(conteos_reason.get("timeout", 0))
-    cantidad_mates = int(conteos_reason.get("checkmated", 0))
-    cantidad_resigns = int(conteos_reason.get("resigned", 0))
+    # Personalidad: calculada correctamente solo con las victorias del usuario
+    df_wins = df_anual[df_anual["resultado"] == "win"]
+    conteos_reason_win = df_wins["reason_result"].value_counts()
+
+    cantidad_timeouts = int(conteos_reason_win.get("timeout", 0))
+    cantidad_mates = int(conteos_reason_win.get("checkmated", 0))
+    cantidad_resigns = int(conteos_reason_win.get("resigned", 0))
     cantidad_tablas = int(len(df_anual[df_anual["resultado"] == "draw"]))
     personality = "Equilibrado"
 
-    if cantidad_tablas > cantidad_partidas / 6:
+    if cantidad_tablas > (cantidad_partidas / 6):
         personality = "El inexpugnable"  # muchas tablas
-    if cantidad_mates > cantidad_resigns and cantidad_mates > cantidad_timeouts:
+    elif cantidad_mates > cantidad_resigns and cantidad_mates > cantidad_timeouts:
         personality = "El Carnicero"  # Gana por mate
-    if cantidad_timeouts > cantidad_mates and cantidad_timeouts > cantidad_resigns:
+    elif cantidad_timeouts > cantidad_mates and cantidad_timeouts > cantidad_resigns:
         personality = "Barry Allen"  # Gana por tiempo
-    if cantidad_resigns > cantidad_mates:
+    elif cantidad_resigns > cantidad_mates and cantidad_resigns > cantidad_timeouts:
         personality = "El Dominante"  # Se rinden ante él
 
     final["total"]["personality"] = personality
@@ -466,7 +446,7 @@ def analisis_pandas(games, filtros: FiltroPartidas = filtros_default):
         if total == 0:
             return {"wins": 0, "total": 0, "winrate": 0}
         wins = len(df_color[df_color["resultado"] == "win"])
-        return {"wins": wins, "total": total, "winrate": int((wins / total) * 100)}
+        return {"wins": wins, "total": total, "winrate": round((wins / total) * 100, 1)}
 
     final["total"]["stats_blancas"] = get_color_stats("Blanco")
     final["total"]["stats_negras"] = get_color_stats("Negro")

@@ -1,4 +1,5 @@
 # main.py
+import concurrent.futures
 import json
 import os
 import tempfile
@@ -12,28 +13,47 @@ from modelos.esquemas import FiltroPartidas
 
 app = FastAPI()
 HEADERS = {"User-Agent": "JorgesPiApp/1.0 (jorge.santamariadc9b@gmail.com)"}
-origins = ["http://localhost:5173", "http://127.0.0.1:5173", "./"]
+origins = ["http://localhost:5173", "http://127.0.0.1:5173", "*"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 
+def json_serial_default(obj):
+    if hasattr(obj, "item"):
+        return obj.item()
+    if isinstance(obj, (int, float)):
+        return obj
+    return str(obj)
+
+
 def fetch_and_cache(url, filename):
     temp_dir = tempfile.gettempdir()
-    file_path = os.path.join(temp_dir, filename)
+    safe_filename = os.path.basename(filename)
+    file_path = os.path.join(temp_dir, safe_filename)
     if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    response = requests.get(url, headers=HEADERS)
-    if response.status_code == 200:
-        data = response.json()
-        with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
-        return data
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            try:
+                os.remove(file_path)
+            except OSError:
+                pass
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=12)
+        if response.status_code == 200:
+            data = response.json()
+            with open(file_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, ensure_ascii=False, indent=4, default=json_serial_default)
+            return data
+    except requests.RequestException as e:
+        print(f"Error fetching {url}: {e}")
+        return None
     return None
 
 
@@ -90,13 +110,33 @@ def generate_year_report(user: str, year: str):
     report_filename = f"{user}_{year}_wrapped.json"
     file_path = os.path.join(temp_dir, report_filename)
     if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            try:
+                os.remove(file_path)
+            except OSError:
+                pass
     total_general = {}
     rachas_temporales = {}
     meses = [f"{i:02d}" for i in range(1, 13)]
-    for mes in meses:
-        data = games(user, year, mes)
+    monthly_data = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+        futures = {
+            executor.submit(games, user, year, mes): mes
+            for mes in meses
+        }
+        for future in concurrent.futures.as_completed(futures):
+            mes = futures[future]
+            try:
+                monthly_data[mes] = future.result()
+            except Exception as e:
+                print(f"Error descargando mes {mes} de {year}: {e}")
+                monthly_data[mes] = {"games": []}
+
+    for mes in sorted(monthly_data.keys()):
+        data = monthly_data[mes]
         if "games" in data and data["games"]:
             for modo, racha_val in rachas_temporales.items():
                 if modo in total_general:
@@ -109,7 +149,7 @@ def generate_year_report(user: str, year: str):
 
     total_general = chess_engine.clean_stats_for_json(total_general)
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(total_general, f, ensure_ascii=False, indent=4)
+        json.dump(total_general, f, ensure_ascii=False, indent=4, default=json_serial_default)
     return total_general
 
 
@@ -122,17 +162,38 @@ def generate_year_report_pandas(user: str, year: str):
 
     # Si ya existe el reporte, lo devolvemos
     if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            try:
+                os.remove(file_path)
+            except OSError:
+                pass
 
     meses = [f"{i:02d}" for i in range(1, 13)]
     heatmap_total = [[0 for _ in range(8)] for _ in range(8)]
     filas_pandas = []
     piezas_total = {"P": 0, "N": 0, "B": 0, "R": 0, "Q": 0, "K": 0}
 
-    for mes in meses:
-        print(f"Procesando mes {mes}_{year} para {user}")
-        data = games(user, year, mes)
+    # Descarga concurrente paralela de los 12 meses
+    monthly_data = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=12) as executor:
+        futures = {
+            executor.submit(games, user, year, mes): mes
+            for mes in meses
+        }
+        for future in concurrent.futures.as_completed(futures):
+            mes = futures[future]
+            try:
+                monthly_data[mes] = future.result()
+            except Exception as e:
+                print(f"Error descargando mes {mes} de {year}: {e}")
+                monthly_data[mes] = {"games": []}
+
+    # Procesar en orden cronológico (01 a 12) para que las rachas se calculen correctamente
+    for mes in sorted(monthly_data.keys()):
+        data = monthly_data[mes]
         if "games" in data and data["games"]:
             datos_mes, heatmap_mes, conteo_mes = chess_engine_hib.limpieza_fila(
                 data["games"], user=user
@@ -143,7 +204,6 @@ def generate_year_report_pandas(user: str, year: str):
                     heatmap_total[f][c] += heatmap_mes[f][c]
             for pieza, cantidad in conteo_mes.items():
                 piezas_total[pieza] += cantidad
-        print(data)
 
     # Generar análisis con Pandas
     datafinal = chess_engine_hib.analisis_pandas(filas_pandas)
@@ -174,7 +234,7 @@ def generate_year_report_pandas(user: str, year: str):
 
     # Guardar en caché
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(datafinal, f, ensure_ascii=False, indent=4)
+        json.dump(datafinal, f, ensure_ascii=False, indent=4, default=json_serial_default)
 
     return datafinal
 
@@ -183,6 +243,11 @@ def generate_year_report_pandas(user: str, year: str):
 def top_players():
     filename = "top.json"
     data = fetch_and_cache("https://api.chess.com/pub/leaderboards", filename)
+    if not data or not isinstance(data, dict):
+        raise HTTPException(
+            status_code=502,
+            detail="No se pudo obtener la tabla de líderes de Chess.com."
+        )
     filtered_data = {
         "rapid": data.get("live_rapid", []),
         "blitz": data.get("live_blitz", []),
@@ -199,8 +264,14 @@ def analizar_partidas(filtros: FiltroPartidas):
     report_filename = f"{filtros.username}_{filtros.start_date}_{filtros.end_date}_wrapped_filtro.json"
     file_path = os.path.join(temp_dir, report_filename)
     if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            return json.load(f)
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            try:
+                os.remove(file_path)
+            except OSError:
+                pass
 
     heatmap_total = [[0 for _ in range(8)] for _ in range(8)]
     filas_pandas = []
@@ -221,9 +292,25 @@ def analizar_partidas(filtros: FiltroPartidas):
             for j in range(1, 13):
                 fechas.append((i, j))
 
+    # Descarga paralela concurrente de todos los meses en el rango
+    fechas_data = {}
+    workers = min(12, max(1, len(fechas)))
+    with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = {
+            executor.submit(games, filtros.username, str(year), f"{mes:02d}"): (year, mes)
+            for year, mes in fechas
+        }
+        for future in concurrent.futures.as_completed(futures):
+            clave = futures[future]
+            try:
+                fechas_data[clave] = future.result()
+            except Exception as e:
+                print(f"Error descargando {clave}: {e}")
+                fechas_data[clave] = {"games": []}
+
+    # Procesamiento ordenado cronológicamente
     for year, mes in fechas:
-        mes_formateado = f"{mes:02d}"
-        data = games(filtros.username, year, mes_formateado)
+        data = fechas_data.get((year, mes), {"games": []})
         if "games" in data and data["games"]:
             datos_mes, heatmap_mes, conteo_mes = chess_engine_hib.limpieza_fila(
                 data["games"], filtros, user=filtros.username
@@ -259,6 +346,6 @@ def analizar_partidas(filtros: FiltroPartidas):
     datafinal["piezas_movidas"] = piezas_total
 
     with open(file_path, "w", encoding="utf-8") as f:
-        json.dump(datafinal, f, ensure_ascii=False, indent=4)
+        json.dump(datafinal, f, ensure_ascii=False, indent=4, default=json_serial_default)
 
     return datafinal

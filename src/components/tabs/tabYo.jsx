@@ -1,8 +1,10 @@
-import { Crown, ScrollText, Cannabis } from 'lucide-react';
+import { Crown, ScrollText, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button'
 import ChessAnalysisDialog from "@/components/Analitics/modal_configuracion_copy"
 
 const TabYo = ({Datosuser,handleAnalyze,analyzeFiltros}) => {
+    const username = Datosuser?.username || 'Ajedrecista';
+
     return(
         <main className="flex flex-col justify-center h-screen flex items-center max-w-xl mx-auto px-6 py-12">
         <div className="relative mb-12 mr-auto">
@@ -10,7 +12,7 @@ const TabYo = ({Datosuser,handleAnalyze,analyzeFiltros}) => {
                 Hola, <br />
                 <span className="relative inline-block mt-2">
                     <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-700">
-                        {Datosuser.username}!
+                        {username}!
                     </span>
                     <span className="absolute bottom-2 left-0 w-full h-6 bg-cyan-200 -rotate-2 -z-0 opacity-80 rounded-sm"></span>
                 </span>
@@ -37,8 +39,16 @@ const TabYo = ({Datosuser,handleAnalyze,analyzeFiltros}) => {
             </div>
         </div>
         
-        <Button className='my-4' onClick={() => handleAnalyze(Datosuser)}>Ver mi resumen <Cannabis className="animate-bounce"/></Button>
-        <ChessAnalysisDialog key={Datosuser.username} player={Datosuser} analyzeFiltros={analyzeFiltros}/>
+        <Button 
+            className='my-4 gap-2 cursor-pointer' 
+            disabled={!Datosuser?.username} 
+            onClick={() => handleAnalyze(Datosuser)}
+        >
+            Ver mi resumen <Sparkles className="w-4 h-4 animate-pulse"/>
+        </Button>
+        {Datosuser?.username && (
+            <ChessAnalysisDialog key={Datosuser.username} player={Datosuser} analyzeFiltros={analyzeFiltros}/>
+        )}
       </main>
     )
 }
